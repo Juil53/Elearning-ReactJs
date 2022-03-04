@@ -1,9 +1,11 @@
-import React from 'react'
+
+import React, { Fragment } from 'react';
+import Breadcrumb from './_components/Breadcrumb/Breadcrumb';
 
 export default function Courses() {
     return (
-        <div>
-            Courses
-        </div>
+        <Fragment>
+            <Breadcrumb />
+        </Fragment>
     )
 }
