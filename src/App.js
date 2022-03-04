@@ -1,8 +1,12 @@
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { renderRouteHome } from "./Routes/route";
 function App() {
   return (
-    <div className="App">
-      <h1>Hello Elearning!</h1>
-    </div>
+    <BrowserRouter>
+      <Switch>
+        {renderRouteHome()}
+      </Switch>
+    </BrowserRouter>
   );
 }
 
