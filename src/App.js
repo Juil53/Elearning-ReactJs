@@ -1,13 +1,13 @@
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { renderRouteHome } from "./Routes/route";
-import Courses from './templateHome/Courses/Courses';
+import { Suspense } from "react";
 function App() {
   return (
-    <BrowserRouter>
-      <Switch>
-        {renderRouteHome()}
-      </Switch>
-    </BrowserRouter>
+    <Suspense fallback={<div>Loading...</div>}>
+      <BrowserRouter>
+        <Switch>{renderRouteHome()}</Switch>
+      </BrowserRouter>
+    </Suspense>
   );
 }
 
