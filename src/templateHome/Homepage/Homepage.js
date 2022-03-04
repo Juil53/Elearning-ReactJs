@@ -43,7 +43,7 @@ export default function Homepage() {
       {/* End News */}
 
       {/* Start Learning */}
-      <section className={classes.learningBg}>
+      <section className={classes.learning}>
         <Learning/>
       </section>
 
