@@ -6,7 +6,6 @@ function App() {
     <BrowserRouter>
       <Switch>
         {renderRouteHome()}
-        <Courses />
       </Switch>
     </BrowserRouter>
   );
