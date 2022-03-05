@@ -204,9 +204,6 @@ const useStyles = makeStyles({
   },
 
   // Learning
-  learningBg:{
-    padding:'50px 0'
-  },
   learning: {
     display: "flex",
     flexDirection: "column",
