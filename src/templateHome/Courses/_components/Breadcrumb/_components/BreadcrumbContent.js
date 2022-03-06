@@ -1,20 +1,16 @@
-import React from 'react';
-import {
-    Box, Link,
-    Typography,
-    Breadcrumbs,
-} from '@mui/material';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import React from "react";
+import { Box, Link, Typography, Breadcrumbs } from "@mui/material";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const theme = createTheme({
     breakpoints: {
         values: {
             customLg: 992,
             customMd: 768,
-            customSm: 576
-        }
-    }
-})
+            customSm: 576,
+        },
+    },
+});
 
 export default function BreadcrumbContent() {
     const styles = {
@@ -83,9 +79,7 @@ export default function BreadcrumbContent() {
     return (
         <ThemeProvider theme={theme}>
             <Box sx={styles.breadcrumbBackground}>
-                <Box
-                    sx={styles.container}
-                >
+                <Box sx={styles.container}>
                     <Typography
                         component={'h2'}
                         sx={styles.title}

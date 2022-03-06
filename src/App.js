@@ -1,14 +1,17 @@
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { renderRouteHome } from "./Routes/route";
-import Courses from './templateHome/Courses/Courses';
+import PageNotFound from "./PageNotFound";
+import { Suspense } from "react";
 function App() {
   return (
-    <BrowserRouter>
-      <Switch>
-        {renderRouteHome()}
-        <Courses />
-      </Switch>
-    </BrowserRouter>
+    <Suspense fallback={<div>Loading...</div>}>
+      <BrowserRouter>
+        <Switch>
+    {renderRouteHome()}
+  <Route path="" component={PageNotFound}/>
+  </Switch>
+      </BrowserRouter>
+    </Suspense>
   );
 }
 
