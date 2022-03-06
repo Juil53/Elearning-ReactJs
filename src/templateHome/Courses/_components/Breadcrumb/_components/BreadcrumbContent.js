@@ -17,7 +17,6 @@ const theme = createTheme({
 })
 
 export default function BreadcrumbContent() {
-
     const styles = {
         breadcrumbBackground: {
             background: 'url("/img/courses/courses-banner1.jpg") no-repeat center',

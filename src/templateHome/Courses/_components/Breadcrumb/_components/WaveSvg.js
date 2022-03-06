@@ -24,7 +24,6 @@ const theme = createTheme({
 })
 
 export default function WaveSvg() {
-
     const styles = {
         waveWrapper: {
             position: 'relative',
@@ -43,7 +42,7 @@ export default function WaveSvg() {
     }
 
     return (
-        <ThemeProvider>
+        <ThemeProvider theme={theme}>
             <Box sx={styles.waveWrapper}>
                 <WaveSvgComp viewBox='0 0 500 150' sx={{ width: '100%', height: '100%' }} preserveAspectRatio='none' />
             </Box>
