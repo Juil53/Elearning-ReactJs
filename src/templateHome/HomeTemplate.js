@@ -1,6 +1,6 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import Navbar from "./Navbar/Navbar";
+import Navbar from "../_components/Header/HomeHeader/Navbar";
 import { theme } from "../styles/styles";
 import { ThemeProvider } from "@mui/material";
 import { CssBaseline } from "@mui/material";
