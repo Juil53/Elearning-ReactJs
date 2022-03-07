@@ -41,12 +41,12 @@ const theme = createTheme({
           borderRadius: "50px",
           color: "#fff",
         },
-        outlined:{
+        outlined: {
           padding: "15px 40px",
           borderRadius: "50px",
-          border:"1px solid #fff",
+          border: "1px solid #fff",
           color: "#fff",
-        }
+        },
       },
     },
   },
@@ -213,7 +213,7 @@ const useStyles = makeStyles({
     width: "100%",
     minHeight: "500px",
     background: "url(./img/banner2.jpg)",
-    backgroundAttachment:'fixed',
+    backgroundAttachment: "fixed",
     backgroundSize: "cover",
     backgroundPosition: "top top",
     backgroundRepeat: "no-repeat",
@@ -226,6 +226,62 @@ const useStyles = makeStyles({
       height: "500px",
       background: "linear-gradient(148.25deg, #A253D8 3%, #1545CB 89.85%)",
       opacity: 0.7,
+    },
+  },
+
+  //Teacher
+  teacherbg: {
+    padding: "50px 0",
+  },
+  teacherImg: {
+    maxWidth: "100%",
+    maxHeight: "100%",
+    objectFit: "contain",
+    borderRadius: "20px",
+  },
+
+  //Testimonial
+  testBg: {
+    background: "#f8f9fa",
+    padding: "100px 0",
+  },
+  testPaper: {
+    textAlign: "center",
+    width: "300px",
+    height: "auto",
+    padding: "20px",
+    marginBottom: "30px",
+  },
+  testImg: {
+    width: "70px",
+    height: "70px",
+    borderRadius: "50%",
+  },
+  quote: {
+    fontSize: "18px",
+    lineHeight: "28px",
+    opacity: 0.8,
+    "&::before": {
+      fontSize: "50px",
+      color: "#FE79A2",
+      lineHeight: 0.8,
+      paddingTop: "8px",
+      fontWeight: 600,
+      display: "inline-block",
+      fontFamily: "Merriweather",
+    },
+  },
+  slickWrapper: {
+    textAlign: "-webkit-center",
+  },
+
+  //Brand
+  brandImg: {
+    width: "100%",
+    opacity: 0.5,
+    transition: "all .2s",
+    "&:hover": {
+      opacity: 1,
     },
   },
 });

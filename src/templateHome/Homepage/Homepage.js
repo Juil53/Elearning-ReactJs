@@ -5,6 +5,9 @@ import News from "./News";
 import Facilities from "./Facilities";
 import Featured from "./Featured";
 import Learning from "./Learning";
+import Teacher from "./Teacher";
+import Testimonial from "./Testimonial";
+import Brand from "./Brand";
 
 export default function Homepage() {
   const classes = useStyles();
@@ -44,9 +47,25 @@ export default function Homepage() {
 
       {/* Start Learning */}
       <section className={classes.learning}>
-        <Learning/>
+        <Learning />
       </section>
 
+      {/* Start Teacher */}
+      <section className={classes.teacherbg}>
+        <Teacher />
+      </section>
+      {/* End Teacher */}
+
+      {/* Start Testimonials */}
+      <section className={classes.testBg}>
+        <Testimonial />
+      </section>
+      {/* End Testimonial */}
+
+      {/* Start Brand */}
+      <section>
+        <Brand />
+      </section>
     </div>
   );
 }
