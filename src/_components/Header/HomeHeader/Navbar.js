@@ -4,11 +4,9 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
-
 import DiamondOutlinedIcon from "@mui/icons-material/DiamondOutlined";
 import SearchIcon from "@mui/icons-material/Search";
 import PersonIcon from "@mui/icons-material/Person";
@@ -29,7 +27,7 @@ const Navbar = () => {
 
   return (
     <AppBar position="fixed" color="transparent">
-      <Container maxWidth="xxl" sx={{ my: 2 }}>
+      <Container maxWidth="xl" sx={{ my: 2 }}>
         <Toolbar disableGutters>
           <DiamondOutlinedIcon
             sx={{ fontSize: "50px", paddingRight: "5px" }}
