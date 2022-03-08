@@ -1,13 +1,16 @@
 import React from "react";
 import { Box, Link, Typography, Breadcrumbs } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { Link as RouterLink } from 'react-router-dom';
 
 const theme = createTheme({
     breakpoints: {
         values: {
-            customLg: 992,
-            customMd: 768,
-            customSm: 576,
+            xl: 1280,
+            lg: 1200,
+            md: 992,
+            sm: 768,
+            xm: 576,
         },
     },
 });
@@ -39,15 +42,15 @@ export default function BreadcrumbContent() {
             mx: 'auto',
             py: '1rem',
             px: '15px',
-            [theme.breakpoints.up('xl')]: { maxWidth: 'lg' },
+            [theme.breakpoints.up('xl')]: { maxWidth: 1200 },
             [theme.breakpoints.up('lg')]: { maxWidth: 1140 },
-            [theme.breakpoints.up('customLg')]: {
+            [theme.breakpoints.up('md')]: {
                 maxWidth: 960,
                 padding: '1.5rem',
                 pt: '3rem',
             },
-            [theme.breakpoints.up('customMd')]: { maxWidth: 720 },
-            [theme.breakpoints.up('customSm')]: { maxWidth: 540 }
+            [theme.breakpoints.up('sm')]: { maxWidth: 720 },
+            [theme.breakpoints.up('xm')]: { maxWidth: 540 }
         },
         title: {
             color: '#fff',
@@ -55,10 +58,10 @@ export default function BreadcrumbContent() {
             fontWeight: 600,
             textAlign: 'center',
             mt: '3rem',
-            [theme.breakpoints.up('customLg')]: { pt: '3rem' },
-            [theme.breakpoints.up('custtomSm')]: { pt: '1rem' },
-            [theme.breakpoints.down('customLg')]: { fontSize: 40 },
-            [theme.breakpoints.down('customMd')]: { fontSize: 35 }
+            [theme.breakpoints.up('md')]: { pt: '3rem' },
+            [theme.breakpoints.up('xm')]: { pt: '1rem' },
+            [theme.breakpoints.down('md')]: { fontSize: 40 },
+            [theme.breakpoints.down('sm')]: { fontSize: 35 }
         },
         breadcrumb: {
             mt: '.5rem',
@@ -66,8 +69,8 @@ export default function BreadcrumbContent() {
             textAlign: 'center',
             color: '#fff',
             opacity: '.8',
-            [theme.breakpoints.up('customSm')]: { pb: '3rem' },
-            [theme.breakpoints.up('customMd')]: { mb: '3rem' }
+            [theme.breakpoints.up('xm')]: { pb: '3rem' },
+            [theme.breakpoints.up('sm')]: { mb: '3rem' }
         },
         breadcrumbItem: {
             color: '#fff',
@@ -94,8 +97,9 @@ export default function BreadcrumbContent() {
                     >
                         <Breadcrumbs sx={styles.breadcrumb}>
                             <Link
+                                component={RouterLink}
+                                to='/'
                                 underline='none'
-                                href="/"
                                 sx={{
                                     ...styles.breadcrumbItem,
                                     '&:hover': { color: '#FE79A2' }

@@ -52,7 +52,7 @@ export default function CourseCard() {
             fontSize: '15px',
             fontWeight: 600,
             display: 'inline-block',
-            mx: '10px',
+            ml: '8px',
         },
         courseAuthorLink: {
             fontSize: '18px',
@@ -60,6 +60,7 @@ export default function CourseCard() {
             lineHeight: '28px',
             color: '#3f3a64',
             textDecoration: 'none',
+            ml: '8px',
             '&:hover': {
                 color: '#1545CB'
             }
@@ -82,7 +83,7 @@ export default function CourseCard() {
                         justifyContent: 'space-between'
                     }}
                     >
-                        <Typography gutterBottom color="primary" fontSize='18px' fontWeight='700'>
+                        <Typography gutterBottom color="#FE79A2" fontSize='18px' fontWeight='700'>
                             $35.00
                         </Typography>
                         <Rating name="read-only" value={3} readOnly sx={{ fontSize: '20px' }} />
@@ -143,7 +144,7 @@ export default function CourseCard() {
                             ...styles.cardNormalTextColor
                         }}
                     >
-                        by
+                        bởi
                     </Typography>
                     <Link sx={styles.courseAuthorLink}>Olivia</Link>
                     <Typography
@@ -153,7 +154,7 @@ export default function CourseCard() {
                             ...styles.cardNormalTextColor
                         }}
                     >
-                        in
+                        trong
                     </Typography>
                     <Link sx={styles.courseAuthorLink}>Programing</Link>
                 </CardActions>
