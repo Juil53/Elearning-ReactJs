@@ -26,30 +26,26 @@ const theme = createTheme({
 export default function WaveSvg() {
   const styles = {
     waveWrapper: {
-      position: "relative",
-      width: "100%",
-      marginTop: "-100px",
+      position: 'relative',
+      width: '100%',
+      marginTop: '-100px',
       zIndex: 1,
       height: 150,
-      [theme.breakpoints.down("waveSvgMd")]: {
-        height: 100,
+      [theme.breakpoints.down('waveSvgMd')]: {
+        height: 100
       },
-      [theme.breakpoints.down("waveSvgSm")]: {
+      [theme.breakpoints.down('waveSvgSm')]: {
         height: 80,
-        marginTop: "-80px",
-      },
-    },
-  };
+        marginTop: '-80px'
+      }
+    }
+  }
 
   return (
-    <ThemeProvider>
+    <ThemeProvider theme={theme}>
       <Box sx={styles.waveWrapper}>
-        <WaveSvgComp
-          viewBox="0 0 500 150"
-          sx={{ width: "100%", height: "100%" }}
-          preserveAspectRatio="none"
-        />
+        <WaveSvgComp viewBox='0 0 500 150' sx={{ width: '100%', height: '100%' }} preserveAspectRatio='none' />
       </Box>
     </ThemeProvider>
-  );
+  )
 }
