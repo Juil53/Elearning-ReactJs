@@ -42,7 +42,7 @@ export default function WaveSvg() {
   };
 
   return (
-    <ThemeProvider>
+    <ThemeProvider theme={theme}>
       <Box sx={styles.waveWrapper}>
         <WaveSvgComp
           viewBox="0 0 500 150"

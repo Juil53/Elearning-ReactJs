@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+
+.navbar {
+  background-color: transparent;
+  transition: 0.8s all ease;
+}
+.colorChange {
+  background-color: "red";
+}

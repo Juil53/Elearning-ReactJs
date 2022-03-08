@@ -57,6 +57,19 @@ const useStyles = makeStyles({
     textAlign: "center",
     marginTop: "50px",
   },
+  Loading:{
+    position:'fixed',
+    left:'50%',
+    top:'35%',
+    zIndex:1000,
+  },
+  //Navbar
+  colorDefault: {
+    color: "#fff",
+  },
+  colorChange: {
+    color: "#3f3a64",
+  },
   // Slider
   slider: {
     display: "flex",
@@ -127,13 +140,18 @@ const useStyles = makeStyles({
     padding: "50px",
   },
   layer: {
+    display: "flex",
+    alignItems: "flex-end",
     position: "relative",
     width: "100%",
-    height: "100%",
+    height: "600px",
     background: "url(./img/banner2.jpg)",
     backgroundSize: "cover",
     backgroundPosition: "center left",
     backgroundRepeat: "no-repeat",
+    transition:'all .5s',
+    borderRadius:'10px',
+    overflow:'hidden',
     "&::before": {
       content: "''",
       position: "absolute",
@@ -147,8 +165,13 @@ const useStyles = makeStyles({
       opacity: 0.6,
       zIndex: 1,
     },
+    "&:hover":{
+      transform: "translateY(-5px)",
+    }
   },
   layer1: {
+    display: "flex",
+    alignItems: "flex-end",
     position: "relative",
     width: "100%",
     height: "300px",
@@ -156,6 +179,9 @@ const useStyles = makeStyles({
     backgroundSize: "cover",
     backgroundPosition: "center left",
     backgroundRepeat: "no-repeat",
+    transition:'all .5s',
+    borderRadius:'10px',
+    overflow:'hidden',
     "&::before": {
       content: "''",
       position: "absolute",
@@ -169,15 +195,23 @@ const useStyles = makeStyles({
       opacity: 0.6,
       zIndex: 1,
     },
+    "&:hover":{
+      transform: "translateY(-5px)",
+    }
   },
   layer2: {
+    display: "flex",
+    alignItems: "flex-end",
     position: "relative",
     width: "100%",
-    height: "300px",
+    height: "283px",
     background: "url(./img/banner4.jpg)",
     backgroundSize: "cover",
     backgroundPosition: "center left",
     backgroundRepeat: "no-repeat",
+    transition:'all .5s',
+    borderRadius:'10px',
+    overflow:'hidden',
     "&::before": {
       content: "''",
       position: "absolute",
@@ -191,14 +225,20 @@ const useStyles = makeStyles({
       opacity: 0.6,
       zIndex: 1,
     },
+    "&:hover":{
+      transform: "translateY(-5px)",
+    }
   },
   content: {
     position: "relative",
   },
   contentTxt: {
     position: "absolute",
-    bottom: 0,
-    left: "10%",
+    color: "#fff",
+    zIndex: 1,
+  },
+  contentTeacher: {
+    position: "absolute",
     color: "#fff",
     zIndex: 1,
   },
@@ -283,6 +323,28 @@ const useStyles = makeStyles({
     "&:hover": {
       opacity: 1,
     },
+  },
+
+  //Footer
+  footerBg: {
+    backgroundColor: "#26243c",
+    padding: "80px 0",
+  },
+  footerTxt: {
+    "& p": {
+      color: "#97a1a9",
+      fontSize: "18px",
+      lineHeight: "28px",
+      padding: "8px 0",
+    },
+    "& h4": {
+      color: "#Fff",
+    },
+  },
+  footerIcon: {
+    padding: "0 5px",
+    color: "#fff",
+    fontSize: "35px",
   },
 });
 
