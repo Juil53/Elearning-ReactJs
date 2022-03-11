@@ -3,7 +3,6 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
 
-
 import userProfileStyle from "./UserProfileStyle";
 
 export default function UserInfo() {
@@ -11,10 +10,10 @@ export default function UserInfo() {
 
   return (
     <div>
-            <Box
+      <Box
         component="form"
         sx={{
-          "& .MuiTextField-root": { m: 1, width: "40ch" },
+          "& .MuiTextField-root": { m: 1, width: "50ch" },
         }}
         noValidate
         autoComplete="off"

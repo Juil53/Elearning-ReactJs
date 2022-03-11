@@ -12,7 +12,7 @@ import Box from "@mui/material/Box";
 
 export default function UserCourses() {
   return (
-    <List sx={{ width: '100%', maxWidth: 800, bgcolor: 'background.paper' }}>
+    <List sx={{ width: '100%', maxWidth: "90%", bgcolor: 'background.paper' }}>
       <ListItem alignItems="flex-start">
         <ListItemAvatar>
           <Avatar alt="wordpress" src="http://elearning0706.cybersoft.edu.vn/hinhanh/khoahoc/lap-trinh-c-gp01.png" />

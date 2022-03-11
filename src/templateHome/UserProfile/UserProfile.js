@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
+import Grid from "@mui/material/Grid";
 
 import userProfileStyle from "./_components/UserProfileStyle";
 import UserInfo from "./_components/UserInfo";
@@ -24,7 +25,7 @@ function TabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box sx={{ p: 3 }}>
+        <Box sx={{ mt: 3, display: "block", margin: "auto" }}>
           <Typography>{children}</Typography>
         </Box>
       )}
@@ -56,40 +57,61 @@ export default function UserProfile() {
     <div className={classes.content}>
       <div className={classes.title}>
         <h2>Trang cá nhân</h2>
-        <p>Nguyen Lam</p>
         <Stack alignItems="center">
-          <Avatar alt="User img" src="/static/images/avatar/1.jpg" sx={{ width: 56, height: 56 }} />
+          <Avatar
+            alt="User img"
+            src="/static/images/avatar/1.jpg"
+            sx={{ width: 56, height: 56 }}
+          />
         </Stack>
+        <p>Nguyen Lam</p>
       </div>
       <Box
         sx={{
           flexGrow: 1,
           bgcolor: "background.paper",
           display: "flex",
-          height: 500,
+          justifyContent: "center",
+          height: 300,
+          mt: 3,
         }}
       >
-        <Tabs
-          orientation="vertical"
-          variant="scrollable"
-          value={value}
-          onChange={handleChange}
-          aria-label="Vertical tabs example"
-          sx={{ borderRight: 1, borderColor: "divider" }}
-        >
-          <Tab label="Thông tin cá nhân" {...a11yProps(0)} />
-          <Tab label="Giỏ hàng" {...a11yProps(1)} />
-          <Tab label="Các khóa học" {...a11yProps(2)} />
-        </Tabs>
-        <TabPanel value={value} index={0}>
-          <UserInfo />
-        </TabPanel>
-        <TabPanel value={value} index={1}>
-          <UserCart />
-        </TabPanel>
-        <TabPanel value={value} index={2}>
-          <UserCourses />
-        </TabPanel>
+        <Grid container direction="row"
+  justifyContent="space-around">
+          <Grid item xs={12} md={3}>
+            <Tabs
+              orientation="vertical"
+              variant="scrollable"
+              value={value}
+              onChange={handleChange}
+              aria-label="Vertical tabs example"
+              sx={{ borderRight: 1, borderColor: "divider" }}
+            >
+              <Tab
+                sx={{ margin: "auto" }}
+                label="Thông tin cá nhân"
+                {...a11yProps(0)}
+              />
+              <Tab sx={{ margin: "auto" }} label="Giỏ hàng" {...a11yProps(1)} />
+              <Tab
+                sx={{ margin: "auto" }}
+                label="Các khóa học"
+                {...a11yProps(2)}
+              />
+            </Tabs>
+          </Grid>
+          <Grid item xs={12} md={8}>
+            <TabPanel value={value} index={0}>
+              <UserInfo />
+            </TabPanel>
+            <TabPanel value={value} index={1}>
+              <UserCart />
+            </TabPanel>
+            <TabPanel value={value} index={2}>
+              <UserCourses />
+            </TabPanel>
+          </Grid>
+        </Grid>
       </Box>
     </div>
   );
