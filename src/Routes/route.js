@@ -18,6 +18,12 @@ const routesHome = [
     path: "/courses",
     component: lazy(() => import("../templateHome/Courses/Courses")),
   },
+  //Course detail
+  {
+    exact: false,
+    path: "/course-detail",
+    component: lazy(() => import("../templateHome/CourseDetail/CourseDetail")),
+  },
   //UserProfile
   {
     exact: false,

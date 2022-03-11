@@ -54,7 +54,8 @@ const Navbar = () => {
   };
   React.useEffect(() => {
     window.addEventListener("scroll", changeNavbarColor);
-  }, []);
+    return () => window.removeEventListener("scroll", changeNavbarColor);
+  }, [colorChange]);
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
@@ -69,7 +70,7 @@ const Navbar = () => {
   return (
     <AppBar
       position="fixed"
-      sx={[{ boxShadow: 0,borderBottom:'1px solid #e7e7e72e' }, colorChange ? style.changeColor : style.navbar]}
+      sx={[{ boxShadow: 0, borderBottom: '1px solid #e7e7e72e' }, colorChange ? style.changeColor : style.navbar]}
     >
       <Container maxWidth="xl" sx={{ my: 2 }}>
         <Toolbar disableGutters>
