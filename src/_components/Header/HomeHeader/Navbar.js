@@ -1,4 +1,5 @@
 import * as React from "react";
+import "./../../../App.css";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -11,22 +12,71 @@ import DiamondOutlinedIcon from "@mui/icons-material/DiamondOutlined";
 import SearchIcon from "@mui/icons-material/Search";
 import PersonIcon from "@mui/icons-material/Person";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
+import { useStyles } from "./../../../styles/styles";
+import { routesHome } from "../../../Routes/route";
 
-const pages = ["Home", "About", "Courses", "Pages", "Contact"];
 
 const Navbar = () => {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const classes = useStyles();
+  const style = {
+    navbar: {
+      backgroundColor: "transparent",
+      transition: "all .2s",
+      height: "100px",
+    },
+    changeColor: {
+      backgroundColor: "white",
+      transition: "all .2s",
+      height: "90px",
+    },
+    btnColorDefault: {
+      color: "#fff",
+      opacity: ".7",
+      transition: "all .2s",
+      "&:hover": {
+        opacity: "1",
+      },
+    },
+    btnColorChange: {
+      color: "#3f3a64",
+      transition: "all .2s",
+      "&:hover": {
+        color: "#FE79A2",
+      },
+    },
+  };
 
+
+  //change Navbar color
+  const [colorChange, setColorChange] = React.useState(false);
+  const changeNavbarColor = () => {
+    if (window.scrollY > 80) {
+      setColorChange(true);
+    } else {
+      setColorChange(false);
+    }
+  };
+  React.useEffect(() => {
+    window.addEventListener("scroll", changeNavbarColor);
+    return () => window.removeEventListener("scroll", changeNavbarColor);
+  }, []);
+
+
+  const [anchorElNav, setAnchorElNav] = React.useState(null);
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
 
+
+
   return (
-    <AppBar position="fixed" color="transparent">
+    <AppBar
+      position="fixed"
+      sx={[{ boxShadow: 0, borderBottom: '1px solid #e7e7e72e' }, colorChange ? style.changeColor : style.navbar]}
+    >
       <Container maxWidth="xl" sx={{ my: 2 }}>
         <Toolbar disableGutters>
           <DiamondOutlinedIcon
@@ -42,8 +92,8 @@ const Navbar = () => {
               flexGrow: { xs: 1, lg: 0 },
               display: { xs: "flex" },
               flexDirection: "column",
-              color: "#fff",
             }}
+            className={colorChange ? classes.colorChange : classes.colorDefault}
           >
             Study Course
             <Typography variant="body2">Journey to success</Typography>
@@ -57,17 +107,19 @@ const Navbar = () => {
               display: { xs: "none", lg: "flex" },
             }}
           >
-            {pages.map((page) => (
+            {routesHome.map((page, index) => (
               <Button
-                key={page}
+                key={index}
+                href={page.path}
                 onClick={handleCloseNavMenu}
-                sx={{
-                  fontSize: "20px",
-                  color: "#fff",
-                }}
+                sx={[
+                  { fontSize: "20px" },
+                  colorChange ? style.btnColorChange : style.btnColorDefault,
+                ]}
               >
-                {page}
+                {page.page}
               </Button>
+
             ))}
           </Box>
 
@@ -78,21 +130,41 @@ const Navbar = () => {
               display: { xs: "none", lg: "flex" },
             }}
           >
-            <SearchIcon sx={{ fontSize: "30px", color: "white" }} />
-            <Button>
-              <PersonIcon sx={{ fontSize: "30px", color: "white" }} />
-              <Typography variant="p" sx={{ color: "#fff" }}>
-                Login
+            <SearchIcon
+              sx={[
+                { fontSize: "30px" },
+                colorChange ? style.btnColorChange : style.btnColorDefault,
+              ]}
+            />
+            <Button href="/user-profiles">
+              <PersonIcon
+                sx={[
+                  { fontSize: "30px" },
+                  colorChange ? style.btnColorChange : style.btnColorDefault,
+                ]}
+              />
+            </Button>
+            <Button href="/signin">
+              <Typography
+                variant="p"
+                sx={[
+                  { fontSize: "20px" },
+                  colorChange ? style.btnColorChange : style.btnColorDefault,
+                ]}
+              >
+                Đăng nhập
               </Typography>
             </Button>
           </Box>
           <DarkModeOutlinedIcon
-            sx={{
-              fontSize: "35px",
-              color: "white",
-              justifyContent: "flex-end",
-              display: { xs: "flex" },
-            }}
+            sx={[
+              {
+                fontSize: "30px",
+                justifyContent: "flex-end",
+                display: { xs: "flex" },
+              },
+              colorChange ? style.btnColorChange : style.btnColorDefault,
+            ]}
           />
 
           <Box

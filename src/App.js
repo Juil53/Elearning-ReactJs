@@ -1,12 +1,23 @@
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import { renderRouteHome } from "./Routes/route";
-import PageNotFound from "./PageNotFound";
+import { renderRouteHome, renderRouteLogin } from "./Routes/route";
 import { Suspense } from "react";
+import { useStyles } from "./styles/styles";
+import PageNotFound from "./PageNotFound";
+import Loading from "./_components/Loading/Loading";
+
 function App() {
+  const classes = useStyles();
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense
+      fallback={
+        <div className={classes.Loading}>
+          <Loading />
+        </div>
+      }
+    >
       <BrowserRouter>
         <Switch>
+          {renderRouteLogin()}
           {renderRouteHome()}
           <Route path="" component={PageNotFound} />
         </Switch>

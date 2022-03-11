@@ -12,3 +12,6 @@
     background-color:#3f3a64;
     width: 35px;
 }
+.slick-slider {
+    width: auto;
+}
