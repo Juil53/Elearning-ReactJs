@@ -13,8 +13,9 @@ import SearchIcon from "@mui/icons-material/Search";
 import PersonIcon from "@mui/icons-material/Person";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import { useStyles } from "./../../../styles/styles";
+import { routesHome } from "../../../Routes/route";
 
-const pages = ["Home", "About", "Courses", "Pages", "Contact"];
+
 const Navbar = () => {
   const classes = useStyles();
   const style = {
@@ -44,6 +45,9 @@ const Navbar = () => {
       },
     },
   };
+
+
+  //change Navbar color
   const [colorChange, setColorChange] = React.useState(false);
   const changeNavbarColor = () => {
     if (window.scrollY > 80) {
@@ -55,17 +59,18 @@ const Navbar = () => {
   React.useEffect(() => {
     window.addEventListener("scroll", changeNavbarColor);
     return () => window.removeEventListener("scroll", changeNavbarColor);
-  }, [colorChange]);
+  }, []);
+
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
+
+
 
   return (
     <AppBar
@@ -102,17 +107,19 @@ const Navbar = () => {
               display: { xs: "none", lg: "flex" },
             }}
           >
-            {pages.map((page) => (
+            {routesHome.map((page, index) => index < routesHome.length - 2 && (
               <Button
-                key={page}
+                key={index}
+                href={page.path}
                 onClick={handleCloseNavMenu}
                 sx={[
                   { fontSize: "20px" },
                   colorChange ? style.btnColorChange : style.btnColorDefault,
                 ]}
               >
-                {page}
+                {page.page}
               </Button>
+
             ))}
           </Box>
 
@@ -129,13 +136,15 @@ const Navbar = () => {
                 colorChange ? style.btnColorChange : style.btnColorDefault,
               ]}
             />
-            <Button>
+            <Button href="/user-profiles">
               <PersonIcon
                 sx={[
                   { fontSize: "30px" },
                   colorChange ? style.btnColorChange : style.btnColorDefault,
                 ]}
               />
+            </Button>
+            <Button href="/signin">
               <Typography
                 variant="p"
                 sx={[
@@ -143,7 +152,7 @@ const Navbar = () => {
                   colorChange ? style.btnColorChange : style.btnColorDefault,
                 ]}
               >
-                Login
+                Đăng nhập
               </Typography>
             </Button>
           </Box>

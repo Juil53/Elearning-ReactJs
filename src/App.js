@@ -1,5 +1,5 @@
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import { renderRouteHome } from "./Routes/route";
+import { renderRouteHome, renderRouteLogin } from "./Routes/route";
 import { Suspense } from "react";
 import { useStyles } from "./styles/styles";
 import PageNotFound from "./PageNotFound";
@@ -17,6 +17,7 @@ function App() {
     >
       <BrowserRouter>
         <Switch>
+          {renderRouteLogin()}
           {renderRouteHome()}
           <Route path="" component={PageNotFound} />
         </Switch>
