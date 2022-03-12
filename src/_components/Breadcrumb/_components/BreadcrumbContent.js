@@ -101,11 +101,12 @@ export default function BreadcrumbContent(props) {
                             {breadCrumbArr && breadCrumbArr.map((item, index) => {
                                 if (index === breadCrumbArr.length - 1) {
                                     return (
-                                        <Typography sx={styles.breadcrumbItem}>{item.label}</Typography>
+                                        <Typography key={item.label} sx={styles.breadcrumbItem}>{item.label}</Typography>
                                     )
                                 }
                                 return (
                                     <Link
+                                        key={item.label}
                                         component={RouterLink}
                                         to={item.path}
                                         underline='none'
