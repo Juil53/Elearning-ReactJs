@@ -32,7 +32,6 @@ const routesHome = [
     path: "/contact",
     // component: lazy(() => import("../templateHome/Courses/Courses")),
   },
-
   //Course detail
   {
     exact: false,

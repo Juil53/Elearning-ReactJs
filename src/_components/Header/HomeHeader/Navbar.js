@@ -15,9 +15,9 @@ import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import { useStyles } from "./../../../styles/styles";
 import { routesHome } from "../../../Routes/route";
 
-
 const Navbar = () => {
   const classes = useStyles();
+
   const style = {
     navbar: {
       backgroundColor: "transparent",
@@ -71,7 +71,6 @@ const Navbar = () => {
   };
 
 
-
   return (
     <AppBar
       position="fixed"
@@ -107,7 +106,7 @@ const Navbar = () => {
               display: { xs: "none", lg: "flex" },
             }}
           >
-            {routesHome.map((page, index) => index < routesHome.length - 2 && (
+            {routesHome.slice(0,4).map((page, index) => (
               <Button
                 key={index}
                 href={page.path}
@@ -119,7 +118,6 @@ const Navbar = () => {
               >
                 {page.page}
               </Button>
-
             ))}
           </Box>
 
