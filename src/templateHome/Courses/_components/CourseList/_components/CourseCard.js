@@ -10,7 +10,9 @@ import AccessTimeOutlinedIcon from '@mui/icons-material/AccessTimeOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import React, { Fragment } from 'react'
 
-export default function CourseCard() {
+export default function CourseCard(props) {
+    const { courseInfo } = props;
+
     const styles = {
         root: {
             position: 'realative',
@@ -34,6 +36,7 @@ export default function CourseCard() {
             fontWeight: 600,
             lineHeight: '28px',
             color: '#3f3a64',
+            cursor: 'pointer',
             '&:hover': {
                 color: '#1545CB'
             }
@@ -55,12 +58,16 @@ export default function CourseCard() {
             ml: '8px',
         },
         courseAuthorLink: {
+            display: 'inline-block',
+            overflow: 'hidden',
+            whiteSpace: 'nowrap',
             fontSize: '18px',
             fontWeight: 600,
             lineHeight: '28px',
             color: '#3f3a64',
             textDecoration: 'none',
             ml: '8px',
+            cursor: 'pointer',
             '&:hover': {
                 color: '#1545CB'
             }
@@ -89,7 +96,7 @@ export default function CourseCard() {
                         <Rating name="read-only" value={3} readOnly sx={{ fontSize: '20px' }} />
                     </Box>
                     <Link sx={styles.cardTitle}>
-                        Open Programming Courses for everyone : Python
+                        {courseInfo.tenKhoaHoc}
                     </Link>
                     <Box sx={{ display: 'flex', mt: '1.5rem' }}>
                         <Box>
@@ -121,7 +128,7 @@ export default function CourseCard() {
                                     verticalAlign: 'middle'
                                 }}
                             >
-                                50
+                                {courseInfo.soLuongHocVien}
                             </Typography>
                         </Box>
                     </Box>
@@ -146,7 +153,7 @@ export default function CourseCard() {
                     >
                         bởi
                     </Typography>
-                    <Link sx={styles.courseAuthorLink}>Olivia</Link>
+                    <Link sx={{ ...styles.courseAuthorLink, maxWidth: '50px' }}>{courseInfo.nguoiTao.hoTen}</Link>
                     <Typography
                         component='span'
                         sx={{
@@ -156,7 +163,7 @@ export default function CourseCard() {
                     >
                         trong
                     </Typography>
-                    <Link sx={styles.courseAuthorLink}>Programing</Link>
+                    <Link sx={styles.courseAuthorLink}>{courseInfo.danhMucKhoaHoc.tenDanhMucKhoaHoc}</Link>
                 </CardActions>
             </Card>
         </Fragment>

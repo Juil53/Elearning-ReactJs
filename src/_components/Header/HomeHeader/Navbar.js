@@ -107,7 +107,7 @@ const Navbar = () => {
               display: { xs: "none", lg: "flex" },
             }}
           >
-            {routesHome.map((page, index) => (
+            {routesHome.map((page, index) => index < routesHome.length - 2 && (
               <Button
                 key={index}
                 href={page.path}

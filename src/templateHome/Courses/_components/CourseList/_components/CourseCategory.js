@@ -34,7 +34,7 @@ export default function CourseCategory(props) {
                 <TextField
                     id='category-select'
                     select
-                    label='Course Category'
+                    label='Danh mục Khóa học'
                     value={selectCategory}
                     variant='filled'
                     onChange={handleChange}
