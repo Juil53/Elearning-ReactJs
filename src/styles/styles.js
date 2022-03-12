@@ -57,11 +57,11 @@ const useStyles = makeStyles({
     textAlign: "center",
     marginTop: "50px",
   },
-  Loading:{
-    position:'fixed',
-    left:'50%',
-    top:'35%',
-    zIndex:1000,
+  Loading: {
+    position: 'fixed',
+    left: '50%',
+    top: '35%',
+    zIndex: 1000,
   },
   //Navbar
   colorDefault: {
@@ -83,6 +83,7 @@ const useStyles = makeStyles({
     backgroundSize: "cover",
     backgroundPosition: "center center",
     backgroundRepeat: "no-repeat",
+    paddingTop:'10%',
     "&::before": {
       content: "''",
       position: "absolute",
@@ -90,7 +91,7 @@ const useStyles = makeStyles({
       left: 0,
       width: "100%",
       height: "800px",
-      background: "#fff",
+      background: "linear-gradient(148.25deg, #A253D8 3%, #1545CB 89.85%)",
       opacity: 0.7,
     },
   },
@@ -175,9 +176,9 @@ const useStyles = makeStyles({
     backgroundSize: "cover",
     backgroundPosition: "center left",
     backgroundRepeat: "no-repeat",
-    transition:'all .5s',
-    borderRadius:'10px',
-    overflow:'hidden',
+    transition: 'all .5s',
+    borderRadius: '10px',
+    overflow: 'hidden',
     "&::before": {
       content: "''",
       position: "absolute",
@@ -191,7 +192,7 @@ const useStyles = makeStyles({
       opacity: 0.6,
       zIndex: 1,
     },
-    "&:hover":{
+    "&:hover": {
       transform: "translateY(-5px)",
     }
   },
@@ -205,9 +206,9 @@ const useStyles = makeStyles({
     backgroundSize: "cover",
     backgroundPosition: "center left",
     backgroundRepeat: "no-repeat",
-    transition:'all .5s',
-    borderRadius:'10px',
-    overflow:'hidden',
+    transition: 'all .5s',
+    borderRadius: '10px',
+    overflow: 'hidden',
     "&::before": {
       content: "''",
       position: "absolute",
@@ -221,7 +222,7 @@ const useStyles = makeStyles({
       opacity: 0.6,
       zIndex: 1,
     },
-    "&:hover":{
+    "&:hover": {
       transform: "translateY(-5px)",
     }
   },
@@ -235,9 +236,9 @@ const useStyles = makeStyles({
     backgroundSize: "cover",
     backgroundPosition: "center left",
     backgroundRepeat: "no-repeat",
-    transition:'all .5s',
-    borderRadius:'10px',
-    overflow:'hidden',
+    transition: 'all .5s',
+    borderRadius: '10px',
+    overflow: 'hidden',
     "&::before": {
       content: "''",
       position: "absolute",
@@ -251,7 +252,7 @@ const useStyles = makeStyles({
       opacity: 0.6,
       zIndex: 1,
     },
-    "&:hover":{
+    "&:hover": {
       transform: "translateY(-5px)",
     }
   },

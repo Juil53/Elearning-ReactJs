@@ -12,6 +12,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useDispatch } from 'react-redux';
+import { actSignIn } from './module/actions';
 
 function Copyright(props) {
   return (
@@ -29,19 +31,28 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignIn(props) {
+  const dispatch = useDispatch();
+  const [state, setState] = React.useState({
+    taiKhoan: '',
+    matKhau: '',
+  })
+
+  const handleOnChange = (event) => {
+    const { name, value } = event.target;
+    setState({
+      ...state,
+      [name]: value,
+    })
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    dispatch(actSignIn(state,props.history));
   };
 
   return (
     <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xs" sx={{ backgroundColor: '#fff', zIndex: 10, borderRadius: '20px' }}>
         <CssBaseline />
         <Box
           sx={{
@@ -55,32 +66,33 @@ export default function SignIn(props) {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Đăng nhập
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
+              id="taikhoan"
+              label="Tai Khoan"
+              name="taiKhoan"
               autoFocus
+              onChange={handleOnChange}
             />
             <TextField
               margin="normal"
               required
               fullWidth
-              name="password"
-              label="Password"
+              name="matKhau"
+              label="Mat Khau"
               type="password"
-              id="password"
+              id="matkhau"
               autoComplete="current-password"
+              onChange={handleOnChange}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
+              label="Ghi nhớ tôi"
             />
             <Button
               type="submit"
@@ -88,17 +100,17 @@ export default function SignIn(props) {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign In
+              Đăng nhập
             </Button>
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">
-                  Forgot password?
+                  Quên mật khẩu?
                 </Link>
               </Grid>
               <Grid item>
                 <Link href="/signup" variant="body2">
-                  {"Don't have an account? Sign Up"}
+                  {"Bạn không có tài khoản? Đăng ký"}
                 </Link>
               </Grid>
             </Grid>
