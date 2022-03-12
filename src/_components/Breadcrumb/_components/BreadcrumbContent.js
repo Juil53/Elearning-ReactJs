@@ -15,7 +15,9 @@ const theme = createTheme({
     },
 });
 
-export default function BreadcrumbContent() {
+export default function BreadcrumbContent(props) {
+    const { breadCrumbArr } = props;
+
     const styles = {
         breadcrumbBackground: {
             background: 'url("/img/courses/courses-banner1.jpg") no-repeat center',
@@ -87,7 +89,7 @@ export default function BreadcrumbContent() {
                         component={'h2'}
                         sx={styles.title}
                     >
-                        Chi Tiết Khóa Học
+                        {breadCrumbArr[breadCrumbArr.length - 1].label}
                     </Typography>
                     <Box
                         sx={{
@@ -96,27 +98,26 @@ export default function BreadcrumbContent() {
                         }}
                     >
                         <Breadcrumbs sx={styles.breadcrumb}>
-                            <Link
-                                component={RouterLink}
-                                to='/'
-                                underline='none'
-                                sx={{
-                                    ...styles.breadcrumbItem,
-                                    '&:hover': { color: '#FE79A2' }
-                                }}>
-                                Trang chủ
-                            </Link>
-                            <Link
-                                component={RouterLink}
-                                to='/'
-                                underline='none'
-                                sx={{
-                                    ...styles.breadcrumbItem,
-                                    '&:hover': { color: '#FE79A2' }
-                                }}>
-                                Khóa học
-                            </Link>
-                            <Typography sx={styles.breadcrumbItem}>Chi tiết khóa học</Typography>
+                            {breadCrumbArr && breadCrumbArr.map((item, index) => {
+                                if (index === breadCrumbArr.length - 1) {
+                                    return (
+                                        <Typography sx={styles.breadcrumbItem}>{item.label}</Typography>
+                                    )
+                                }
+                                return (
+                                    <Link
+                                        component={RouterLink}
+                                        to={item.path}
+                                        underline='none'
+                                        sx={{
+                                            ...styles.breadcrumbItem,
+                                            '&:hover': { color: '#FE79A2' }
+                                        }}>
+                                        {item.label}
+                                    </Link>
+                                )
+                            })
+                            }
                         </Breadcrumbs>
                     </Box>
                 </Box>
