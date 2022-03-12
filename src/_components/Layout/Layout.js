@@ -9,7 +9,9 @@ export default function Layout({ children }) {
     <div>
       <Navbar />
       <span id="back-to-top-anchor" />
+      <div style={{minHeight:'50vh'}}>
       {children}
+      </div>
       <Footer />
       <BackToTop/>
     </div>
