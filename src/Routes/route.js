@@ -32,6 +32,13 @@ const routesHome = [
     path: "/contact",
     // component: lazy(() => import("../templateHome/Courses/Courses")),
   },
+  //Course detail
+  {
+    exact: false,
+    path: "/course-detail",
+    component: lazy(() => import("../templateHome/CourseDetail/CourseDetail")),
+  },
+  //User profile
   {
     page: 'Người dùng',
     exact: false,
