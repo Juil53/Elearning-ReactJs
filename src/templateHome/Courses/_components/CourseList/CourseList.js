@@ -84,7 +84,6 @@ export default function CourseList() {
     }
 
     return (
-        console.log(dataCourseList),
         <Fragment>
             <ThemeProvider theme={theme}>
                 <Box sx={styles.container}>
