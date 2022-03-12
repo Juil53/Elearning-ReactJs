@@ -70,6 +70,32 @@ const useStyles = makeStyles({
   colorChange: {
     color: "#3f3a64",
   },
+  //Layout Login
+  sliderLogin: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    position: "relative",
+    width: "100%",
+    height: "800px",
+    background: "url(./img/banner1.jpg)",
+    backgroundSize: "cover",
+    backgroundPosition: "center center",
+    backgroundRepeat: "no-repeat",
+    "&::before": {
+      content: "''",
+      position: "absolute",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "800px",
+      background: "#fff",
+      opacity: 0.7,
+    },
+  },
+
+
   // Slider
   slider: {
     display: "flex",

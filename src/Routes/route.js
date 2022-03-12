@@ -32,17 +32,13 @@ const routesHome = [
     path: "/contact",
     // component: lazy(() => import("../templateHome/Courses/Courses")),
   },
-];
-
-const userProfile = [
-  //User profile
   {
     page: 'Người dùng',
     exact: false,
     path: "/user-profiles",
     component: lazy(() => import("../templateHome/UserProfile/UserProfile")),
   },
-]
+];
 
 const routeLogin = [
   //SignIn
@@ -85,4 +81,4 @@ const renderRouteLogin = () => {
   });
 };
 
-export { renderRouteHome, renderRouteLogin, routesHome, routeLogin, userProfile };
+export { renderRouteHome, renderRouteLogin, routesHome, routeLogin };
