@@ -83,7 +83,7 @@ const useStyles = makeStyles({
     backgroundSize: "cover",
     backgroundPosition: "center center",
     backgroundRepeat: "no-repeat",
-    paddingTop:'10%',
+    padding:'20% 0 10% 0',
     "&::before": {
       content: "''",
       position: "absolute",
@@ -125,7 +125,7 @@ const useStyles = makeStyles({
     textAlign: "center",
     zIndex: 1,
     color: "#fff",
-    fontSize: "55px",
+    fontSize: "40px",
   },
   sliderText: {
     textAlign: "center",
