@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material'
+import { Box, Button, Typography } from '@mui/material'
 import { ThemeProvider } from '@mui/styles'
 import { createTheme } from '@mui/system'
 import React, { Fragment } from 'react'
@@ -13,7 +13,9 @@ const theme = createTheme({
     }
 })
 
-export default function CourseContent() {
+export default function CourseContent(props) {
+    const { courseDetailData } = props;
+
     const style = {
         containerFluid: {
             width: '100%',
@@ -76,50 +78,56 @@ export default function CourseContent() {
     return (
         <Fragment>
             <ThemeProvider theme={theme}>
-                <Box sx={{ ...style.containerFluid, maxWidth: '1228px' }}>
-                    <Box display='flex'>
-                        <Box sx={style.containerLeft}>
-                            <Typography variant='h1' sx={style.courseTitle}>
-                                Open Programming Courses for everyone : Python
-                            </Typography>
-                            <Typography variant='body1' sx={style.courseDescription}>
-                                Learn how to develop dynamic, interactive, and data-driven web apps using JavaScript.
-                            </Typography>
-                            <Box display='flex' flexWrap='wrap'>
-                                <Box display='flex' sx={style.courseInformation}>
-                                    <img src='./img/teacher1.jpg' />
-                                    <Box>
+                {courseDetailData &&
+                    <Box sx={{ ...style.containerFluid, maxWidth: '1228px' }}>
+                        <Box display='flex'>
+                            <Box sx={style.containerLeft}>
+                                <Typography variant='h1' sx={style.courseTitle}>
+                                    {courseDetailData.tenKhoaHoc}
+                                </Typography>
+                                <Typography variant='body1' sx={style.courseDescription}>
+                                    {courseDetailData.moTa}
+                                </Typography>
+                                <Box display='flex' flexWrap='wrap'>
+                                    <Box display='flex' sx={style.courseInformation}>
+                                        <img src='/img/teacher1.jpg' />
+                                        <Box>
+                                            <Typography variant='h5'>
+                                                Giảng viên
+                                            </Typography>
+                                            <Typography variant='body1'>
+                                                {courseDetailData.nguoiTao.hoTen}
+                                            </Typography>
+                                        </Box>
+                                    </Box>
+                                    <Box sx={style.courseInformation}>
                                         <Typography variant='h5'>
-                                            Giảng viên
+                                            Học viên
                                         </Typography>
                                         <Typography variant='body1'>
-                                            Olivia
+                                            {courseDetailData.soLuongHocVien} học viên
+                                        </Typography>
+                                    </Box>
+                                    <Box sx={style.courseInformation}>
+                                        <Typography variant='h5'>
+                                            Ngày cập nhật
+                                        </Typography>
+                                        <Typography variant='body1'>
+                                            {/* July 24, 2022 */}
+                                            {courseDetailData.ngayTao}
                                         </Typography>
                                     </Box>
                                 </Box>
-                                <Box sx={style.courseInformation}>
-                                    <Typography variant='h5'>
-                                        Học viên
-                                    </Typography>
-                                    <Typography variant='body1'>
-                                        15 học viên
-                                    </Typography>
-                                </Box>
-                                <Box sx={style.courseInformation}>
-                                    <Typography variant='h5'>
-                                        Ngày cập nhật
-                                    </Typography>
-                                    <Typography variant='body1'>
-                                        July 24, 2022
-                                    </Typography>
-                                </Box>
+                                <Button variant='contained'>
+                                    Thêm vào giỏ hàng
+                                </Button>
+                            </Box>
+                            <Box sx={style.containerRight}>
+                                <img src='/img/course1.jpg' alt='' />
                             </Box>
                         </Box>
-                        <Box sx={style.containerRight}>
-                            <img src='/img/course1.jpg' alt='' />
-                        </Box>
                     </Box>
-                </Box>
+                }
             </ThemeProvider>
         </Fragment >
     )
