@@ -11,8 +11,9 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import Modal from '@mui/material/Modal';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { actSignIn } from './module/actions';
 
 function Copyright(props) {
@@ -31,11 +32,19 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignIn(props) {
+  const errorAlert = useSelector((state) => state.signinReducer.error);
   const dispatch = useDispatch();
   const [state, setState] = React.useState({
     taiKhoan: '',
     matKhau: '',
   })
+
+
+  //handle Open Close Modal
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
 
   const handleOnChange = (event) => {
     const { name, value } = event.target;
@@ -47,8 +56,35 @@ export default function SignIn(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(actSignIn(state,props.history));
+    dispatch(actSignIn(state, props.history));
   };
+
+  const handleAlert = () => {
+    if (errorAlert) {
+      return (
+        errorAlert.response.data
+      )
+    } else {
+      return (
+        "Đăng nhập thành công"
+      )
+    }
+  }
+
+  const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '1px solid #000',
+    boxShadow: 20,
+    p: 4,
+    textAlign:'center',
+  };
+
+  
 
   return (
     <ThemeProvider theme={theme}>
@@ -92,16 +128,34 @@ export default function SignIn(props) {
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
-              label="Ghi nhớ tôi"
+              label="Ghi nhớ"
             />
             <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              onClick={handleOpen}
             >
               Đăng nhập
             </Button>
+
+            <Modal
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description"
+            >
+              <Box sx={style}>
+                <Typography id="modal-modal-title" variant="h6" component="h2">
+                  Thông báo!
+                </Typography>
+                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                  {handleAlert()}
+                </Typography>
+              </Box>
+            </Modal>
+
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">

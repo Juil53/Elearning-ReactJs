@@ -15,7 +15,7 @@ export default function Homepage() {
     <div>
       {/* Start Slider */}
       <section className={classes.slider}>
-        <Typography variant="h1" component="h1" className={classes.sliderTitle}>
+        <Typography variant="h3" component="h1" className={classes.sliderTitle}>
           Enhance your skills with best online courses
         </Typography>
         <Typography variant="h5" component="h5" className={classes.sliderText}>

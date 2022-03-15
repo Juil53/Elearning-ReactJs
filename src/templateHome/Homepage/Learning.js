@@ -9,7 +9,7 @@ export default function Learning() {
       <Typography variant="h5" component="h5" className={classes.sliderText}>
         Take the first step to your journey to success with us
       </Typography>
-      <Typography variant="h1" component="h1" className={classes.sliderTitle}>
+      <Typography variant="h3" component="h3" className={classes.sliderTitle}>
         Enhance your skills with best online courses
       </Typography>
       <Grid container spacing={2}>
