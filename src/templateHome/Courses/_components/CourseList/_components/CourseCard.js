@@ -6,6 +6,7 @@ import {
     Typography,
     Box, Rating, Link
 } from '@mui/material';
+import { Link as RouterLink } from 'react-router-dom';
 import AccessTimeOutlinedIcon from '@mui/icons-material/AccessTimeOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import React, { Fragment } from 'react'
@@ -52,7 +53,7 @@ export default function CourseCard(props) {
             borderRadius: '0 0 calc(0.25rem - 1px) calc(0.25rem - 1px)'
         },
         courseAuthorText: {
-            fontSize: '15px',
+            fontSize: '14px',
             fontWeight: 600,
             display: 'inline-block',
             ml: '8px',
@@ -61,7 +62,7 @@ export default function CourseCard(props) {
             display: 'inline-block',
             overflow: 'hidden',
             whiteSpace: 'nowrap',
-            fontSize: '18px',
+            fontSize: '17px',
             fontWeight: 600,
             lineHeight: '28px',
             color: '#3f3a64',
@@ -95,7 +96,11 @@ export default function CourseCard(props) {
                         </Typography>
                         <Rating name="read-only" value={3} readOnly sx={{ fontSize: '20px' }} />
                     </Box>
-                    <Link sx={styles.cardTitle}>
+                    <Link
+                        component={RouterLink}
+                        to={`/course-detail/${courseInfo.maKhoaHoc}`}
+                        sx={styles.cardTitle}
+                    >
                         {courseInfo.tenKhoaHoc}
                     </Link>
                     <Box sx={{ display: 'flex', mt: '1.5rem' }}>

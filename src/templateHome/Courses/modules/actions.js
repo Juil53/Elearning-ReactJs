@@ -1,5 +1,5 @@
 import * as ActionType from './constants';
-import api from '../../../../../Api/api'
+import api from '../../../Api/api'
 
 // Lấy danh mục khóa học
 export const actCourseCategoryGet = () => {
