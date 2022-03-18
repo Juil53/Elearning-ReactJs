@@ -12,6 +12,13 @@ export const actCourseDetailGet = (maKhoaHoc) => {
     }
 }
 
+export const actCourseAddToCart = (khoaHoc) => {
+    return (dispatch) => dispatch({
+        type: ActionType.COURSE_ADD_TO_CART,
+        payload: khoaHoc,
+    })
+}
+
 const actCourseRequest = () => {
     return {
         type: ActionType.COURSE_REQUEST,

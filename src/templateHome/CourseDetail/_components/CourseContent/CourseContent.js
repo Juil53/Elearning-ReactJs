@@ -2,6 +2,8 @@ import { Box, Button, Typography } from '@mui/material'
 import { ThemeProvider } from '@mui/styles'
 import { createTheme } from '@mui/system'
 import React, { Fragment } from 'react'
+import { actCourseAddToCart } from '../../modules/actions'
+import { useDispatch } from 'react-redux'
 
 const theme = createTheme({
     breakpoints: {
@@ -14,7 +16,7 @@ const theme = createTheme({
 })
 
 export default function CourseContent(props) {
-    const { courseDetailData } = props;
+    const { courseDetailData, setOpenModal } = props;
 
     const style = {
         containerFluid: {
@@ -75,6 +77,14 @@ export default function CourseContent(props) {
             }
         }
     }
+
+    const dispatch = useDispatch();
+
+    const handleAddToCart = (courseDetailData) => {
+        dispatch(actCourseAddToCart(courseDetailData));
+        setOpenModal(true)
+    }
+
     return (
         <Fragment>
             <ThemeProvider theme={theme}>
@@ -90,7 +100,7 @@ export default function CourseContent(props) {
                                 </Typography>
                                 <Box display='flex' flexWrap='wrap'>
                                     <Box display='flex' sx={style.courseInformation}>
-                                        <img src='/img/teacher1.jpg' />
+                                        <img src='/img/teacher1.jpg' alt='' />
                                         <Box>
                                             <Typography variant='h5'>
                                                 Giảng viên
@@ -113,13 +123,17 @@ export default function CourseContent(props) {
                                             Ngày cập nhật
                                         </Typography>
                                         <Typography variant='body1'>
-                                            {/* July 24, 2022 */}
                                             {courseDetailData.ngayTao}
                                         </Typography>
                                     </Box>
                                 </Box>
-                                <Button variant='contained'>
-                                    Thêm vào giỏ hàng
+                                <Button
+                                    variant='contained'
+                                    onClick={() => {
+                                        handleAddToCart(courseDetailData)
+                                    }}
+                                >
+                                    Thêm giỏ hàng
                                 </Button>
                             </Box>
                             <Box sx={style.containerRight}>
