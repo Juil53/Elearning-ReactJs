@@ -8,7 +8,8 @@ export const actSignUp = (user, history) => {
       .post("QuanLyNguoiDung/DangKy", user)
       .then((result) => {
         dispatch(actSignUpSuccess(result.data));
-        history.replace("/");
+        console.log(result.data)
+        // history.replace("/");
       })
       .catch((err) => {
         dispatch(actSignUpFailed(err));
