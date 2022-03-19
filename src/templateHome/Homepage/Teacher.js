@@ -51,7 +51,7 @@ export default function Teacher() {
               <div className={classes.imgSize}>
                 <img
                   className={classes.teacherImg}
-                  src="./img/teacher2.jpg"
+                  src="./img/team3.jpg"
                   alt=""
                 />
               </div>
@@ -60,7 +60,7 @@ export default function Teacher() {
               <div className={classes.imgSize}>
                 <img
                   className={classes.teacherImg}
-                  src="./img/teacher2.jpg"
+                  src="./img/team3.jpg"
                   alt=""
                 />
               </div>
@@ -69,7 +69,7 @@ export default function Teacher() {
               <div className={classes.imgSize}>
                 <img
                   className={classes.teacherImg}
-                  src="./img/teacher2.jpg"
+                  src="./img/team4.jpg"
                   alt=""
                 />
               </div>

@@ -8,35 +8,39 @@ import {
   Rating,
   Grid,
 } from "@mui/material";
-import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import { useStyles } from "../../styles/styles";
 
-export default function Cards() {
-  const classes = useStyles();
+export default function Cards(props) {
+  const { courses } = props;
+  const classes = useStyles();  
   return (
     <>
       <Card>
         <CardMedia
           component="img"
           height="300px"
-          image="./img/course1.jpg"
+          image={courses.hinhAnh}
           alt="course1"
         />
         <CardContent
           sx={{ display: "flex", justifyContent: "space-between", py: 3 }}
         >
           <Typography gutterBottom variant="h5" component="div" color="primary">
-            $35.00
+            Lượt xem: {courses.luotXem}
           </Typography>
           <Rating name="read-only" value={3} readOnly />
         </CardContent>
         <CardContent sx={{ paddingBottom: 3 }}>
           <Typography variant="h5" color="secondary" gutterBottom>
-            Open Programming Courses for everyone : Python
+            {courses.tenKhoaHoc}
           </Typography>
-          <AccessTimeIcon />
+          <Typography variant="body1" color="secondary" gutterBottom>
+            Instructor: {courses.nguoiTao.taiKhoan}
+          </Typography>
+          <CalendarTodayIcon sx={{pr:1}}/>
           <Typography variant="body1" component="span">
-            20 hrs
+            {courses.ngayTao}
           </Typography>
         </CardContent>
         <CardActions sx={{ borderTop: "1px solid #eee", paddingTop: 2 }}>
@@ -62,7 +66,7 @@ export default function Cards() {
               </Typography>
             </Grid>
             <Grid item>
-              <Typography variant="h6">Programing</Typography>
+              <Typography variant="h6">{courses.danhMucKhoaHoc.maDanhMucKhoahoc}</Typography>
             </Grid>
           </Grid>
         </CardActions>

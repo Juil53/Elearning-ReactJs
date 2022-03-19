@@ -1,11 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container, Box, Typography, Grid, Button } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { useStyles } from "../../styles/styles";
-import Cards from "./Card"
+import Cards from "./Card";
+import { useSelector, useDispatch } from "react-redux";
+import { actCourseAllGet } from "../Courses/modules/actions";
 
 export default function Featured() {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const courses = useSelector(
+    (state) => state.courseListReducer.dataCourseList
+  );
+  console.log(courses)
+
+  useEffect(() => {
+    dispatch(actCourseAllGet());
+  }, []);
+
   return (
     <>
       <Container maxWidth="xl">
@@ -21,15 +33,14 @@ export default function Featured() {
         <Box>
           {/* Card */}
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={12} md={6} lg={4}>
-              <Cards />
-            </Grid>
-            <Grid item xs={12} sm={12} md={6} lg={4}>
-              <Cards />
-            </Grid>
-            <Grid item xs={12} sm={12} md={6} lg={4}>
-              <Cards />
-            </Grid>
+            {courses &&
+              courses.splice(27,6).map((course,index) => {
+                return (
+                  <Grid item xs={12} sm={12} md={6} lg={4} key={index}>
+                    <Cards courses={course}/>
+                  </Grid>
+                );
+              })}
           </Grid>
         </Box>
       </Container>
@@ -42,6 +53,7 @@ export default function Featured() {
               color="primary"
               className={classes.viewBtn}
               endIcon={<ArrowForwardIcon />}
+              href="/courses"
             >
               View All Courses
             </Button>
