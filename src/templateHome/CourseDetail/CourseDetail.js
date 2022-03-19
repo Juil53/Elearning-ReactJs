@@ -27,6 +27,7 @@ export default function CourseDetail(props) {
     useEffect(() => {
         const { maKhoaHoc } = props.match.params;
         dispatch(actCourseDetailGet(maKhoaHoc));
+        window.scroll(0, 0);
     }, []);
 
     const [openModal, setOpenModal] = useState(false)
