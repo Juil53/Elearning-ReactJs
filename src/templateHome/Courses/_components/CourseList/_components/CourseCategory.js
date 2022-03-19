@@ -3,7 +3,7 @@ import { Box } from '@mui/system';
 import React, { Fragment } from 'react';
 
 export default function CourseCategory(props) {
-    const { courseCategory, selectCategory, setSelectCategory } = props;
+    const { courseCategory, selectCategory, setSelectCategory, setPage } = props;
     let categories = null;
     if (courseCategory) {
         categories = [
@@ -17,6 +17,7 @@ export default function CourseCategory(props) {
 
     const handleChange = (event) => {
         setSelectCategory(event.target.value);
+        setPage(1);
     }
 
     const styles = {

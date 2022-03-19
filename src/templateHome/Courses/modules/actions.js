@@ -33,12 +33,29 @@ export const actCourseAllGet = () => {
     }
 }
 
+// Lấy danh sách khóa học theo danh mục
 export const actCourseByCategoryGet = (category) => {
     return (dispatch) => {
         dispatch(actCourseRequest());
 
         api
             .get(`QuanLyKhoaHoc/LayKhoaHocTheoDanhMuc?maDanhMuc=${category}&MaNhom${ActionType.GROUP_NUMBER}`)
+            .then(result => {
+                dispatch(actCourseListSuccess(result.data))
+            })
+            .catch(error => {
+                dispatch(actCourseFailed(error))
+            })
+    }
+}
+
+// Lấy danh sách khóa học cho trang home
+export const actCourseListHomeGet = () => {
+    return (dispatch) => {
+        dispatch(actCourseRequest());
+
+        api
+            .get(`QuanLyKhoaHoc/LayDanhSachKhoaHoc_PhanTrang?page=1&pageSize=3&MaNhom=${ActionType.GROUP_NUMBER}`)
             .then(result => {
                 dispatch(actCourseListSuccess(result.data))
             })
