@@ -1,20 +1,22 @@
-import * as React from "react";
-import "./../../../App.css";
+import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
+import DiamondOutlinedIcon from "@mui/icons-material/DiamondOutlined";
+import LogoutIcon from '@mui/icons-material/Logout';
+import MenuIcon from "@mui/icons-material/Menu";
+import PersonIcon from "@mui/icons-material/Person";
+import SearchIcon from "@mui/icons-material/Search";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import MenuIcon from "@mui/icons-material/Menu";
-import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
-import DiamondOutlinedIcon from "@mui/icons-material/DiamondOutlined";
-import SearchIcon from "@mui/icons-material/Search";
-import PersonIcon from "@mui/icons-material/Person";
-import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
-import { useStyles } from "./../../../styles/styles";
+import Container from "@mui/material/Container";
+import IconButton from "@mui/material/IconButton";
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import * as React from "react";
 import { routesHome } from "../../../Routes/route";
-
+import "./../../../App.css";
+import { useStyles } from "./../../../styles/styles";
 
 const Navbar = () => {
   const classes = useStyles();
@@ -46,7 +48,6 @@ const Navbar = () => {
     },
   };
 
-
   //change Navbar color
   const [colorChange, setColorChange] = React.useState(false);
   const changeNavbarColor = () => {
@@ -62,14 +63,89 @@ const Navbar = () => {
   }, []);
 
 
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
+  const checkSignIn = () => {
+    if (localStorage.getItem("UserClient") === null) {
+      return (
+        <Button href="/signin" sx={{ display: { xs: "none", lg: "flex" } }}>
+          <Typography
+            variant="p"
+            sx={[
+              { fontSize: "20px" },
+              colorChange ? style.btnColorChange : style.btnColorDefault,
+            ]}
+          >
+            Đăng nhập
+          </Typography>
+        </Button>
+      )
+    } else {
+      return (
+        <>
+          <Button href="/user-profiles">
+            <PersonIcon
+              sx={[
+                { fontSize: "30px", flexGrow: 1, display: { xs: "none", lg: "flex" } },
+                colorChange ? style.btnColorChange : style.btnColorDefault,
+              ]}
+            />
+          </Button>
+          <Button href="/" onClick={() => {
+            localStorage.removeItem("UserClient")
+          }}>
+            <LogoutIcon sx={[
+              {
+                fontSize: "30px",
+                justifyContent: "flex-end",
+                display: { xs: "none", lg: "flex" }
+              },
+              colorChange ? style.btnColorChange : style.btnColorDefault,
+            ]} />
+          </Button>
+        </>
+      )
+    }
+  }
+  const checkMenu = () => {
+    if (localStorage.getItem("UserClient") === null) {
+      return (
+        <Button href="/signin">
+          Đăng nhập
+        </Button>
+      )
+    } else {
+      return (
+        <>
+          <Box>
+            <Button href="/user-profiles">
+              <PersonIcon
+                sx={{ fontSize: "30px", color: '#3f3a64' }}
+              />
+            </Button>
+            <br />
+            <Button href="/" onClick={() => {
+              localStorage.removeItem("UserClient")
+            }}>
+              <LogoutIcon sx={[
+                {
+                  fontSize: "30px",
+                  color: '#3f3a64'
+                },
+              ]} />
+            </Button>
+          </Box>
+        </>
+      )
+    }
+  }
 
+  // HandleMenuIcon
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
 
   return (
@@ -99,6 +175,7 @@ const Navbar = () => {
             <Typography variant="body2">Journey to success</Typography>
           </Typography>
 
+          {/* Page */}
           <Box
             sx={{
               mx: 2,
@@ -107,11 +184,10 @@ const Navbar = () => {
               display: { xs: "none", lg: "flex" },
             }}
           >
-            {routesHome.map((page, index) => (
+            {routesHome.slice(0, 4).map((page, index) => (
               <Button
                 key={index}
                 href={page.path}
-                onClick={handleCloseNavMenu}
                 sx={[
                   { fontSize: "20px" },
                   colorChange ? style.btnColorChange : style.btnColorDefault,
@@ -119,43 +195,31 @@ const Navbar = () => {
               >
                 {page.page}
               </Button>
-
             ))}
           </Box>
 
+          {/* Search */}
           <Box
             sx={{
               justifyContent: "center",
               alignItems: "center",
-              display: { xs: "none", lg: "flex" },
+              display: { xs: "flex", lg: "flex" },
             }}
           >
             <SearchIcon
               sx={[
-                { fontSize: "30px" },
+                { fontSize: "30px", display: { xs: "none", lg: "flex" } },
                 colorChange ? style.btnColorChange : style.btnColorDefault,
               ]}
             />
-            <Button href="/user-profiles">
-              <PersonIcon
-                sx={[
-                  { fontSize: "30px" },
-                  colorChange ? style.btnColorChange : style.btnColorDefault,
-                ]}
-              />
-            </Button>
-            <Button href="/signin">
-              <Typography
-                variant="p"
-                sx={[
-                  { fontSize: "20px" },
-                  colorChange ? style.btnColorChange : style.btnColorDefault,
-                ]}
-              >
-                Đăng nhập
-              </Typography>
-            </Button>
           </Box>
+
+          {/* SignIn */}
+          <Box>
+            {checkSignIn()}
+          </Box>
+
+          {/* DarkIcon */}
           <DarkModeOutlinedIcon
             sx={[
               {
@@ -167,6 +231,7 @@ const Navbar = () => {
             ]}
           />
 
+          {/* Menu */}
           <Box
             sx={{
               justifyContent: "flex-end",
@@ -178,7 +243,7 @@ const Navbar = () => {
               aria-label="account of current user"
               aria-controls="menu-appbar"
               aria-haspopup="true"
-              onClick={handleOpenNavMenu}
+              onClick={handleMenu}
               color="inherit"
             >
               <MenuIcon
@@ -186,11 +251,42 @@ const Navbar = () => {
                   fontSize: "40px",
                   bgcolor: "primary.main",
                   color: "#fff",
-                  borderRadius: "10px",
+                  borderRadius: "5px",
                 }}
               />
             </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorEl}
+              anchorReference="anchorEl"
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'center',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+            >
+              {routesHome.slice(0, 4).map((page, index) => (
+                <MenuItem onClick={handleClose} key={index}>
+                  <Button
+                    href={page.path}
+                    sx={{ color: '#3f3a64' }}
+                  >
+                    {page.page}
+                  </Button>
+                </MenuItem>
+              ))}
+              <MenuItem>
+                {checkMenu()}
+              </MenuItem>
+            </Menu>
           </Box>
+
         </Toolbar>
       </Container>
     </AppBar>

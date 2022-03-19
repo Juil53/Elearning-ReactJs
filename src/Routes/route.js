@@ -32,6 +32,13 @@ const routesHome = [
     path: "/contact",
     // component: lazy(() => import("../templateHome/Courses/Courses")),
   },
+  //Course detail
+  {
+    exact: false,
+    path: "/course-detail",
+    component: lazy(() => import("../templateHome/CourseDetail/CourseDetail")),
+  },
+  //User profile
   {
     page: 'Người dùng',
     exact: false,
@@ -39,11 +46,6 @@ const routesHome = [
     component: lazy(() => import("../templateHome/UserProfile/UserProfile")),
   },
 ];
-
-const userProfile = [
-  //User profile
-  
-]
 
 const routeLogin = [
   //SignIn
@@ -86,4 +88,4 @@ const renderRouteLogin = () => {
   });
 };
 
-export { renderRouteHome, renderRouteLogin, routesHome, routeLogin, userProfile };
+export { renderRouteHome, renderRouteLogin, routesHome, routeLogin };

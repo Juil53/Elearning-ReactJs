@@ -12,7 +12,7 @@ const userProfileStyle = makeStyles(()=>({
             marginBottom: 5,
         },
         '& p':{
-            fontSize: 18,
+            fontSize: 22,
             marginTop: 5, 
         }
         

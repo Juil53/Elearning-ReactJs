@@ -5,11 +5,10 @@ import { Button } from "@mui/material";
 
 import userProfileStyle from "./UserProfileStyle";
 
-export default function UserInfo() {
+export default function UserInfo(props) {
   const classes = userProfileStyle();
-
+  const {user}= props;
   return (
-    <div>
       <Box
         component="form"
         sx={{
@@ -23,7 +22,7 @@ export default function UserInfo() {
             required
             id="outlined-required"
             label="Họ và tên"
-            defaultValue="Nguyen Lam"
+            defaultValue={user.hoTen}
           />
         </div>
         <div>
@@ -31,7 +30,7 @@ export default function UserInfo() {
             required
             id="outlined-required"
             label="Số điện thoại"
-            defaultValue="098765789"
+            defaultValue={user.soDT}
           />
         </div>
         <div>
@@ -39,14 +38,13 @@ export default function UserInfo() {
             required
             id="outlined-required"
             label="Email"
-            defaultValue="nguyenlam@gmail.com"
+            defaultValue={user.email}
           />
         </div>
-
         <Button variant="contained" color="primary" sx={{ mt: 3 }}>
           Cập nhật
         </Button>
       </Box>
-    </div>
+    
   );
 }

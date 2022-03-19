@@ -1,21 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { Redirect } from "react-router-dom";
+import {useSelector, useDispatch} from "react-redux";
+
 import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import Typography from "@mui/material/Typography";
+//import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import Avatar from "@mui/material/Avatar";
-import Stack from "@mui/material/Stack";
 import Grid from "@mui/material/Grid";
 
 import userProfileStyle from "./_components/UserProfileStyle";
 import UserInfo from "./_components/UserInfo";
-import UserCart from "./_components/UserCart";
+//import UserCart from "./_components/UserCart";
 import UserCourses from "./_components/UserCourses";
+import { actUserProfile } from "./modules/actions";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
-
   return (
     <div
       role="tabpanel"
@@ -26,7 +27,7 @@ function TabPanel(props) {
     >
       {value === index && (
         <Box sx={{ mt: 3, display: "block", margin: "auto" }}>
-          <Typography>{children}</Typography>
+          {children}
         </Box>
       )}
     </div>
@@ -46,25 +47,27 @@ function a11yProps(index) {
   };
 }
 
-export default function UserProfile() {
+function UserProfile() {
   const [value, setValue] = React.useState(0);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
   const classes = userProfileStyle();
+
+  const dispatch = useDispatch();
+  useEffect(()=>{
+    dispatch(actUserProfile(JSON.parse(localStorage.getItem("UserClient")).taiKhoan))
+  })
+
+  const userInfo= JSON.parse(localStorage.getItem("userInfo"));
+  console.log(userInfo);
+
   return (
+    !localStorage.getItem("UserClient") ? (<Redirect to="/" />) : (
     <div className={classes.content}>
       <div className={classes.title}>
         <h2>Trang cá nhân</h2>
-        <Stack alignItems="center">
-          <Avatar
-            alt="User img"
-            src="/static/images/avatar/1.jpg"
-            sx={{ width: 56, height: 56 }}
-          />
-        </Stack>
-        <p>Nguyen Lam</p>
+        <p>{userInfo.hoTen}</p>
       </div>
       <Box
         sx={{
@@ -76,8 +79,7 @@ export default function UserProfile() {
           mt: 3,
         }}
       >
-        <Grid container direction="row"
-  justifyContent="space-around">
+        <Grid container direction="row" justifyContent="space-around">
           <Grid item xs={12} md={3}>
             <Tabs
               orientation="vertical"
@@ -92,27 +94,29 @@ export default function UserProfile() {
                 label="Thông tin cá nhân"
                 {...a11yProps(0)}
               />
-              <Tab sx={{ margin: "auto" }} label="Giỏ hàng" {...a11yProps(1)} />
               <Tab
                 sx={{ margin: "auto" }}
-                label="Các khóa học"
-                {...a11yProps(2)}
+                label="Khóa học của tôi"
+                {...a11yProps(1)}
               />
             </Tabs>
+            {/* <Tab sx={{ margin: "auto" }} label="Giỏ hàng" {...a11yProps(2)} /> */}
           </Grid>
           <Grid item xs={12} md={8}>
             <TabPanel value={value} index={0}>
-              <UserInfo />
+              <UserInfo user={userInfo} />
             </TabPanel>
             <TabPanel value={value} index={1}>
+              <UserCourses userCourses={userInfo.chiTietKhoaHocGhiDanh} />
+            </TabPanel>
+            {/* <TabPanel value={value} index={2}>
               <UserCart />
-            </TabPanel>
-            <TabPanel value={value} index={2}>
-              <UserCourses />
-            </TabPanel>
+            </TabPanel> */}
           </Grid>
         </Grid>
       </Box>
     </div>
-  );
+  ));
 }
+
+export default UserProfile;

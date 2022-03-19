@@ -3,7 +3,9 @@ import BreadcrumbContent from "./_components/BreadcrumbContent";
 import WaveSvg from "./_components/WaveSvg";
 import { Box } from "@mui/material";
 
-export default function Breadcrumb() {
+export default function Breadcrumb(props) {
+  const { breadCrumbArr } = props;
+
   const styles = {
     root: {
       position: "relative",
@@ -12,7 +14,7 @@ export default function Breadcrumb() {
 
   return (
     <Box sx={styles.root}>
-      <BreadcrumbContent />
+      <BreadcrumbContent breadCrumbArr={breadCrumbArr} />
       <WaveSvg />
     </Box>
   );
