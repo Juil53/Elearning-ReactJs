@@ -47,7 +47,7 @@ export default function CourseList() {
 
     const dataCourseCategory = useSelector(state => state.courseCategoryReducer.dataCourseCategory);
     const dataCourseList = useSelector(state => state.courseListReducer.dataCourseList);
-
+    
     const styles = {
         container: {
             width: '100%',

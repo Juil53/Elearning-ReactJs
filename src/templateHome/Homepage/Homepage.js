@@ -22,13 +22,13 @@ export default function Homepage() {
           Take the first step to your journey to success with us
         </Typography>
         <Button variant="contained" color="primary" sx={{ mt: 5 }}>
-          Ready to get started?
+          <a href="#feature">Ready to go?</a>
         </Button>
       </section>
       {/* End Slider */}
 
       {/* Start Featured */}
-      <section className={classes.featuredbg}>
+      <section id="feature" className={classes.featuredbg}>
         <Featured />
       </section>
       {/* End Courses */}

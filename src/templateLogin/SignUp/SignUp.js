@@ -13,6 +13,8 @@ import Modal from "@mui/material/Modal";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useDispatch, useSelector } from "react-redux";
 import { actSignUp } from "./module/action";
+import { signupUserSchema } from "../../Validation/UserValidation";
+import { Formik, Form } from "formik";
 
 function Copyright(props) {
   return (
@@ -108,9 +110,10 @@ export default function SignUp(props) {
           <Typography component="h1" variant="h5">
             Đăng Ký
           </Typography>
+
           <Box
             component="form"
-            noValidate
+            noValidation
             onSubmit={handleSubmit}
             sx={{ mt: 3 }}
           >
