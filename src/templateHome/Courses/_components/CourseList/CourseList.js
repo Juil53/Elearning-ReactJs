@@ -33,16 +33,16 @@ export default function CourseList() {
     const [selectCategory, setSelectCategory] = useState('All');
 
     useEffect(() => {
-        dispatch(actCourseCategoryGet())
+        dispatch(actCourseCategoryGet());
     }, []);
 
+    // Lấy danh sách tất cả khóa học và khóa học theo danh mục 
     useEffect(() => {
         if (selectCategory !== "All") {
             dispatch(actCourseByCategoryGet(selectCategory));
         } else {
             dispatch(actCourseAllGet());
         }
-
     }, [selectCategory])
 
     const dataCourseCategory = useSelector(state => state.courseCategoryReducer.dataCourseCategory);
@@ -83,19 +83,48 @@ export default function CourseList() {
         }
     }
 
+    // hàm render pagination sau khi lấy được danh sách khóa học
+    const renderPagination = () => {
+        if (!dataCourseList) {
+            return
+        }
+        const pages = Math.ceil(dataCourseList?.length / 6);
+        return (
+            < Pagination count={pages} page={page} variant='outlined' shape='rounded' onChange={handleChangePage} />
+        )
+    }
+
+    const [page, setPage] = useState(1)
+    const handleChangePage = (event, value) => { // bắt buộc phải có event?
+        setPage(value);
+        window.scroll(0, 0);
+    }
+
+    // hàm thay đổi danh sách render theo trang
+    let courseList = null;
+    const renderCourseList = () => {
+        window.scroll(0, 0);
+        const firstItem = (page - 1) * 6;
+        const lastItem = firstItem + 6;
+        courseList = dataCourseList?.slice(firstItem, lastItem);
+        return (
+            courseList?.map((course) => (
+                <Box sx={styles.courseItem} key={course.maKhoaHoc}>
+                    <CourseCard courseInfo={course} />
+                </Box>
+            ))
+        )
+    }
+
     return (
         <Fragment>
             <ThemeProvider theme={theme}>
                 <Box sx={styles.container}>
-                    {dataCourseCategory && <CourseCategory courseCategory={dataCourseCategory} selectCategory={selectCategory} setSelectCategory={setSelectCategory} />}
+                    {dataCourseCategory && <CourseCategory courseCategory={dataCourseCategory} selectCategory={selectCategory} setSelectCategory={setSelectCategory} setPage={setPage} />}
                     <Box sx={styles.containerFlex}>
-                        {dataCourseList && dataCourseList.map((course) => (
-                            <Box sx={styles.courseItem} key={course.maKhoaHoc}>
-                                <CourseCard courseInfo={course} />
-                            </Box>
-                        ))}
+                        {dataCourseCategory && renderCourseList()}
                     </Box>
-                    <Pagination count={10} variant='outlined' shape='rounded' />
+                    {renderPagination()}
                 </Box>
             </ThemeProvider>
         </Fragment>
