@@ -35,7 +35,7 @@ const routesHome = [
   //Course detail
   {
     exact: false,
-    path: "/course-detail",
+    path: "/course-detail/:maKhoaHoc",
     component: lazy(() => import("../templateHome/CourseDetail/CourseDetail")),
   },
   //User profile

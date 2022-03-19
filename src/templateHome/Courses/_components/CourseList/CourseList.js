@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Box, Pagination } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { actCourseCategoryGet, actCourseAllGet, actCourseByCategoryGet } from './modules/actions';
+import { actCourseCategoryGet, actCourseAllGet, actCourseByCategoryGet } from '../../modules/actions';
 import CourseCard from './_components/CourseCard';
 import CourseCategory from './_components/CourseCategory';
 
