@@ -15,14 +15,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { actSignUp } from "./module/action";
 import { signupUserSchema } from "../../Validation/UserValidation";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import Loading from "../../_components/Loading/Loading";
 
 const theme = createTheme();
 
 export default function SignUp(props) {
-  const success = useSelector((state) => state.signupReducer.data);
   const err = useSelector((state) => state.signupReducer.error);
-  const loading = useSelector((state) => state.signupReducer.loading);
   const dispatch = useDispatch();
   const handleOnSubmit = (value, props) => {
     setTimeout(() => {
@@ -39,179 +36,177 @@ export default function SignUp(props) {
 
   //Modal Alert
   const handleAlert = () => {
-    if (err) {
-      return err?.response.data;
-    } else if (success) return "Đăng ký thành công!";
+    return (
+      err && (
+        <Modal open={open} aria-describedby="modal-modal-description">
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              minHeight: "100vh",
+            }}
+          >
+            <Typography
+              id="modal-modal-description"
+              sx={{
+                fontSize: "2rem",
+                bgcolor: "#fff",
+                borderRadius: "20px",
+                textAlign: "center",
+                padding: "2rem",
+              }}
+            >
+              {err.response.data}
+              <br />
+              <Button variant="contained" onClick={handleClose}>
+                Close
+              </Button>
+            </Typography>
+          </Box>
+        </Modal>
+      )
+    );
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <Container
-        component="main"
-        maxWidth="md"
-        sx={{
-          backgroundColor: "#fff",
-          zIndex: 10,
-          borderRadius: "20px",
-          margin: "5rem 0",
-          paddingBottom: "3rem",
-        }}
-      >
-        <CssBaseline />
-        <Box
+    <section style={{ margin: "10rem 0", zIndex: "10" }}>
+      <ThemeProvider theme={theme}>
+        <Container
+          component="main"
           sx={{
-            marginTop: 8,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
+            backgroundColor: "#fff",
+            zIndex: 10,
+            borderRadius: "20px",
+            paddingBottom: "1rem",
+            maxWidth: { xs: "xs", sm: "sm" },
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Đăng Ký
-          </Typography>
-
-          {/* Validation formik */}
-          <Formik
-            initialValues={{
-              taiKhoan: "",
-              matKhau: "",
-              email: "",
-              hoTen: "",
-              soDT: "",
-              maNhom: "",
+          <CssBaseline />
+          <Box
+            sx={{
+              marginTop: 8,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
             }}
-            onSubmit={handleOnSubmit}
-            validationSchema={signupUserSchema}
           >
-            {(props) => (
-              <Form>
-                <Box sx={{ mt: 3 }}>
-                  <Grid container spacing={2}>
-                    <Grid item xs={12} md={6}>
-                      <Field
-                        as={TextField}
-                        fullWidth
-                        id="taikhoan"
-                        label="Tài khoản"
-                        name="taiKhoan"
-                        helperText={<ErrorMessage name="taiKhoan" />}
-                      />
-                    </Grid>
-                    <Grid item xs={12} md={6}>
-                      <Field
-                        as={TextField}
-                        fullWidth
-                        name="matKhau"
-                        label="Mật Khẩu"
-                        type="password"
-                        id="matkhau"
-                        helperText={<ErrorMessage name="matKhau" />}
-                      />
-                    </Grid>
-                    <Grid item xs={12} md={6}>
-                      <Field
-                        as={TextField}
-                        fullWidth
-                        id="email"
-                        label="Email Address"
-                        name="email"
-                        autoComplete="email"
-                        helperText={<ErrorMessage name="email" />}
-                      />
-                    </Grid>
-                    <Grid item xs={12} md={6}>
-                      <Field
-                        as={TextField}
-                        fullWidth
-                        id="hoten"
-                        label="Họ tên"
-                        name="hoTen"
-                        autoComplete="hoten"
-                        helperText={<ErrorMessage name="hoTen" />}
-                      />
-                    </Grid>
-                    <Grid item xs={12} md={6}>
-                      <Field
-                        as={TextField}
-                        fullWidth
-                        id="sdt"
-                        label="Số điện thoại"
-                        name="soDT"
-                        autoComplete="sdt"
-                        helperText={<ErrorMessage name="soDT" />}
-                      />
-                    </Grid>
-                    <Grid item xs={12} md={6}>
-                      <Field
-                        as={TextField}
-                        fullWidth
-                        id="manhom"
-                        label="Mã Nhóm"
-                        name="maNhom"
-                        helperText={<ErrorMessage name="maNhom" />}
-                      />
-                    </Grid>
-                  </Grid>
-                  <div style={{ display: "flex", justifyContent: "center" }}>
-                    <Button
-                      type="submit"
-                      variant="contained"
-                      sx={{ mt: 3, mb: 2 }}
-                      disabled={props.isSubmitting}
-                      onClick={handleOpen}
-                    >
-                      {props.isSubmitting ? "Đang tải" : "Đăng Ký"}
-                    </Button>
-                  </div>
+            <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+              <LockOutlinedIcon />
+            </Avatar>
+            <Typography component="h1" variant="h5">
+              Đăng Ký
+            </Typography>
 
-                  <Modal open={open} aria-describedby="modal-modal-description">
-                    <Box
-                      sx={{
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        minHeight: "100vh",
-                      }}
-                    >
-                      {loading ? (
-                        <Loading />
-                      ) : (
-                        <Typography
-                          id="modal-modal-description"
-                          sx={{
-                            fontSize: "2rem",
-                            bgcolor: "#fff",
-                            borderRadius: "20px",
-                            textAlign: "center",
-                            padding: "2rem",
-                          }}
-                        >
-                          {handleAlert()}
-                          <br />
-                          <Button variant="contained" onClick={handleClose}>
-                            Close
-                          </Button>
-                        </Typography>
-                      )}
-                    </Box>
-                  </Modal>
-
-                  <Grid container justifyContent="flex-end">
-                    <Grid item>
-                      <Link href="/signin" variant="body2">
-                        Bạn đã có tài khoản? Đăng nhập
-                      </Link>
+            {/* Validation formik */}
+            <Formik
+              initialValues={{
+                taiKhoan: "",
+                matKhau: "",
+                email: "",
+                hoTen: "",
+                soDT: "",
+                maNhom: "",
+              }}
+              onSubmit={handleOnSubmit}
+              validationSchema={signupUserSchema}
+            >
+              {(props) => (
+                <Form>
+                  <Box sx={{ mt: 3 }}>
+                    <Grid container spacing={2}>
+                      <Grid item xs={12} md={6}>
+                        <Field
+                          as={TextField}
+                          fullWidth
+                          id="taikhoan"
+                          label="Tài khoản"
+                          name="taiKhoan"
+                          helperText={<ErrorMessage name="taiKhoan" />}
+                        />
+                      </Grid>
+                      <Grid item xs={12} md={6}>
+                        <Field
+                          as={TextField}
+                          fullWidth
+                          name="matKhau"
+                          label="Mật Khẩu"
+                          type="password"
+                          id="matkhau"
+                          helperText={<ErrorMessage name="matKhau" />}
+                        />
+                      </Grid>
+                      <Grid item xs={12} md={6}>
+                        <Field
+                          as={TextField}
+                          fullWidth
+                          id="email"
+                          label="Email Address"
+                          name="email"
+                          autoComplete="email"
+                          helperText={<ErrorMessage name="email" />}
+                        />
+                      </Grid>
+                      <Grid item xs={12} md={6}>
+                        <Field
+                          as={TextField}
+                          fullWidth
+                          id="hoten"
+                          label="Họ tên"
+                          name="hoTen"
+                          autoComplete="hoten"
+                          helperText={<ErrorMessage name="hoTen" />}
+                        />
+                      </Grid>
+                      <Grid item xs={12} md={6}>
+                        <Field
+                          as={TextField}
+                          fullWidth
+                          id="sdt"
+                          label="Số điện thoại"
+                          name="soDT"
+                          autoComplete="sdt"
+                          helperText={<ErrorMessage name="soDT" />}
+                        />
+                      </Grid>
+                      <Grid item xs={12} md={6}>
+                        <Field
+                          as={TextField}
+                          fullWidth
+                          id="manhom"
+                          label="Mã Nhóm"
+                          name="maNhom"
+                          helperText={<ErrorMessage name="maNhom" />}
+                        />
+                      </Grid>
                     </Grid>
-                  </Grid>
-                </Box>
-              </Form>
-            )}
-          </Formik>
-        </Box>
-      </Container>
-    </ThemeProvider>
+                    <div style={{ display: "flex", justifyContent: "center" }}>
+                      <Button
+                        type="submit"
+                        variant="contained"
+                        sx={{ mt: 3, mb: 2 }}
+                        disabled={props.isSubmitting}
+                        onClick={handleOpen}
+                      >
+                        {props.isSubmitting ? "Đang tải" : "Đăng Ký"}
+                      </Button>
+                    </div>
+                    {handleAlert()}
+
+                    <Grid container justifyContent="flex-end">
+                      <Grid item>
+                        <Link href="/signin" variant="body2">
+                          Bạn đã có tài khoản? Đăng nhập
+                        </Link>
+                      </Grid>
+                    </Grid>
+                  </Box>
+                </Form>
+              )}
+            </Formik>
+          </Box>
+        </Container>
+      </ThemeProvider>
+    </section>
   );
 }
