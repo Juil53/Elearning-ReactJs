@@ -151,6 +151,7 @@ const Navbar = () => {
   return (
     <AppBar
       position="fixed"
+      elevation={3}
       sx={[{ boxShadow: 0, borderBottom: '1px solid #e7e7e72e' }, colorChange ? style.changeColor : style.navbar]}
     >
       <Container maxWidth="xl" sx={{ my: 2 }}>
