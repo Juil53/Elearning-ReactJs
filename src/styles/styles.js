@@ -58,9 +58,9 @@ const useStyles = makeStyles({
     marginTop: "50px",
   },
   Loading: {
-    position: 'fixed',
-    left: '50%',
-    top: '35%',
+    position: "fixed",
+    left: "50%",
+    top: "35%",
     zIndex: 1000,
   },
   //Navbar
@@ -78,24 +78,23 @@ const useStyles = makeStyles({
     alignItems: "center",
     position: "relative",
     width: "100%",
-    height: "800px",
+    height: "100vh",
     background: "url(./img/banner1.jpg)",
     backgroundSize: "cover",
     backgroundPosition: "center center",
     backgroundRepeat: "no-repeat",
-    padding:'20% 0 10% 0',
+    padding: "20% 0 10% 0",
     "&::before": {
       content: "''",
       position: "absolute",
       top: 0,
       left: 0,
       width: "100%",
-      height: "800px",
+      height: "100vh",
       background: "linear-gradient(148.25deg, #A253D8 3%, #1545CB 89.85%)",
       opacity: 0.7,
     },
   },
-
 
   // Slider
   slider: {
@@ -105,7 +104,7 @@ const useStyles = makeStyles({
     alignItems: "center",
     position: "relative",
     width: "100%",
-    height: "800px",
+    height: "100vh",
     background: "url(./img/banner1.jpg)",
     backgroundSize: "cover",
     backgroundPosition: "center center",
@@ -116,7 +115,7 @@ const useStyles = makeStyles({
       top: 0,
       left: 0,
       width: "100%",
-      height: "800px",
+      height: "100vh",
       background: "linear-gradient(148.25deg, #A253D8 3%, #1545CB 89.85%)",
       opacity: 0.7,
     },
@@ -164,7 +163,7 @@ const useStyles = makeStyles({
   //News
   newBg: {
     backgroundColor: "#fff",
-    padding: "50px",
+    padding: "50px 0",
   },
   layer: {
     display: "flex",
@@ -176,9 +175,9 @@ const useStyles = makeStyles({
     backgroundSize: "cover",
     backgroundPosition: "center left",
     backgroundRepeat: "no-repeat",
-    transition: 'all .5s',
-    borderRadius: '10px',
-    overflow: 'hidden',
+    transition: "all .5s",
+    borderRadius: "10px",
+    overflow: "hidden",
     "&::before": {
       content: "''",
       position: "absolute",
@@ -194,7 +193,7 @@ const useStyles = makeStyles({
     },
     "&:hover": {
       transform: "translateY(-5px)",
-    }
+    },
   },
   layer1: {
     display: "flex",
@@ -206,9 +205,9 @@ const useStyles = makeStyles({
     backgroundSize: "cover",
     backgroundPosition: "center left",
     backgroundRepeat: "no-repeat",
-    transition: 'all .5s',
-    borderRadius: '10px',
-    overflow: 'hidden',
+    transition: "all .5s",
+    borderRadius: "10px",
+    overflow: "hidden",
     "&::before": {
       content: "''",
       position: "absolute",
@@ -224,7 +223,7 @@ const useStyles = makeStyles({
     },
     "&:hover": {
       transform: "translateY(-5px)",
-    }
+    },
   },
   layer2: {
     display: "flex",
@@ -236,9 +235,9 @@ const useStyles = makeStyles({
     backgroundSize: "cover",
     backgroundPosition: "center left",
     backgroundRepeat: "no-repeat",
-    transition: 'all .5s',
-    borderRadius: '10px',
-    overflow: 'hidden',
+    transition: "all .5s",
+    borderRadius: "10px",
+    overflow: "hidden",
     "&::before": {
       content: "''",
       position: "absolute",
@@ -254,7 +253,7 @@ const useStyles = makeStyles({
     },
     "&:hover": {
       transform: "translateY(-5px)",
-    }
+    },
   },
   content: {
     position: "relative",

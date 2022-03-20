@@ -44,3 +44,7 @@
 .colorChange {
   background-color: "red";
 }
+.MuiFormHelperText-root {
+  color: red !important;
+  font-size: 1rem !important;
+}
