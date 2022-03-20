@@ -16,6 +16,7 @@ import { actSignUp } from "./module/action";
 import { signupUserSchema } from "../../Validation/UserValidation";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import Loading from "../../_components/Loading/Loading";
+
 const theme = createTheme();
 
 export default function SignUp(props) {
@@ -72,6 +73,7 @@ export default function SignUp(props) {
             Đăng Ký
           </Typography>
 
+
           {/* Validation formik */}
           <Formik
             initialValues={{
@@ -84,6 +86,11 @@ export default function SignUp(props) {
             }}
             onSubmit={handleOnSubmit}
             validationSchema={signupUserSchema}
+          <Box
+            component="form"
+            noValidation
+            onSubmit={handleSubmit}
+            sx={{ mt: 3 }}
           >
             {(props) => (
               <Form>
