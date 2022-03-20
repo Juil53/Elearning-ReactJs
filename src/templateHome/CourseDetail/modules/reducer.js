@@ -9,6 +9,11 @@ const initialState = {
 const cartInitialState = {
     courseListInCart: [],
 }
+const registerInitialState={
+    loading: false,
+    registerData: null,
+    registerError: null,
+}
 
 export const courseDetailReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -51,4 +56,29 @@ export const courseAddToCartReducer = (state = cartInitialState, action) => {
         default:
             return state
     }
+}
+
+export const registerCourseReducer=(state=registerInitialState, action)=>{
+    switch(action.type){
+        case ActionType.REGISTER_COURSE_REQUEST:{
+            state.loading=true;
+            state.registerData=null;
+            state.registerError=null;
+            return{...state}
+        }
+        case ActionType.REGISTER_COURSE_SUCCESS:{
+            state.loading=false;
+            state.registerData=action.payload;
+            state.registerError=null;
+            return{...state}
+        }
+        case ActionType.REGISTER_COURSE_FAILED:{
+            state.loading=false;
+            state.registerData=null;
+            state.registerError=action.payload;
+            return{...state}
+        }
+        default: return{...state}
+    }
+
 }

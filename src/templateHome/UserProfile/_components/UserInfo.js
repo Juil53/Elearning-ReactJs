@@ -12,7 +12,7 @@ export default function UserInfo(props) {
       <Box
         component="form"
         sx={{
-          "& .MuiTextField-root": { m: 1, width: "50ch" },
+          "& .MuiTextField-root": { m: 1, width: "55%" },
         }}
         noValidate
         autoComplete="off"
@@ -22,7 +22,7 @@ export default function UserInfo(props) {
             required
             id="outlined-required"
             label="Họ và tên"
-            defaultValue={user.hoTen}
+            defaultValue={user?.hoTen}
           />
         </div>
         <div>
@@ -30,7 +30,7 @@ export default function UserInfo(props) {
             required
             id="outlined-required"
             label="Số điện thoại"
-            defaultValue={user.soDT}
+            defaultValue={user?.soDT}
           />
         </div>
         <div>
@@ -38,7 +38,16 @@ export default function UserInfo(props) {
             required
             id="outlined-required"
             label="Email"
-            defaultValue={user.email}
+            defaultValue={user?.email}
+          />
+        </div>
+        <div>
+          <TextField
+            required
+            id="outlined-required"
+            label="Mật khẩu"
+            type="password"
+            defaultValue={user?.matKhau}
           />
         </div>
         <Button variant="contained" color="primary" sx={{ mt: 3 }}>

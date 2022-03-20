@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useDispatch,useSelector } from 'react-redux';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import Divider from '@mui/material/Divider';
@@ -8,85 +9,56 @@ import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import { Button } from "@mui/material";
 import Box from "@mui/material/Box";
-
+import { actCancelCourse } from '../modules/actions';
 
 export default function UserCourses(props) {
-  const {userCourses}=props;
-  console.log(userCourses);
+    // let keyword = useSelector(state=>state.userProfileReducer.keyword)
+  //console.log(keyword);
+  const {course}=props;
+  const courseInfo={
+    maKhoaHoc: course.maKhoaHoc,
+    taiKhoan: JSON.parse(localStorage.getItem("UserClient")).taiKhoan,
+  }
+  const dispatch=useDispatch();
+  const handleCancelCourse=()=>{
+    dispatch(actCancelCourse(courseInfo));
+  }
   return (
-    <List sx={{ width: '100%', maxWidth: "90%", bgcolor: 'background.paper' }}>
-      <ListItem alignItems="flex-start">
-        <ListItemAvatar>
-          <Avatar alt="wordpress" src="http://elearning0706.cybersoft.edu.vn/hinhanh/khoahoc/lap-trinh-c-gp01.png" />
-        </ListItemAvatar>
-        <ListItemText
-          primary="The Complete WordPress Website Business Course"
-          secondary={
-            <React.Fragment>
-              <Typography
-                sx={{ display: 'inline' }}
-                component="span"
-                variant="body2"
-                color="text.primary"
-              >
-                Ali Connors
-              </Typography>
-              
-              {" — Master WordPress with this Complete WordPress Course…"}
-            </React.Fragment>
-          }
-        />
-        <Box sx={{ '& button': { m: 1 } }}>
-       <Button variant="contained" size="small">
-          Hủy
-        </Button>
-          </Box>
-        
-      </ListItem>
-      <Divider variant="inset" component="li" />
-      <ListItem alignItems="flex-start">
-        <ListItemAvatar>
-          <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
-        </ListItemAvatar>
-        <ListItemText
-          primary="Summer BBQ"
-          secondary={
-            <React.Fragment>
-              <Typography
-                sx={{ display: 'inline' }}
-                component="span"
-                variant="body2"
-                color="text.primary"
-              >
-                to Scott, Alex, Jennifer
-              </Typography>
-              {" — Wish I could come, but I'm out of town this…"}
-            </React.Fragment>
-          }
-        />
-      </ListItem>
-      <Divider variant="inset" component="li" />
-      <ListItem alignItems="flex-start">
-        <ListItemAvatar>
-          <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
-        </ListItemAvatar>
-        <ListItemText
-          primary="Oui Oui"
-          secondary={
-            <React.Fragment>
-              <Typography
-                sx={{ display: 'inline' }}
-                component="span"
-                variant="body2"
-                color="text.primary"
-              >
-                Sandra Adams
-              </Typography>
-              {' — Do you have Paris recommendations? Have you ever…'}
-            </React.Fragment>
-          }
-        />
-      </ListItem>
+    <List sx={{ width: '80%', maxWidth: "90%", bgcolor: 'background.paper', marginTop: 1 }}>
+          <ListItem alignItems="flex-start" >
+          <ListItemAvatar>
+            <Avatar alt="wordpress" src={course.hinhAnh} />
+          </ListItemAvatar>
+          <ListItemText
+            primary={course.tenKhoaHoc}
+            secondary={
+              <React.Fragment>
+                <Typography
+                  sx={{ display: 'inline' }}
+                  component="span"
+                  variant="body2"
+                  color="text.primary"
+                >
+                  {course.moTa}
+                </Typography>
+          
+                {" — Master with this Complete Course…"}
+              </React.Fragment>
+            }
+          />
+          <Box sx={{ '& button': { m: 1 } }}>
+         <Button 
+         variant="contained" 
+         size="small"
+         onClick={()=>{
+          handleCancelCourse();
+         }}
+         >
+            Hủy
+          </Button>
+            </Box>
+        </ListItem>
+        <Divider variant="inset" component="li" />
     </List>
   );
 }

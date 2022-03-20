@@ -42,9 +42,10 @@ const routesHome = [
   {
     page: 'Người dùng',
     exact: false,
-    path: "/user-profiles",
+    path: "/user-profiles/:id",
     component: lazy(() => import("../templateHome/UserProfile/UserProfile")),
   },
+  
 ];
 
 const routeLogin = [

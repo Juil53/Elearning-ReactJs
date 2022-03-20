@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Redirect } from "react-router-dom";
-import {useSelector, useDispatch} from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
@@ -11,9 +11,10 @@ import Grid from "@mui/material/Grid";
 
 import userProfileStyle from "./_components/UserProfileStyle";
 import UserInfo from "./_components/UserInfo";
-//import UserCart from "./_components/UserCart";
 import UserCourses from "./_components/UserCourses";
 import { actUserProfile } from "./modules/actions";
+import Breadcrumb from "../../_components/Breadcrumb/Breadcrumb";
+import SearchCourse from "./_components/SearchCourse";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -26,9 +27,7 @@ function TabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box sx={{ mt: 3, display: "block", margin: "auto" }}>
-          {children}
-        </Box>
+        <Box sx={{ mt: 3, display: "block", margin: "auto" }}>{children}</Box>
       )}
     </div>
   );
@@ -47,27 +46,47 @@ function a11yProps(index) {
   };
 }
 
-function UserProfile() {
-  const [value, setValue] = React.useState(0);
+function UserProfile(props) {
+  const {id} = props.match.params;
+  const [value, setValue] = React.useState(Number(id));
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+  const breadcrumb = [
+    {
+        label: 'Trang Chủ',
+        path: '/'
+    },
+    {
+        label: 'Trang cá nhân',
+    }
+]
   const classes = userProfileStyle();
-
   const dispatch = useDispatch();
-  useEffect(()=>{
-    dispatch(actUserProfile(JSON.parse(localStorage.getItem("UserClient")).taiKhoan))
-  })
+  useEffect(() => {
+    const accountUser={
+      taiKhoan: JSON.parse(localStorage.getItem("UserClient")).taiKhoan,
+    }
+    dispatch(actUserProfile((accountUser)));
+  },[]);
+  const user = useSelector(state=>state.userProfileReducer.dataUser);
+  let keyword = useSelector(state=>state.userProfileReducer.keyword)
+  const courseList=user?.chiTietKhoaHocGhiDanh.filter((course)=>course.tenKhoaHoc.toLowerCase().indexOf(keyword.toLowerCase())!==-1)
 
-  const userInfo= JSON.parse(localStorage.getItem("userInfo"));
-  console.log(userInfo);
+  const renderCourses=()=>{
+    return courseList?.map((course,index)=>{
+      return <UserCourses course={course} key={index}/>
+    })
+  }
 
-  return (
-    !localStorage.getItem("UserClient") ? (<Redirect to="/" />) : (
+  return !(localStorage.getItem("UserClient")) ? (
+    <Redirect to="/" />
+  ) : (
+    <>
+    <Breadcrumb breadCrumbArr = {breadcrumb}/>
     <div className={classes.content}>
       <div className={classes.title}>
-        <h2>Trang cá nhân</h2>
-        <p>{userInfo.hoTen}</p>
+        <h2>{user && user.hoTen}</h2>
       </div>
       <Box
         sx={{
@@ -100,23 +119,21 @@ function UserProfile() {
                 {...a11yProps(1)}
               />
             </Tabs>
-            {/* <Tab sx={{ margin: "auto" }} label="Giỏ hàng" {...a11yProps(2)} /> */}
           </Grid>
           <Grid item xs={12} md={8}>
             <TabPanel value={value} index={0}>
-              <UserInfo user={userInfo} />
+              <UserInfo user={user} />
             </TabPanel>
             <TabPanel value={value} index={1}>
-              <UserCourses userCourses={userInfo.chiTietKhoaHocGhiDanh} />
+              <SearchCourse />
+              {renderCourses()}
             </TabPanel>
-            {/* <TabPanel value={value} index={2}>
-              <UserCart />
-            </TabPanel> */}
           </Grid>
         </Grid>
       </Box>
     </div>
-  ));
+    </>
+  );
 }
 
 export default UserProfile;
