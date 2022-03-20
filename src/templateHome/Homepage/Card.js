@@ -8,12 +8,12 @@ import {
   Rating,
   Grid,
 } from "@mui/material";
-import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
+import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import { useStyles } from "../../styles/styles";
 
 export default function Cards(props) {
   const { courses } = props;
-  const classes = useStyles();  
+  const classes = useStyles();
   return (
     <>
       <Card>
@@ -35,10 +35,7 @@ export default function Cards(props) {
           <Typography variant="h5" color="secondary" gutterBottom>
             {courses.tenKhoaHoc}
           </Typography>
-          <Typography variant="body1" color="secondary" gutterBottom>
-            Instructor: {courses.nguoiTao.taiKhoan}
-          </Typography>
-          <CalendarTodayIcon sx={{pr:1}}/>
+          <CalendarTodayIcon sx={{ pr: 1 }} />
           <Typography variant="body1" component="span">
             {courses.ngayTao}
           </Typography>
@@ -58,7 +55,7 @@ export default function Cards(props) {
               </Typography>
             </Grid>
             <Grid item>
-              <Typography variant="h6">Olivia</Typography>
+              <Typography variant="h6">{courses.nguoiTao.taiKhoan}</Typography>
             </Grid>
             <Grid item>
               <Typography variant="p" className={classes.featuredTeacher}>
@@ -66,7 +63,9 @@ export default function Cards(props) {
               </Typography>
             </Grid>
             <Grid item>
-              <Typography variant="h6">{courses.danhMucKhoaHoc.maDanhMucKhoahoc}</Typography>
+              <Typography variant="h6">
+                {courses.danhMucKhoaHoc.maDanhMucKhoahoc}
+              </Typography>
             </Grid>
           </Grid>
         </CardActions>

@@ -19,6 +19,7 @@ import Loading from "../../_components/Loading/Loading";
 const theme = createTheme();
 
 export default function SignUp(props) {
+  const success = useSelector((state) => state.signupReducer.data);
   const err = useSelector((state) => state.signupReducer.error);
   const loading = useSelector((state) => state.signupReducer.loading);
   const dispatch = useDispatch();
@@ -38,23 +39,8 @@ export default function SignUp(props) {
   //Modal Alert
   const handleAlert = () => {
     if (err) {
-      return err.response.data;
-    }
-    return "Success!"
-  };
-
-  //Modal style
-  const style = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: 400,
-    bgcolor: "background.paper",
-    border: "1px solid #000",
-    boxShadow: 20,
-    p: 4,
-    textAlign: "center",
+      return err?.response.data;
+    } else if (success) return "Đăng ký thành công!";
   };
 
   return (
@@ -180,23 +166,35 @@ export default function SignUp(props) {
                     </Button>
                   </div>
 
-                  <Modal
-                    open={open}
-                    onClose={handleClose}
-                    aria-labelledby="modal-modal-title"
-                    aria-describedby="modal-modal-description"
-                  >
-                    <Box sx={style}>
-                      <Typography
-                        id="modal-modal-title"
-                        variant="h6"
-                        component="h2"
-                      >
-                        Thông báo!
-                      </Typography>
-                      <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                        {handleAlert()}
-                      </Typography>
+                  <Modal open={open} aria-describedby="modal-modal-description">
+                    <Box
+                      sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        minHeight: "100vh",
+                      }}
+                    >
+                      {loading ? (
+                        <Loading />
+                      ) : (
+                        <Typography
+                          id="modal-modal-description"
+                          sx={{
+                            fontSize: "2rem",
+                            bgcolor: "#fff",
+                            borderRadius: "20px",
+                            textAlign: "center",
+                            padding: "2rem",
+                          }}
+                        >
+                          {handleAlert()}
+                          <br />
+                          <Button variant="contained" onClick={handleClose}>
+                            Close
+                          </Button>
+                        </Typography>
+                      )}
                     </Box>
                   </Modal>
 
