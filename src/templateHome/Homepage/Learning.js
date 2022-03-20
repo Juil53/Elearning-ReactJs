@@ -12,14 +12,30 @@ export default function Learning() {
       <Typography variant="h3" component="h3" className={classes.sliderTitle}>
         Enhance your skills with best online courses
       </Typography>
-      <Grid container spacing={2}>
-        <Grid item xs={12} sm={6} sx={{ marginTop: { xs: 0, sm: 2 },textAlign:'end' }}>
-          <Button variant="outlined">Get started now</Button>
+      <Box sx={{ width: "100%" }}>
+        <Grid container spacing={2}>
+          <Grid
+            item
+            xs={6}
+            sm={6}
+            sx={{ marginTop: { xs: 0, sm: 2 }, textAlign: "right" }}
+          >
+            <Button variant="outlined" sx={{ padding: { xs: "15px 10px" } }}>
+              Get started now
+            </Button>
+          </Grid>
+          <Grid
+            item
+            xs={6}
+            sm={6}
+            sx={{ marginTop: { xs: 0, sm: 2 }, textAlign: "left" }}
+          >
+            <Button variant="contained" sx={{ padding: { xs: "15px 10px" } }}>
+              Contact Us
+            </Button>
+          </Grid>
         </Grid>
-        <Grid item xs={12} sm={6} sx={{ marginTop: { xs: 0, sm: 2 } }}>
-          <Button variant="contained">Contact Us</Button>
-        </Grid>
-      </Grid>
+      </Box>
     </>
   );
 }

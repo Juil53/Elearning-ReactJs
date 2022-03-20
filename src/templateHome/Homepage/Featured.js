@@ -6,13 +6,13 @@ import Cards from "./Card";
 import { useSelector, useDispatch } from "react-redux";
 import { actCourseAllGet } from "../Courses/modules/actions";
 
+
 export default function Featured() {
   const classes = useStyles();
   const dispatch = useDispatch();
   const courses = useSelector(
     (state) => state.courseListReducer.dataCourseList
   );
-  console.log(courses)
 
   useEffect(() => {
     dispatch(actCourseAllGet());
@@ -34,10 +34,10 @@ export default function Featured() {
           {/* Card */}
           <Grid container spacing={2}>
             {courses &&
-              courses.splice(27,6).map((course,index) => {
+              courses.splice(27, 6).map((course, index) => {
                 return (
                   <Grid item xs={12} sm={12} md={6} lg={4} key={index}>
-                    <Cards courses={course}/>
+                    <Cards courses={course} />
                   </Grid>
                 );
               })}
