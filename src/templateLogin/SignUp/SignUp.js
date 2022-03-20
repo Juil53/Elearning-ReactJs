@@ -73,7 +73,6 @@ export default function SignUp(props) {
             Đăng Ký
           </Typography>
 
-
           {/* Validation formik */}
           <Formik
             initialValues={{
@@ -86,11 +85,6 @@ export default function SignUp(props) {
             }}
             onSubmit={handleOnSubmit}
             validationSchema={signupUserSchema}
-          <Box
-            component="form"
-            noValidation
-            onSubmit={handleSubmit}
-            sx={{ mt: 3 }}
           >
             {(props) => (
               <Form>
