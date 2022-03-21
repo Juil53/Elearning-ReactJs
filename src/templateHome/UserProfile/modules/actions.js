@@ -9,8 +9,6 @@ export const actUserProfile = (account) => {
       .post("QuanLyNguoiDung/ThongTinTaiKhoan", account)
       .then((result) => {
         dispatch(actUserProfileSuccess(result.data));
-        //localStorage.setItem("user", JSON.stringify(result.data));
-        console.log(result.data)
       })
       .catch((error) => {
         dispatch(actUserProfileFailed(error));
@@ -31,6 +29,38 @@ const actUserProfileSuccess = (data) => {
 const actUserProfileFailed = (error) => {
   return {
     type: ActionType.USER_PROFILE_FAILED,
+    payload: error,
+  };
+};
+
+// update Profile
+export const actUpdateProfile = (user) => {
+  return (dispatch) => {
+    dispatch(actUpdateProfileRequest());
+    api
+      .put("QuanLyNguoiDung/CapNhatThongTinNguoiDung", user)
+      .then((result) => {
+        dispatch(actUpdateProfileSuccess(result.data));
+      })
+      .catch((error) => {
+        dispatch(actUpdateProfileFailed(error));
+      });
+  };
+};
+const actUpdateProfileRequest = () => {
+  return {
+    type: ActionType.UPDATE_PROFILE_REQUEST,
+  };
+};
+const actUpdateProfileSuccess = (data) => {
+  return {
+    type: ActionType.UPDATE_PROFILE_SUCCESS,
+    payload: data,
+  };
+};
+const actUpdateProfileFailed = (error) => {
+  return {
+    type: ActionType.UPDATE_PROFILE_FAILED,
     payload: error,
   };
 };
@@ -69,9 +99,9 @@ const actCancelCourseFailed = (error) => {
 };
 
 // get Keyword
-export const actGetKeyword =(keyword)=>{
+export const actGetKeyword = (keyword) => {
   return {
     type: ActionType.GET_KEYWORD,
-    payload:keyword,
-  }
-}
+    payload: keyword,
+  };
+};

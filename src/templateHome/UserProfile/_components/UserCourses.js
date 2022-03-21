@@ -12,8 +12,6 @@ import Box from "@mui/material/Box";
 import { actCancelCourse } from '../modules/actions';
 
 export default function UserCourses(props) {
-    // let keyword = useSelector(state=>state.userProfileReducer.keyword)
-  //console.log(keyword);
   const {course}=props;
   const courseInfo={
     maKhoaHoc: course.maKhoaHoc,

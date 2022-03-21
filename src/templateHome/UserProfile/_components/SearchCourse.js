@@ -14,8 +14,6 @@ export default function SearchCourse() {
         console.log(value);
         dispatch(actGetKeyword(value));
     }
-    //let keyword = useSelector(state=>state.userProfileReducer.keyword);
-    //console.log(keyword);
   return (
     <Paper
       component="form"

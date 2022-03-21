@@ -1,11 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-//import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 
@@ -94,7 +93,7 @@ function UserProfile(props) {
           bgcolor: "background.paper",
           display: "flex",
           justifyContent: "center",
-          height: 300,
+          height: '100%',
           mt: 3,
         }}
       >

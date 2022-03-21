@@ -5,6 +5,10 @@ const initialState={
     dataUser: null,
     errorUser: null,
 
+    loadingUpdate: false,
+    dataUpdate: null,
+    errorUpdate: null,
+
     loadingCancel: false,
     dataCancel: null,
     errorCancel: null,
@@ -30,6 +34,25 @@ const initialState={
             state.loadingUser=false;
             state.dataUser=null;
             state.errorUser=action.payload;
+            return{...state}
+        }
+        // update profile
+        case ActionType.UPDATE_PROFILE_REQUEST:{
+            state.loadingUpdate=true;
+            state.dataUpdate=null;
+            state.errorUpdate=null;
+            return{...state}
+        }
+        case ActionType.UPDATE_PROFILE_SUCCESS:{
+            state.loadingUpdate=false;
+            state.dataUpdate=action.payload;
+            state.errorUpdate=null;
+            return{...state}
+        }
+        case ActionType.UPDATE_PROFILE_FAILED:{
+            state.loadingUpdate= false;
+            state.dataUpdate=null;
+            state.errorUpdate=action.payload;
             return{...state}
         }
         // cancel course
