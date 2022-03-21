@@ -39,7 +39,7 @@ const theme = createTheme();
 export default function SignIn(props) {
   const err = useSelector((state) => state.signinReducer.error);
   const dispatch = useDispatch();
-  const [state, setState] = React.useState({
+  const [account, setAccount] = React.useState({
     taiKhoan: "",
     matKhau: "",
   });
@@ -51,62 +51,47 @@ export default function SignIn(props) {
 
   const handleOnChange = (event) => {
     const { name, value } = event.target;
-    setState({
-      ...state,
+    setAccount({
+      ...account,
       [name]: value,
     });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(actSignIn(state, props.history));
+    dispatch(actSignIn(account, props.history));
   };
 
   const handleAlert = () => {
     return (
-      err && (
-        <Modal open={open} aria-describedby="modal-modal-description">
-          <Box
+      <Modal open={open} aria-describedby="modal-modal-description">
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            minHeight: "100vh",
+          }}
+        >
+          <Typography
+            id="modal-modal-description"
             sx={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              minHeight: "100vh",
+              fontSize: "2rem",
+              bgcolor: "#fff",
+              borderRadius: "20px",
+              textAlign: "center",
+              padding: "2rem",
             }}
           >
-            <Typography
-              id="modal-modal-description"
-              sx={{
-                fontSize: "2rem",
-                bgcolor: "#fff",
-                borderRadius: "20px",
-                textAlign: "center",
-                padding: "2rem",
-              }}
-            >
-              {err.response.data}
-              <br />
-              <Button variant="contained" onClick={handleClose}>
-                Close
-              </Button>
-            </Typography>
-          </Box>
-        </Modal>
-      )
+            {err.response.data}
+            <br />
+            <Button variant="contained" onClick={handleClose}>
+              Close
+            </Button>
+          </Typography>
+        </Box>
+      </Modal>
     );
-  };
-
-  const style = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: 400,
-    bgcolor: "background.paper",
-    border: "1px solid #000",
-    boxShadow: 20,
-    p: 4,
-    textAlign: "center",
   };
 
   return (
@@ -178,22 +163,7 @@ export default function SignIn(props) {
               Đăng nhập
             </Button>
 
-            {handleAlert()}
-            {/* <Modal
-              open={open}
-              onClose={handleClose}
-              aria-labelledby="modal-modal-title"
-              aria-describedby="modal-modal-description"
-            >
-              <Box sx={style}>
-                <Typography id="modal-modal-title" variant="h6" component="h2">
-                  Thông báo!
-                </Typography>
-                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                  {handleAlert()}
-                </Typography>
-              </Box>
-            </Modal> */}
+            {err && handleAlert()}
 
             <Grid container>
               <Grid item xs>
