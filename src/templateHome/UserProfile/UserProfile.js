@@ -1,20 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Redirect } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+
 import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import Avatar from "@mui/material/Avatar";
-import Stack from "@mui/material/Stack";
+import Grid from "@mui/material/Grid";
 
 import userProfileStyle from "./_components/UserProfileStyle";
 import UserInfo from "./_components/UserInfo";
-import UserCart from "./_components/UserCart";
 import UserCourses from "./_components/UserCourses";
+import { actUserProfile } from "./modules/actions";
+import Breadcrumb from "../../_components/Breadcrumb/Breadcrumb";
+import SearchCourse from "./_components/SearchCourse";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
-
   return (
     <div
       role="tabpanel"
@@ -24,9 +26,7 @@ function TabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
-        </Box>
+        <Box sx={{ mt: 3, display: "block", margin: "auto" }}>{children}</Box>
       )}
     </div>
   );
@@ -45,52 +45,94 @@ function a11yProps(index) {
   };
 }
 
-export default function UserProfile() {
-  const [value, setValue] = React.useState(0);
+function UserProfile(props) {
+  const {id} = props.match.params;
+  const [value, setValue] = React.useState(Number(id));
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
+  const breadcrumb = [
+    {
+        label: 'Trang Chủ',
+        path: '/'
+    },
+    {
+        label: 'Trang cá nhân',
+    }
+]
   const classes = userProfileStyle();
-  return (
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const accountUser={
+      taiKhoan: JSON.parse(localStorage.getItem("UserClient")).taiKhoan,
+    }
+    dispatch(actUserProfile((accountUser)));
+  },[]);
+  const user = useSelector(state=>state.userProfileReducer.dataUser);
+  let keyword = useSelector(state=>state.userProfileReducer.keyword)
+  const courseList=user?.chiTietKhoaHocGhiDanh.filter((course)=>course.tenKhoaHoc.toLowerCase().indexOf(keyword.toLowerCase())!==-1)
+
+  const renderCourses=()=>{
+    return courseList?.map((course,index)=>{
+      return <UserCourses course={course} key={index}/>
+    })
+  }
+
+  return !(localStorage.getItem("UserClient")) ? (
+    <Redirect to="/" />
+  ) : (
+    <>
+    <Breadcrumb breadCrumbArr = {breadcrumb}/>
     <div className={classes.content}>
       <div className={classes.title}>
-        <h2>Trang cá nhân</h2>
-        <p>Nguyen Lam</p>
-        <Stack alignItems="center">
-          <Avatar alt="User img" src="/static/images/avatar/1.jpg" sx={{ width: 56, height: 56 }} />
-        </Stack>
+        <h2>{user && user.hoTen}</h2>
       </div>
       <Box
         sx={{
           flexGrow: 1,
           bgcolor: "background.paper",
           display: "flex",
-          height: 500,
+          justifyContent: "center",
+          height: '100%',
+          mt: 3,
         }}
       >
-        <Tabs
-          orientation="vertical"
-          variant="scrollable"
-          value={value}
-          onChange={handleChange}
-          aria-label="Vertical tabs example"
-          sx={{ borderRight: 1, borderColor: "divider" }}
-        >
-          <Tab label="Thông tin cá nhân" {...a11yProps(0)} />
-          <Tab label="Giỏ hàng" {...a11yProps(1)} />
-          <Tab label="Các khóa học" {...a11yProps(2)} />
-        </Tabs>
-        <TabPanel value={value} index={0}>
-          <UserInfo />
-        </TabPanel>
-        <TabPanel value={value} index={1}>
-          <UserCart />
-        </TabPanel>
-        <TabPanel value={value} index={2}>
-          <UserCourses />
-        </TabPanel>
+        <Grid container direction="row" justifyContent="space-around">
+          <Grid item xs={12} md={3}>
+            <Tabs
+              orientation="vertical"
+              variant="scrollable"
+              value={value}
+              onChange={handleChange}
+              aria-label="Vertical tabs example"
+              sx={{ borderRight: 1, borderColor: "divider" }}
+            >
+              <Tab
+                sx={{ margin: "auto" }}
+                label="Thông tin cá nhân"
+                {...a11yProps(0)}
+              />
+              <Tab
+                sx={{ margin: "auto" }}
+                label="Khóa học của tôi"
+                {...a11yProps(1)}
+              />
+            </Tabs>
+          </Grid>
+          <Grid item xs={12} md={8}>
+            <TabPanel value={value} index={0}>
+              <UserInfo user={user} />
+            </TabPanel>
+            <TabPanel value={value} index={1}>
+              <SearchCourse />
+              {renderCourses()}
+            </TabPanel>
+          </Grid>
+        </Grid>
       </Box>
     </div>
+    </>
   );
 }
+
+export default UserProfile;

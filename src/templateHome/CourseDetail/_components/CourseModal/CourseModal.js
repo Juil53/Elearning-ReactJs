@@ -48,11 +48,11 @@ export default function CourseModal(props) {
                             THÔNG BÁO
                         </Typography>
                         <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-                            Một khóa học vừa được thêm vào giỏ hàng thành công.
+                            Một khóa học vừa được đăng ký thành công.
                         </Typography>
                         <Box sx={style.boxFlex}>
                             <Button onClick={() => setOpenModal(false)} variant='contained'>Xem sau</Button>
-                            <Button component={RouterLink} to='/user-profiles' variant='contained'>Giỏ hàng</Button>
+                            <Button component={RouterLink} to='/user-profiles/1' variant='contained'>Khóa học của tôi</Button>
                         </Box>
                     </Box>
                 </Fade>
