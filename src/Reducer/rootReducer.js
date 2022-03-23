@@ -3,6 +3,8 @@ import { courseCategoryReducer, courseListReducer } from '../templateHome/Course
 import { courseDetailReducer, courseAddToCartReducer } from "../templateHome/CourseDetail/modules/reducer";
 import signinReducer from "../templateLogin/SignIn/module/reducer";
 import signupReducer from "../templateLogin/SignUp/module/reducer";
+import { registerCourseReducer } from "../templateHome/CourseDetail/modules/reducer";
+import userProfileReducer from "../templateHome/UserProfile/modules/reducer";
 
 const rootReducer = combineReducers({
   //child Reducer here
@@ -12,6 +14,8 @@ const rootReducer = combineReducers({
   courseListReducer,
   signinReducer,
   signupReducer,
+  registerCourseReducer,
+  userProfileReducer,
 });
 
 export default rootReducer;

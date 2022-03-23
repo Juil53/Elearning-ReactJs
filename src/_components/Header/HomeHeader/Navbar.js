@@ -81,7 +81,7 @@ const Navbar = () => {
     } else {
       return (
         <>
-          <Button href="/user-profiles">
+          <Button href="/user-profiles/0">
             <PersonIcon
               sx={[
                 { fontSize: "30px", flexGrow: 1, display: { xs: "none", lg: "flex" } },
@@ -116,7 +116,7 @@ const Navbar = () => {
       return (
         <>
           <Box>
-            <Button href="/user-profiles">
+            <Button href="/user-profiles/0">
               <PersonIcon
                 sx={{ fontSize: "30px", color: '#3f3a64' }}
               />

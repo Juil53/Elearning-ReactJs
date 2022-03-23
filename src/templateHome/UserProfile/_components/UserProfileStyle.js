@@ -1,9 +1,7 @@
-import { CenterFocusStrong, CenterFocusStrongSharp } from "@mui/icons-material";
 import {makeStyles} from "@mui/styles";
 const userProfileStyle = makeStyles(()=>({
     content: {
-        marginTop: 120,
-
+        marginBottom: 100,
     },
     title:{
         textAlign: 'center',
@@ -12,11 +10,8 @@ const userProfileStyle = makeStyles(()=>({
             marginBottom: 5,
         },
         '& p':{
-            fontSize: 18,
-            marginTop: 5, 
+            fontSize: 22,
         }
-        
-
     }
 }))
 
