@@ -172,8 +172,8 @@ const Navbar = () => {
             }}
             className={colorChange ? classes.colorChange : classes.colorDefault}
           >
-            Study Course
-            <Typography variant="body2">Journey to success</Typography>
+           Elearning
+            <Typography variant="body2">Hành trình đến thành công</Typography>
           </Typography>
 
           {/* Page */}

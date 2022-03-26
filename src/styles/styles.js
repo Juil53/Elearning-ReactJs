@@ -35,17 +35,53 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           textTransform: "none",
+          fontSize: "1.5rem",
         },
         contained: {
           padding: "15px 40px",
-          borderRadius: "50px",
+          borderRadius: "10px",
           color: "#fff",
         },
         outlined: {
           padding: "15px 40px",
-          borderRadius: "50px",
+          borderRadius: "10px",
           border: "1px solid #fff",
           color: "#fff",
+        },
+      },
+    },
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          transition: "all 400ms ease",
+          boxShadow: "none",
+          padding: "1rem",
+          borderRadius: "2rem",
+        },
+      },
+    },
+    MuiCardMedia: {
+      styleOverrides: {
+        img: {
+          borderRadius: "2rem",
+        },
+      },
+    },
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          overflow: "hidden",
+          borderRadius: "2rem",
+          boxShadow: "none",
+          transition: "all 400ms ease",
+        },
+      },
+    },
+    MuiAppBar: {
+      styleOverrides: {
+        root: {
+          borderRadius: "0 0 5rem 5rem",
+          boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',
         },
       },
     },
@@ -134,7 +170,7 @@ const useStyles = makeStyles({
 
   // FeatureCourses
   featuredbg: {
-    backgroundColor: "#fff",
+    backgroundColor: "#e7cdef36",
     padding: "50px 0",
   },
   featuredTeacher: {
@@ -142,13 +178,10 @@ const useStyles = makeStyles({
     fontSize: "20px",
     opacity: 0.7,
   },
-  viewBtn: {
-    fontSize: "24px",
-  },
 
   // Facilities
   facilitiesbg: {
-    background: "#f8f9fa",
+    background: "#f8ddebb8",
     padding: "100px 0",
   },
   facilitiesTxt: {
@@ -156,13 +189,34 @@ const useStyles = makeStyles({
     opacity: 0.7,
   },
   facilitiesPaper: {
-    padding: "20px",
-    height: "220px",
+    padding: "1rem 1rem 1.5rem 1rem",
+    height: "250px",
+    border: "1px solid transparent",
+    transform: "translateY(0)",
+    "&:hover": {
+      boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
+      borderColor: "#FE79A2",
+      transform: "translateY(-5px)",
+    },
+  },
+
+  //Card
+  cards: {
+    border: "1px solid transparent",
+    borderColor: "transparent",
+    background: "#fff",
+    transform: "translateY(0)",
+    "&:hover": {
+      borderColor: "#FE79A2",
+      background: "transparent",
+      transform: "translateY(-5px)",
+      boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
+    },
   },
 
   //News
   newBg: {
-    backgroundColor: "#fff",
+    backgroundColor: "#e7cdef36",
     padding: "50px 0",
   },
   layer: {
@@ -308,7 +362,7 @@ const useStyles = makeStyles({
 
   //Testimonial
   testBg: {
-    background: "#f8f9fa",
+    background: "#e7cdef36",
     padding: "100px 0",
   },
   testPaper: {
@@ -345,7 +399,7 @@ const useStyles = makeStyles({
   brandImg: {
     width: "100%",
     opacity: 0.5,
-    transition: "all .2s",
+    transition: "all 400ms ease",
     "&:hover": {
       opacity: 1,
     },

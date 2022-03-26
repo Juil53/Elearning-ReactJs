@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Grid, Typography, Button, Paper, Box } from "@mui/material";
-import { useStyles } from "./../../styles/styles";
+import { useStyles } from "../../styles/styles";
 export default function Teacher() {
   const classes = useStyles();
   return (
@@ -8,7 +8,7 @@ export default function Teacher() {
       <Grid container spacing={5}>
         {/* LeftSide */}
         <Grid item xs={12} lg={5}>
-          <Box sx={{textAlign:'left'}}>
+          <Box sx={{ textAlign: "left" }}>
             <Typography variant="p" component="p" color="text.secondary">
               EXPERIENCED PROFESSIONALS
             </Typography>
@@ -31,7 +31,9 @@ export default function Teacher() {
               Odio, provident!
             </Typography>
             <br />
-            <Button variant="contained" sx={{marginTop:3}}>Discover More</Button>
+            <Button variant="contained" sx={{ marginTop: 3 }}>
+              Discover More
+            </Button>
           </Box>
         </Grid>
 

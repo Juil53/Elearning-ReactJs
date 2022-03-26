@@ -9,6 +9,7 @@ export const actUserProfile = (account) => {
       .post("QuanLyNguoiDung/ThongTinTaiKhoan", account)
       .then((result) => {
         dispatch(actUserProfileSuccess(result.data));
+        console.log(result.data)
       })
       .catch((error) => {
         dispatch(actUserProfileFailed(error));

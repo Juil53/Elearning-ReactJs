@@ -4,8 +4,6 @@ import React from "react";
 import News from "./News";
 import Facilities from "./Facilities";
 import Featured from "./Featured";
-import Learning from "./Learning";
-import Teacher from "./Teacher";
 import Testimonial from "./Testimonial";
 import Brand from "./Brand";
 
@@ -16,13 +14,13 @@ export default function Homepage() {
       {/* Start Slider */}
       <section className={classes.slider}>
         <Typography variant="h3" component="h1" className={classes.sliderTitle}>
-          Enhance your skills with best online courses
+          NÂNG CAO KỸ NĂNG VỚI NHỮNG KHOÁ HỌC TỐT NHẤT!
         </Typography>
         <Typography variant="h5" component="h5" className={classes.sliderText}>
-          Take the first step to your journey to success with us
+          Bước đầu đến với chuyến hành trình thành công.
         </Typography>
         <Button variant="contained" color="primary" sx={{ mt: 5 }}>
-          <a href="#feature">Ready to go?</a>
+          <a href="#feature">Sẵn sàng chưa?</a>
         </Button>
       </section>
       {/* End Slider */}
@@ -40,21 +38,10 @@ export default function Homepage() {
       {/* End Facilities */}
 
       {/* Start News */}
-      <section className={classes.newBg}>
+      <section id="new" className={classes.newBg}>
         <News />
       </section>
       {/* End News */}
-
-      {/* Start Learning */}
-      <section className={classes.learning}>
-        <Learning />
-      </section>
-
-      {/* Start Teacher */}
-      <section className={classes.teacherbg}>
-        <Teacher />
-      </section>
-      {/* End Teacher */}
 
       {/* Start Testimonials */}
       <section className={classes.testBg}>
