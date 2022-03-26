@@ -6,28 +6,28 @@ import { lazy } from "react";
 const routesHome = [
   //Home
   {
-    page: 'Trang chủ',
+    page: "Trang chủ",
     exact: true,
     path: "/",
     component: lazy(() => import("../templateHome/Homepage/Homepage")),
   },
   //Courses
   {
-    page: 'Khoá học',
+    page: "Khoá học",
     exact: false,
     path: "/courses",
     component: lazy(() => import("../templateHome/Courses/Courses")),
   },
   //About
   {
-    page: 'Về chúng tôi',
+    page: "Thông tin",
     exact: false,
     path: "/about",
-    // component: lazy(() => import("../templateHome/Courses/Courses")),
+    component: lazy(() => import("../templateHome/AboutUs/AboutUs.js")),
   },
   //Contact
   {
-    page: 'Liên hệ',
+    page: "Liên hệ",
     exact: false,
     path: "/contact",
     // component: lazy(() => import("../templateHome/Courses/Courses")),
@@ -40,12 +40,11 @@ const routesHome = [
   },
   //User profile
   {
-    page: 'Người dùng',
+    page: "Người dùng",
     exact: false,
     path: "/user-profiles/:id",
     component: lazy(() => import("../templateHome/UserProfile/UserProfile")),
   },
-  
 ];
 
 const routeLogin = [
