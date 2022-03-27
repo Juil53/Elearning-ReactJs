@@ -7,6 +7,15 @@ export const actSignIn = (account, history) => {
     api
       .post("QuanLyNguoiDung/DangNhap", account)
       .then((result) => {
+        if (result.data.maLoaiNguoiDung === "GV") {
+          return (
+            dispatch(actSignInSuccess(result.data)),
+            localStorage.setItem("AdminClient", JSON.stringify(result.data)),
+            setTimeout(() => {
+              history.replace("/dashboard");
+            }, 1000)
+          );
+        }
         dispatch(actSignInSuccess(result.data));
         localStorage.setItem("UserClient", JSON.stringify(result.data));
         setTimeout(() => {

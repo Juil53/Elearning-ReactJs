@@ -2,6 +2,7 @@ import HomeTemplate from "../templateHome/HomeTemplate";
 import LoginTemplate from "../templateLogin/LoginTemplate";
 
 import { lazy } from "react";
+import AdminTemplate from "../templateAdmin/AdminTemplate";
 
 const routesHome = [
   //Home
@@ -47,6 +48,29 @@ const routesHome = [
   },
 ];
 
+const routeAdmin = [
+  {
+    page: "Quản Trị",
+    exact: false,
+    path: "/dashboard",
+    component: lazy(() => import("../templateAdmin/Dashboard/DashBoard.js")),
+  },
+  {
+    page: "Quản Lý Người Dùng",
+    exact: false,
+    path: "/adminusers",
+    component: lazy(() => import("../templateAdmin/AdminUsers/AdminUsers.js")),
+  },
+  {
+    page: "Quản Lý Khoá Học",
+    exact: false,
+    path: "/admincourses",
+    component: lazy(() =>
+      import("../templateAdmin/AdminCourses/AdminCourses.js")
+    ),
+  },
+];
+
 const routeLogin = [
   //SignIn
   {
@@ -61,6 +85,19 @@ const routeLogin = [
     component: lazy(() => import("../templateLogin/SignUp/SignUp.js")),
   },
 ];
+
+const renderRouteAdmin = () => {
+  return routeAdmin.map((route, index) => {
+    return (
+      <AdminTemplate
+        key={index}
+        exact={route.exact}
+        path={route.path}
+        component={route.component}
+      />
+    );
+  });
+};
 
 const renderRouteHome = () => {
   return routesHome.map((route, index) => {
@@ -88,4 +125,10 @@ const renderRouteLogin = () => {
   });
 };
 
-export { renderRouteHome, renderRouteLogin, routesHome, routeLogin };
+export {
+  renderRouteAdmin,
+  renderRouteHome,
+  renderRouteLogin,
+  routesHome,
+  routeLogin,
+};

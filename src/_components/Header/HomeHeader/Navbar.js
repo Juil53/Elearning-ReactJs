@@ -1,6 +1,6 @@
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import DiamondOutlinedIcon from "@mui/icons-material/DiamondOutlined";
-import LogoutIcon from '@mui/icons-material/Logout';
+import LogoutIcon from "@mui/icons-material/Logout";
 import MenuIcon from "@mui/icons-material/Menu";
 import PersonIcon from "@mui/icons-material/Person";
 import SearchIcon from "@mui/icons-material/Search";
@@ -9,8 +9,8 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import IconButton from "@mui/material/IconButton";
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
@@ -18,7 +18,9 @@ import { routesHome } from "../../../Routes/route";
 import "./../../../App.css";
 import { useStyles } from "./../../../styles/styles";
 
-const Navbar = () => {
+const Navbar = (props) => {
+  console.log(props)
+  const { history } = props;
   const classes = useStyles();
   const style = {
     navbar: {
@@ -62,7 +64,6 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", changeNavbarColor);
   }, []);
 
-
   const checkSignIn = () => {
     if (localStorage.getItem("UserClient") === null) {
       return (
@@ -77,66 +78,75 @@ const Navbar = () => {
             Đăng nhập
           </Typography>
         </Button>
-      )
+      );
     } else {
       return (
         <>
           <Button href="/user-profiles/0">
             <PersonIcon
               sx={[
-                { fontSize: "30px", flexGrow: 1, display: { xs: "none", lg: "flex" } },
+                {
+                  fontSize: "30px",
+                  flexGrow: 1,
+                  display: { xs: "none", lg: "flex" },
+                },
                 colorChange ? style.btnColorChange : style.btnColorDefault,
               ]}
             />
           </Button>
-          <Button href="/" onClick={() => {
-            localStorage.removeItem("UserClient")
-          }}>
-            <LogoutIcon sx={[
-              {
-                fontSize: "30px",
-                justifyContent: "flex-end",
-                display: { xs: "none", lg: "flex" }
-              },
-              colorChange ? style.btnColorChange : style.btnColorDefault,
-            ]} />
+          <Button
+            href="/"
+            onClick={() => {
+              localStorage.removeItem("UserClient");
+            }}
+          >
+            <LogoutIcon
+              sx={[
+                {
+                  fontSize: "30px",
+                  justifyContent: "flex-end",
+                  display: { xs: "none", lg: "flex" },
+                },
+                colorChange ? style.btnColorChange : style.btnColorDefault,
+              ]}
+              onClick={handleCheckout}
+            />
           </Button>
         </>
-      )
+      );
     }
-  }
+  };
   const checkMenu = () => {
     if (localStorage.getItem("UserClient") === null) {
-      return (
-        <Button href="/signin">
-          Đăng nhập
-        </Button>
-      )
+      return <Button href="/signin">Đăng nhập</Button>;
     } else {
       return (
         <>
           <Box>
             <Button href="/user-profiles/0">
-              <PersonIcon
-                sx={{ fontSize: "30px", color: '#3f3a64' }}
-              />
+              <PersonIcon sx={{ fontSize: "30px", color: "#3f3a64" }} />
             </Button>
             <br />
-            <Button href="/" onClick={() => {
-              localStorage.removeItem("UserClient")
-            }}>
-              <LogoutIcon sx={[
-                {
-                  fontSize: "30px",
-                  color: '#3f3a64'
-                },
-              ]} />
+            <Button
+              href="/"
+              onClick={() => {
+                localStorage.removeItem("UserClient");
+              }}
+            >
+              <LogoutIcon
+                sx={[
+                  {
+                    fontSize: "30px",
+                    color: "#3f3a64",
+                  },
+                ]}
+              />
             </Button>
           </Box>
         </>
-      )
+      );
     }
-  }
+  };
 
   // HandleMenuIcon
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -147,12 +157,19 @@ const Navbar = () => {
     setAnchorEl(null);
   };
 
+  //HandleCheckOut
+  const handleCheckout = () => {
+    localStorage.removeItem("UserClient");
+  };
 
   return (
     <AppBar
       position="fixed"
       elevation={3}
-      sx={[{ boxShadow: 0, borderBottom: '1px solid #e7e7e72e' }, colorChange ? style.changeColor : style.navbar]}
+      sx={[
+        { boxShadow: 0, borderBottom: "1px solid #e7e7e72e" },
+        colorChange ? style.changeColor : style.navbar,
+      ]}
     >
       <Container maxWidth="xl" sx={{ my: 2 }}>
         <Toolbar disableGutters>
@@ -172,7 +189,7 @@ const Navbar = () => {
             }}
             className={colorChange ? classes.colorChange : classes.colorDefault}
           >
-           Elearning
+            Elearning
             <Typography variant="body2">Hành trình đến thành công</Typography>
           </Typography>
 
@@ -216,9 +233,7 @@ const Navbar = () => {
           </Box>
 
           {/* SignIn */}
-          <Box>
-            {checkSignIn()}
-          </Box>
+          <Box>{checkSignIn()}</Box>
 
           {/* DarkIcon */}
           <DarkModeOutlinedIcon
@@ -261,33 +276,27 @@ const Navbar = () => {
               anchorEl={anchorEl}
               anchorReference="anchorEl"
               anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'center',
+                vertical: "bottom",
+                horizontal: "center",
               }}
               keepMounted
               transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
+                vertical: "top",
+                horizontal: "right",
               }}
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
               {routesHome.slice(0, 4).map((page, index) => (
                 <MenuItem onClick={handleClose} key={index}>
-                  <Button
-                    href={page.path}
-                    sx={{ color: '#3f3a64' }}
-                  >
+                  <Button href={page.path} sx={{ color: "#3f3a64" }}>
                     {page.page}
                   </Button>
                 </MenuItem>
               ))}
-              <MenuItem>
-                {checkMenu()}
-              </MenuItem>
+              <MenuItem>{checkMenu()}</MenuItem>
             </Menu>
           </Box>
-
         </Toolbar>
       </Container>
     </AppBar>
