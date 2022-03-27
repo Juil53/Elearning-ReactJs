@@ -16,10 +16,10 @@ export default function News() {
     <Container maxWidth="xl">
       <Box className={classes.title}>
         <Typography variant="p" component="p" color="text.secondary">
-          FROM THE NEWS
+          Tin tức
         </Typography>
         <Typography variant="h2" component="h2" gutterBottom>
-          Latest News
+          TIN MỚI NHẤT
         </Typography>
       </Box>
 
@@ -40,14 +40,13 @@ export default function News() {
               >
                 <Grid item>
                   <Typography variant="h5" component="h5" gutterBottom>
-                    Enhance your educational skills and also experience with
-                    best online courses
+                    Trở thành hệ thống đào tạo lập trình chuyên sâu theo nghề
+                    hàng đầu khu vực, cung cấp nhân lực có tay nghề cao, chuyên
+                    môn sâu ...
                   </Typography>
                 </Grid>
                 <Grid item flexGrow="1">
-                  <CardActions
-                    sx={{paddingTop: 2 }}
-                  >
+                  <CardActions sx={{ paddingTop: 2 }}>
                     <Grid container sx={{ alignItems: "center" }}>
                       <Grid item>
                         <img
@@ -106,14 +105,12 @@ export default function News() {
                   >
                     <Grid item>
                       <Typography variant="h5" component="h5" gutterBottom>
-                        Enhance your educational skills and also experience with
-                        best online courses
+                        Sử dụng các phương pháp đào tạo hiện đại để tạo ra đội
+                        ngũ nhân sự lập trình chất lượng cao
                       </Typography>
                     </Grid>
                     <Grid item flexGrow="1">
-                      <CardActions
-                        sx={{ paddingTop: 2 }}
-                      >
+                      <CardActions sx={{ paddingTop: 2 }}>
                         <Grid container sx={{ alignItems: "center" }}>
                           <Grid item>
                             <img
@@ -168,14 +165,12 @@ export default function News() {
                   >
                     <Grid item>
                       <Typography variant="h5" component="h5" gutterBottom>
-                        Enhance your educational skills and also experience with
-                        best online courses
+                        Tuyển chọn các giảng viên đến từ các doanh nghiệp, có
+                        nhiều năm kinh nghiệm ...
                       </Typography>
                     </Grid>
                     <Grid item flexGrow="1">
-                      <CardActions
-                        sx={{ paddingTop: 2 }}
-                      >
+                      <CardActions sx={{ paddingTop: 2 }}>
                         <Grid container sx={{ alignItems: "center" }}>
                           <Grid item>
                             <img
@@ -227,7 +222,7 @@ export default function News() {
           className={classes.viewBtn}
           endIcon={<ArrowForwardIcon />}
         >
-          View All Posts
+          Xem tất cả bài viết
         </Button>
       </Box>
     </Container>
