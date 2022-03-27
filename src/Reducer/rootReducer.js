@@ -5,6 +5,7 @@ import signinReducer from "../templateLogin/SignIn/module/reducer";
 import signupReducer from "../templateLogin/SignUp/module/reducer";
 import { registerCourseReducer } from "../templateHome/CourseDetail/modules/reducer";
 import userProfileReducer from "../templateHome/UserProfile/modules/reducer";
+import { adminCourseListReducer } from "../CourseAdmin/modules/reducer";
 
 const rootReducer = combineReducers({
   //child Reducer here
@@ -16,6 +17,9 @@ const rootReducer = combineReducers({
   signupReducer,
   registerCourseReducer,
   userProfileReducer,
+
+  // admin reducer
+  adminCourseListReducer
 });
 
 export default rootReducer;

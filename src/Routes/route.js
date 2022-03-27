@@ -45,7 +45,14 @@ const routesHome = [
     path: "/user-profiles/:id",
     component: lazy(() => import("../templateHome/UserProfile/UserProfile")),
   },
-  
+
+  {
+    page: '',
+    exact: false,
+    path: '/course-admin',
+    component: lazy(() => import('../CourseAdmin/CourseAdmin'),)
+  }
+
 ];
 
 const routeLogin = [

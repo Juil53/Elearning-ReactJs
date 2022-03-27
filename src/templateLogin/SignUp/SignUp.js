@@ -34,7 +34,7 @@ export default function SignUp(props) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  //Modal Alert
+  // Modal Alert
   const handleAlert = () => {
     return (
       err && (
@@ -191,7 +191,7 @@ export default function SignUp(props) {
                         {props.isSubmitting ? "Đang tải" : "Đăng Ký"}
                       </Button>
                     </div>
-                    {handleAlert()}
+                    {err && handleAlert()}
 
                     <Grid container justifyContent="flex-end">
                       <Grid item>
