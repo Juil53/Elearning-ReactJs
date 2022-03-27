@@ -11,17 +11,14 @@ export default function HeaderAdmin(props) {
             alignItems: 'center',
             flexWrap: 'wrap',
             '& h1': {
+                flex: '1 1',
                 fontSize: '28px',
                 fontWeight: 600,
                 width: '50%',
                 padding: 0,
             },
-            '& button': {
-                padding: '10px 24px',
-                fontSize: '16px',
-                marginLeft: 'auto',
-            },
             '& form': {
+                flex: '2 1',
                 p: '2px 4px',
                 display: 'flex',
                 alignItems: 'center',
@@ -29,8 +26,16 @@ export default function HeaderAdmin(props) {
                 my: '20px',
                 '& button': {
                     padding: '10px',
-                }
-            }
+                },
+                background: '#fff',
+                boxShadow: '12px 12px 24px #d9d9d9, -12px -12px 24px #ffffff',
+            },
+            '& button': {
+                padding: '10px 24px',
+                fontSize: '16px',
+                marginLeft: 'auto',
+            },
+
         }
     }
 
@@ -43,13 +48,15 @@ export default function HeaderAdmin(props) {
         <Fragment>
             <Box sx={styles.root}>
                 <Typography variant='h1'>{heading}</Typography>
-                <Button variant='contained'>{buttonLabel}</Button>
                 <Paper component="form">
                     <InputBase sx={{ ml: 1, flex: 1 }} placeholder={placeholder} onChange={handleChangeKeyword} />
                     <IconButton type="button" sx={{ p: '10px' }} aria-label="search" onClick={handleSearch}>
                         <SearchIcon />
                     </IconButton>
                 </Paper>
+                <Box sx={{ flex: '.85 1', textAlign: 'right' }}>
+                    <Button variant='contained'>{buttonLabel}</Button>
+                </Box>
             </Box>
         </Fragment>
     )

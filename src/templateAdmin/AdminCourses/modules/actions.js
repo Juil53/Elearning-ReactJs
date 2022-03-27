@@ -1,5 +1,5 @@
 import * as ActionType from './constants';
-import api from '../../Api/api';
+import api from '../../../Api/api';
 
 export const actCourseAllGet = () => {
     return (dispatch) => {

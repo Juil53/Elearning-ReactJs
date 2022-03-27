@@ -46,16 +46,6 @@ const routesHome = [
     path: "/user-profiles/:id",
     component: lazy(() => import("../templateHome/UserProfile/UserProfile")),
   },
-<<<<<<< HEAD
-
-  {
-    page: '',
-    exact: false,
-    path: '/course-admin',
-    component: lazy(() => import('../CourseAdmin/CourseAdmin'),)
-  }
-
-=======
 ];
 
 const routeAdmin = [
@@ -63,23 +53,22 @@ const routeAdmin = [
     page: "Quản Trị",
     exact: false,
     path: "/dashboard",
-    component: lazy(() => import("../templateAdmin/Dashboard/DashBoard.js")),
+    component: lazy(() => import("../templateAdmin/Dashboard/DashBoard")),
   },
   {
     page: "Quản Lý Người Dùng",
     exact: false,
     path: "/adminusers",
-    component: lazy(() => import("../templateAdmin/AdminUsers/AdminUsers.js")),
+    component: lazy(() => import("../templateAdmin/AdminUsers/AdminUsers")),
   },
   {
     page: "Quản Lý Khoá Học",
     exact: false,
     path: "/admincourses",
     component: lazy(() =>
-      import("../templateAdmin/AdminCourses/AdminCourses.js")
+      import("../templateAdmin/AdminCourses/AdminCourses")
     ),
   },
->>>>>>> 42a73296af59d09bf6f2ea6b6fec273dd1571fe7
 ];
 
 const routeLogin = [
