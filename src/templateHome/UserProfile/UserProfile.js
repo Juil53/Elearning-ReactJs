@@ -12,6 +12,7 @@ import userProfileStyle from "./_components/UserProfileStyle";
 import UserInfo from "./_components/UserInfo";
 import UserCourses from "./_components/UserCourses";
 import { actUserProfile } from "./modules/actions";
+import { actCancelCourse } from "./modules/actions";
 import Breadcrumb from "../../_components/Breadcrumb/Breadcrumb";
 import SearchCourse from "./_components/SearchCourse";
 
@@ -31,13 +32,11 @@ function TabPanel(props) {
     </div>
   );
 }
-
 TabPanel.propTypes = {
   children: PropTypes.node,
   index: PropTypes.number.isRequired,
   value: PropTypes.number.isRequired,
 };
-
 function a11yProps(index) {
   return {
     id: `vertical-tab-${index}`,
@@ -69,14 +68,6 @@ function UserProfile(props) {
     dispatch(actUserProfile((accountUser)));
   },[]);
   const user = useSelector(state=>state.userProfileReducer.dataUser);
-  let keyword = useSelector(state=>state.userProfileReducer.keyword)
-  const courseList=user?.chiTietKhoaHocGhiDanh.filter((course)=>course.tenKhoaHoc.toLowerCase().indexOf(keyword.toLowerCase())!==-1)
-
-  const renderCourses=()=>{
-    return courseList?.map((course,index)=>{
-      return <UserCourses course={course} key={index}/>
-    })
-  }
 
   return !(localStorage.getItem("UserClient")) ? (
     <Redirect to="/" />
@@ -125,7 +116,8 @@ function UserProfile(props) {
             </TabPanel>
             <TabPanel value={value} index={1}>
               <SearchCourse />
-              {renderCourses()}
+              <UserCourses user={user} />
+              {/* {renderCourses()} */}
             </TabPanel>
           </Grid>
         </Grid>

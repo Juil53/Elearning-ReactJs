@@ -11,7 +11,6 @@ export default function SearchCourse() {
     const dispatch =useDispatch();
     const handleOnChange=(event)=>{
         const {value}=event.target;
-        console.log(value);
         dispatch(actGetKeyword(value));
     }
   return (

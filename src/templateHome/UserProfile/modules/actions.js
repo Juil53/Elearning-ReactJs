@@ -73,7 +73,8 @@ export const actCancelCourse = (courseInfo) => {
       .post("QuanLyKhoaHoc/HuyGhiDanh", courseInfo)
       .then((result) => {
         dispatch(actCancelCourseSuccess(result.data));
-        console.log(result.data);
+        alert(result.data);
+        dispatch(actUserProfile(courseInfo.taiKhoan));
       })
       .catch((error) => {
         dispatch(actCancelCourseFailed(error));
