@@ -21,6 +21,14 @@ const theme = createTheme({
     },
   },
   components: {
+    MuiContainer: {
+      styleOverrides: {
+        root: {
+          marginTop: "0 !important",
+          marginBottom: "0 !important",
+        },
+      },
+    },
     MuiTypography: {
       styleOverrides: {
         h2: {
@@ -55,15 +63,22 @@ const theme = createTheme({
         root: {
           transition: "all 400ms ease",
           boxShadow: "none",
-          padding: "1rem",
+          padding: "10px",
           borderRadius: "2rem",
+        },
+      },
+    },
+    MuiCardContent: {
+      styleOverrides: {
+        root: {
+          padding: "5px",
         },
       },
     },
     MuiCardMedia: {
       styleOverrides: {
         img: {
-          borderRadius: "2rem",
+          borderRadius: "1rem",
         },
       },
     },
@@ -73,6 +88,7 @@ const theme = createTheme({
           overflow: "hidden",
           boxShadow: "none",
           transition: "all 400ms ease",
+          margin: "auto",
         },
       },
     },
@@ -80,6 +96,7 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
+          margin: "auto",
         },
       },
     },
@@ -89,7 +106,7 @@ const theme = createTheme({
 const useStyles = makeStyles({
   title: {
     textAlign: "center",
-    marginTop: "50px",
+    // marginTop: "50px",
   },
   Loading: {
     position: "fixed",
@@ -361,7 +378,7 @@ const useStyles = makeStyles({
   //Testimonial
   testBg: {
     background: "#e7cdef36",
-    padding: "100px 0",
+    paddingBottom: "50px",
   },
   testPaper: {
     textAlign: "center",
@@ -424,6 +441,15 @@ const useStyles = makeStyles({
     color: "#fff",
     fontSize: "35px",
   },
+
+  //AdminPage
+  adminContent: {
+    marginLeft: "250px",
+    padding: "2rem",
+  },
+
+//Admin User
+
 });
 
 export { theme, useStyles };
