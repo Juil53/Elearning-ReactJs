@@ -3,7 +3,6 @@ import { Route, Redirect } from "react-router-dom";
 import { theme } from "../styles/styles";
 import { ThemeProvider } from "@mui/material";
 import { CssBaseline } from "@mui/material";
-import NavBarAdmin from "../_components/Header/HomeHeader/NavbarAdmin";
 import MyDrawer from "./Drawer/MyDrawer";
 
 
@@ -15,7 +14,6 @@ export default function AdminTemplate(props) {
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <MyDrawer />
-          {/* <NavBarAdmin /> */}
           <Route exact={exact} path={path} component={component} />
         </ThemeProvider>
       </div>

@@ -46,7 +46,7 @@ export default function Featured() {
       </Container>
       <Container maxWidth="md">
         <Box className={classes.title}>
-          <Typography variant="h5" style={{ color: "gray", fontWeight: "400" }}>
+          <Typography variant="h5" style={{ color: "gray", fontWeight: "400",paddingTop:'40px' }}>
             Tuỳ chỉnh cài đặt cá nhân của bạn để nhận những thông báo khoá học phù hợp
             <Button
               color="primary"
