@@ -21,24 +21,24 @@ export default function Cards(props) {
         <Card className={classes.cards}>
           <CardMedia
             component="img"
-            height="300px"
+            height="200px"
             image={courses.hinhAnh}
             alt="course1"
           />
           <CardContent
-            sx={{ display: "flex", justifyContent: "space-between", py: 3 }}
+            sx={{ display: "flex", justifyContent: "space-between",paddingBottom:'0'}}
           >
             <Typography
               gutterBottom
-              variant="h5"
-              component="div"
+              variant="h6"
+              component="h6"
               color="primary"
             >
               Lượt xem: {courses.luotXem}
             </Typography>
             <Rating name="read-only" value={3} readOnly />
           </CardContent>
-          <CardContent sx={{ paddingBottom: 3 }}>
+          <CardContent sx={{ paddingBottom: 1 }}>
             <Typography variant="h6" color="secondary" gutterBottom>
               {courses.tenKhoaHoc}
             </Typography>
@@ -47,7 +47,7 @@ export default function Cards(props) {
               {courses.ngayTao}
             </Typography>
           </CardContent>
-          <CardActions sx={{ borderTop: "1px solid #eee", paddingTop: 2 }}>
+          <CardActions sx={{ borderTop: "1px solid #eee"}}>
             <Grid container sx={{ alignItems: "center" }}>
               <Grid item>
                 <img

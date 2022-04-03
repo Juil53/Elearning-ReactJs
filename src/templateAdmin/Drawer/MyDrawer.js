@@ -1,13 +1,12 @@
 import React from "react";
 import {
+  Divider,
   Drawer,
   List,
   ListItem,
   ListItemIcon,
   ListItemText,
-  AppBar,
   Toolbar,
-  Button,
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { withRouter } from "react-router-dom";
@@ -27,6 +26,9 @@ const useStyles = makeStyles({
     padding: "1rem",
     color: "#fff",
   },
+  drawer: {
+    width: "200px",
+  },
 });
 function MyDrawer(props) {
   const { history } = props;
@@ -37,12 +39,12 @@ function MyDrawer(props) {
       onClick: () => history.push("/dashboard"),
     },
     {
-      text: "User",
+      text: "Quản lý người dùng",
       icon: <AccountCircleIcon />,
       onClick: () => history.push("/adminusers"),
     },
     {
-      text: "Courses",
+      text: "Quản lý khoá học",
       icon: <LibraryBooksIcon />,
       onClick: () => history.push("/admincourses"),
     },
@@ -58,11 +60,17 @@ function MyDrawer(props) {
   const classes = useStyles();
   return (
     <div className={classes.container}>
+      {/* Icon */}
       <div className={classes.icon}>
         <LogoutIcon sx={{}} />
       </div>
 
-      <Drawer variant="permanent">
+      {/* SideMenu */}
+      <Drawer variant="permanent" className={classes.drawer}>
+        <Toolbar>
+          <h3>Elearning</h3>
+        </Toolbar>
+        <Divider/>
         <List>
           {itemList.map((item, index) => {
             const { text, icon, onClick } = item;
