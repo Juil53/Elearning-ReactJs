@@ -1,7 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Modal } from "react-bootstrap";
-import { IoCloseSharp } from "react-icons/io5";
 
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -12,13 +10,17 @@ import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import { Button } from "@mui/material";
 import Box from "@mui/material/Box";
+
+import userProfileStyle from "./UserProfileStyle";
 import { actCancelCourse } from "../modules/actions";
 
 export default function UserCourses(props) {
   const { user } = props;
+  const classes = userProfileStyle();
+
   const dispatch = useDispatch();
   //Modal Cancel course
-  const [showCancelSuccess, setShowCancelSuccess] = useState(false);
+  //const [showCancelSuccess, setShowCancelSuccess] = useState(false);
 
   let keyword = useSelector((state) => state.userProfileReducer.keyword);
   const courseList = user?.chiTietKhoaHocGhiDanh.filter(
@@ -33,7 +35,7 @@ export default function UserCourses(props) {
         taiKhoan: JSON.parse(localStorage.getItem("UserClient")).taiKhoan,
       };
       return (
-        <>
+        <div key={index}>
           <ListItem alignItems="flex-start">
             <ListItemAvatar>
               <Avatar alt="wordpress" src={course.hinhAnh} />
@@ -57,12 +59,12 @@ export default function UserCourses(props) {
             />
             <Box sx={{ "& button": { m: 1 } }}>
               <Button
+                className="classes.button"
                 variant="contained"
                 size="small"
                 onClick={() => {
-                  //handleCancelCourse(courseInfo);
                   dispatch(actCancelCourse(courseInfo));
-                  setShowCancelSuccess(true);
+                  //setShowCancelSuccess(true);
                 }}
               >
                 Hủy
@@ -91,7 +93,7 @@ export default function UserCourses(props) {
               </div>
             </Modal.Body>
           </Modal> */}
-        </>
+        </div>
       );
     });
   };

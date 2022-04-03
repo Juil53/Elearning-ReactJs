@@ -23,21 +23,21 @@ export default function Featured() {
       <Container maxWidth="xl">
         <Box className={classes.title}>
           <Typography variant="p" component="p" color="text.secondary">
-            JOIN OUR LEARN COURSES
+           THAM GIA CÁC KHOÁ HỌC CỦA CHÚNG TÔI 
           </Typography>
           <Typography variant="h2" component="h2" gutterBottom>
-            Featured Online Courses
+            NHỮNG KHOÁ HỌC MỚI NHẤT
           </Typography>
         </Box>
 
         <Box>
           {/* Card */}
-          <Grid container spacing={2}>
+          <Grid container rowSpacing={5} columnSpacing={2}>
             {courses &&
               courses.splice(27, 6).map((course, index) => {
                 return (
                   <Grid item xs={12} sm={12} md={6} lg={4} key={index}>
-                    <Cards courses={course} />
+                    <Cards courses={course}/>
                   </Grid>
                 );
               })}
@@ -47,15 +47,14 @@ export default function Featured() {
       <Container maxWidth="md">
         <Box className={classes.title}>
           <Typography variant="h5" style={{ color: "gray", fontWeight: "400" }}>
-            Control your personal preference settings to get notified about
-            appropriate courses
+            Tuỳ chỉnh cài đặt cá nhân của bạn để nhận những thông báo khoá học phù hợp
             <Button
               color="primary"
-              className={classes.viewBtn}
               endIcon={<ArrowForwardIcon />}
               href="/courses"
+              size="large"
             >
-              View All Courses
+              Xem tất cả khoá học
             </Button>
           </Typography>
         </Box>

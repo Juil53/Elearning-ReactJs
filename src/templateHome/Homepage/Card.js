@@ -18,7 +18,7 @@ export default function Cards(props) {
   return (
     <>
       <Link to={`course-detail/${courses.maKhoaHoc}`}>
-        <Card>
+        <Card className={classes.cards}>
           <CardMedia
             component="img"
             height="300px"
@@ -39,7 +39,7 @@ export default function Cards(props) {
             <Rating name="read-only" value={3} readOnly />
           </CardContent>
           <CardContent sx={{ paddingBottom: 3 }}>
-            <Typography variant="h5" color="secondary" gutterBottom>
+            <Typography variant="h6" color="secondary" gutterBottom>
               {courses.tenKhoaHoc}
             </Typography>
             <CalendarTodayIcon sx={{ pr: 1 }} />

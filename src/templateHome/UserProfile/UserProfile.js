@@ -45,39 +45,39 @@ function a11yProps(index) {
 }
 
 function UserProfile(props) {
-  const {id} = props.match.params;
+  const { id } = props.match.params;
   const [value, setValue] = React.useState(Number(id));
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
   const breadcrumb = [
     {
-        label: 'Trang Chủ',
-        path: '/'
+      label: "Trang Chủ",
+      path: "/",
     },
     {
-        label: 'Trang cá nhân',
-    }
-]
+      label: "Trang cá nhân",
+    },
+  ];
   const classes = userProfileStyle();
   const dispatch = useDispatch();
   useEffect(() => {
-    const accountUser={
+    const accountUser = {
       taiKhoan: JSON.parse(localStorage.getItem("UserClient")).taiKhoan,
     }
     dispatch(actUserProfile((accountUser)));
   },[]);
   const user = useSelector(state=>state.userProfileReducer.dataUser);
 
-  return !(localStorage.getItem("UserClient")) ? (
+  return !localStorage.getItem("UserClient") ? (
     <Redirect to="/" />
   ) : (
     <>
-    <Breadcrumb breadCrumbArr = {breadcrumb}/>
-    <div className={classes.content}>
-      <div className={classes.title}>
-        <h2>{user && user.hoTen}</h2>
-      </div>
+      <Breadcrumb breadCrumbArr={breadcrumb} />
+      <div className={classes.content}>
+        <div className={classes.title}>
+          <h2>{user && user.hoTen}</h2>
+        </div>
       <Box
         sx={{
           flexGrow: 1,
@@ -117,7 +117,6 @@ function UserProfile(props) {
             <TabPanel value={value} index={1}>
               <SearchCourse />
               <UserCourses user={user} />
-              {/* {renderCourses()} */}
             </TabPanel>
           </Grid>
         </Grid>
