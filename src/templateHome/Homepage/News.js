@@ -216,7 +216,7 @@ export default function News() {
         </Grid>
       </Box>
 
-      <Box style={{ textAlign: "center" }}>
+      <Box style={{ textAlign: "center",marginTop:'20px' }}>
         <Button
           color="primary"
           className={classes.viewBtn}

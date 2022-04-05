@@ -26,12 +26,10 @@ const Navbar = (props) => {
     navbar: {
       backgroundColor: "transparent",
       transition: "all .2s",
-      height: "100px",
     },
     changeColor: {
       backgroundColor: "white",
       transition: "all .2s",
-      height: "90px",
     },
     btnColorDefault: {
       color: "#fff",
