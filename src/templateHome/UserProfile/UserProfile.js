@@ -74,7 +74,7 @@ function UserProfile(props) {
     (course) =>
       course.tenKhoaHoc.toLowerCase().indexOf(keyword.toLowerCase()) !== -1
   );
-  console.log(courseList)
+  console.log(courseList);
 
   const renderCourses = () => {
     return courseList?.map((course, index) => {
