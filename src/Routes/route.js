@@ -63,10 +63,18 @@ const routeAdmin = [
   },
   {
     page: "Quản Lý Khoá Học",
+    exact: true,
+    path: "/admin-course",
+    component: lazy(() => import("../templateAdmin/AdminCourses/AdminCourses")),
+  },
+  {
+    page: "Thêm hoặc Thay Đổi Khóa Học",
     exact: false,
-    path: "/admincourses",
+    path: "/admin-course/:action",
     component: lazy(() =>
-      import("../templateAdmin/AdminCourses/AdminCourses")
+      import(
+        "../templateAdmin/AdminCourses/_components/AddOrUpdateCourse/AddOrUpdateCourse"
+      )
     ),
   },
 ];

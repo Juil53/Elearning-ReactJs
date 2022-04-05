@@ -43,7 +43,7 @@ function MyDrawer(props) {
     {
       text: "Courses",
       icon: <LibraryBooksIcon />,
-      onClick: () => history.push("/admincourses"),
+      onClick: () => history.push("/admin-course"),
     },
   ];
   const handleCheckout = () => {
