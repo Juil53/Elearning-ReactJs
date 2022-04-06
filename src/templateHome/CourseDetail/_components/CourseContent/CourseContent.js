@@ -2,7 +2,7 @@ import { Box, Button, Typography } from "@mui/material";
 import { ThemeProvider } from "@mui/styles";
 import { createTheme } from "@mui/system";
 import React, { Fragment } from "react";
-import { actCourseAddToCart, actRegisterCourse } from "../../modules/actions";
+import { actRegisterCourse } from "../../modules/actions";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
@@ -81,11 +81,6 @@ export default function CourseContent(props) {
 
   const dispatch = useDispatch();
 
-  // const handleAddToCart = (courseDetailData) => {
-  //     dispatch(actCourseAddToCart(courseDetailData));
-  //     setOpenModal(true)
-  // }
-
   const history = useHistory();
 
   const handleRegisterCourse = () => {
@@ -138,7 +133,6 @@ export default function CourseContent(props) {
                 <Button
                   variant="contained"
                   onClick={() => {
-                    //handleAddToCart(courseDetailData)
                     handleRegisterCourse();
                   }}
                 >
