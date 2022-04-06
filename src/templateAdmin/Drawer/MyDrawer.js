@@ -14,6 +14,8 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
 import LogoutIcon from "@mui/icons-material/Logout";
+import SentimentVerySatisfiedIcon from "@mui/icons-material/SentimentVerySatisfied";
+import HomeIcon from "@mui/icons-material/Home";
 
 const useStyles = makeStyles({
   container: {
@@ -29,17 +31,28 @@ const useStyles = makeStyles({
     width: "200px",
   },
 });
+
 function MyDrawer(props) {
   const { history } = props;
+  const hoTen = JSON.parse(localStorage.getItem("AdminClient")).hoTen;
   const itemList = [
     {
+      text: `Hi! ${hoTen}`,
+      icon: <SentimentVerySatisfiedIcon color="primary" />,
+    },
+    {
+      text: "Trang chủ",
+      icon: <HomeIcon color="primary" />,
+      onClick: () => history.push("/"),
+    },
+    {
       text: "Dashboard",
-      icon: <DashboardIcon />,
+      icon: <DashboardIcon color="primary" />,
       onClick: () => history.push("/dashboard"),
     },
     {
       text: "Quản lý người dùng",
-      icon: <AccountCircleIcon />,
+      icon: <AccountCircleIcon color="primary" />,
       onClick: () => history.push("/adminusers"),
     },
     {
@@ -47,24 +60,29 @@ function MyDrawer(props) {
       icon: <LibraryBooksIcon />,
       onClick: () => history.push("/admin-course"),
     },
+    {
+      text: "Đăng xuất",
+      icon: <LogoutIcon color="primary" />,
+      onClick: () => {
+        handleCheckout();
+      },
+    },
   ];
+
   const handleCheckout = () => {
     localStorage.removeItem("AdminClient");
+    history.replace("/");
   };
+
   const classes = useStyles();
   return (
     <div className={classes.container}>
-      {/* Icon */}
-      <div className={classes.icon}>
-        <LogoutIcon sx={{}} />
-      </div>
-
       {/* SideMenu */}
       <Drawer variant="permanent" className={classes.drawer}>
         <Toolbar>
-          <h3>Elearning</h3>
+          <h1>Elearning</h1>
         </Toolbar>
-        <Divider/>
+        <Divider />
         <List>
           {itemList.map((item, index) => {
             const { text, icon, onClick } = item;
