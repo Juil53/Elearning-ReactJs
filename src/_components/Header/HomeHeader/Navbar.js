@@ -3,7 +3,6 @@ import DiamondOutlinedIcon from "@mui/icons-material/DiamondOutlined";
 import LogoutIcon from "@mui/icons-material/Logout";
 import MenuIcon from "@mui/icons-material/Menu";
 import PersonIcon from "@mui/icons-material/Person";
-import SearchIcon from "@mui/icons-material/Search";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -18,6 +17,7 @@ import * as React from "react";
 import { routesHome } from "../../../Routes/route";
 import "./../../../App.css";
 import { useStyles } from "./../../../styles/styles";
+import { NavLink } from "react-router-dom";
 
 const Navbar = (props) => {
   const { history } = props;
@@ -210,6 +210,7 @@ const Navbar = (props) => {
           >
             {routesHome.slice(0, 4).map((page, index) => (
               <Button
+                // activeClassName="active"
                 key={index}
                 href={page.path}
                 sx={[

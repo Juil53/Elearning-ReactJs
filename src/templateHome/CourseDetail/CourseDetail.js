@@ -6,7 +6,7 @@ import CourseModal from "./_components/CourseModal/CourseModal";
 import { actCourseDetailGet } from "./modules/actions";
 
 export default function CourseDetail(props) {
-    console.log(props)
+  console.log(props);
   const breadcrumb = [
     {
       label: "Trang Chủ",

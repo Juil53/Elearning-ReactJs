@@ -26,7 +26,11 @@ export default function Cards(props) {
             alt="course1"
           />
           <CardContent
-            sx={{ display: "flex", justifyContent: "space-between",paddingBottom:'0'}}
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              paddingBottom: "0",
+            }}
           >
             <Typography
               gutterBottom
@@ -47,7 +51,7 @@ export default function Cards(props) {
               {courses.ngayTao}
             </Typography>
           </CardContent>
-          <CardActions sx={{ borderTop: "1px solid #eee"}}>
+          <CardActions sx={{ borderTop: "1px solid #eee" }}>
             <Grid container sx={{ alignItems: "center" }}>
               <Grid item>
                 <img
