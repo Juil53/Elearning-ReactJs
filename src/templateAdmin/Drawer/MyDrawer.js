@@ -58,12 +58,12 @@ function MyDrawer(props) {
     },
     {
       text: "Quản lý khoá học",
-      icon: <LibraryBooksIcon />,
+      icon: <LibraryBooksIcon color="primary"/>,
       onClick: () => history.push("/admin-course"),
     },
     {
       text: "Registers",
-      icon: <AppRegistrationIcon />,
+      icon: <AppRegistrationIcon color="primary"/>,
       onClick: () => history.push("/adminregisters"),
     },
     {
