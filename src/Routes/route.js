@@ -53,20 +53,28 @@ const routeAdmin = [
     page: "Quản Trị",
     exact: false,
     path: "/dashboard",
-    component: lazy(() => import("../templateAdmin/Dashboard/DashBoard.js")),
+    component: lazy(() => import("../templateAdmin/Dashboard/DashBoard")),
   },
   {
     page: "Quản Lý Người Dùng",
     exact: false,
     path: "/adminusers",
-    component: lazy(() => import("../templateAdmin/AdminUsers/AdminUsers.js")),
+    component: lazy(() => import("../templateAdmin/AdminUsers/AdminUsers")),
   },
   {
     page: "Quản Lý Khoá Học",
+    exact: true,
+    path: "/admin-course",
+    component: lazy(() => import("../templateAdmin/AdminCourses/AdminCourses")),
+  },
+  {
+    page: "Thêm hoặc Thay Đổi Khóa Học",
     exact: false,
-    path: "/admincourses",
+    path: "/admin-course/:action",
     component: lazy(() =>
-      import("../templateAdmin/AdminCourses/AdminCourses.js")
+      import(
+        "../templateAdmin/AdminCourses/_components/AddOrUpdateCourse/AddOrUpdateCourse"
+      )
     ),
   },
 ];

@@ -15,7 +15,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
 import LogoutIcon from "@mui/icons-material/Logout";
 import SentimentVerySatisfiedIcon from "@mui/icons-material/SentimentVerySatisfied";
-import HomeIcon from '@mui/icons-material/Home';
+import HomeIcon from "@mui/icons-material/Home";
 
 const useStyles = makeStyles({
   container: {
@@ -57,8 +57,8 @@ function MyDrawer(props) {
     },
     {
       text: "Quản lý khoá học",
-      icon: <LibraryBooksIcon color="primary" />,
-      onClick: () => history.push("/admincourses"),
+      icon: <LibraryBooksIcon />,
+      onClick: () => history.push("/admin-course"),
     },
     {
       text: "Đăng xuất",
