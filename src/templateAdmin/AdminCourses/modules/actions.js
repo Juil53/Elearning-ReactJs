@@ -35,7 +35,6 @@ export const actCourseSearch = (tenKhoaHoc) => {
 
 export const actCourseDelete = (maKhoaHoc) => {
   return (dispatch) => {
-    console.log("delete course", maKhoaHoc);
     dispatch(actCourseRequest());
 
     api
@@ -43,9 +42,51 @@ export const actCourseDelete = (maKhoaHoc) => {
         `https://elearningnew.cybersoft.edu.vn/api/QuanLyKhoaHoc/XoaKhoaHoc?MaKhoaHoc=${maKhoaHoc}`
       )
       .then((result) => {
-        actCourseAllGet();
+        dispatch(actCourseAllGet());
       })
       .catch((error) => {
+        dispatch(actCourseFailed(error));
+      });
+  };
+};
+
+export const actCourseAdd = (data, form) => {
+  return (dispatch) => {
+    dispatch(actCourseRequest());
+
+    console.log(form.get("file"), form.get("tenKhoaHoc"));
+
+    api
+      .post(
+        `https://elearningnew.cybersoft.edu.vn/api/QuanLyKhoaHoc/ThemKhoaHoc`,
+        data
+      )
+      .then(() => {
+        dispatch(actCourseImageAdd(form));
+        console.log("Add course success");
+        dispatch(actCourseAllGet());
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+        dispatch(actCourseFailed(error));
+      });
+  };
+};
+
+const actCourseImageAdd = (form) => {
+  return (dispatch) => {
+    dispatch(actCourseRequest());
+
+    api
+      .post(
+        `https://elearningnew.cybersoft.edu.vn/api/QuanLyKhoaHoc/ThemKhoaHocUploadHinh`,
+        form
+      )
+      .then(() => {
+        console.log("Add image success");
+      })
+      .catch((error) => {
+        console.log(error.response.data);
         dispatch(actCourseFailed(error));
       });
   };

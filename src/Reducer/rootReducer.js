@@ -11,11 +11,8 @@ import signinReducer from "../templateLogin/SignIn/module/reducer";
 import signupReducer from "../templateLogin/SignUp/module/reducer";
 import { registerCourseReducer } from "../templateHome/CourseDetail/modules/reducer";
 import userProfileReducer from "../templateHome/UserProfile/modules/reducer";
-<<<<<<< HEAD
 import { adminCourseListReducer } from "../templateAdmin/AdminCourses/modules/reducer";
-=======
 import adminUserReducer from "../templateAdmin/AdminUsers/modules/reducer";
->>>>>>> 278189b233085cbc7fc151a6531c2ff9aca4df0b
 
 const rootReducer = combineReducers({
   //child Reducer here
@@ -28,13 +25,9 @@ const rootReducer = combineReducers({
   registerCourseReducer,
   userProfileReducer,
 
-<<<<<<< HEAD
-  // admin reducer
-  adminCourseListReducer
-=======
   //Admin reducer
   adminUserReducer,
->>>>>>> 278189b233085cbc7fc151a6531c2ff9aca4df0b
+  adminCourseListReducer,
 });
 
 export default rootReducer;

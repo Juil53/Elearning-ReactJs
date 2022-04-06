@@ -46,7 +46,7 @@ export default function AdminCourses() {
     <Fragment>
       <Box
         component="main"
-        sx={{ width: `calc(100% - ${165}px)`, ml: `${165}px` }}
+        sx={{ width: `calc(100% - ${250}px)`, ml: "250px" }}
       >
         <Box sx={styles.root}>
           <HeaderAdmin
@@ -55,6 +55,7 @@ export default function AdminCourses() {
             placeholder={"Search course"}
             setKeyword={setKeyword}
             handleSearch={handleSearch}
+            link="/admin-course/add"
           />
           {dataCourseList && CoursesTableComp}
         </Box>

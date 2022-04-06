@@ -8,9 +8,13 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { GROUP_NUMBER } from "../../modules/constants";
+import { actCourseAdd } from "../../modules/actions";
+import { actCourseCategoryGet } from "../../../../templateHome/Courses/modules/actions";
+import { actGetAllUser } from "../../../AdminUsers/modules/actions";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function AddOrUpdateCourse(props) {
   const styles = {
@@ -37,9 +41,22 @@ export default function AddOrUpdateCourse(props) {
 
   let { action } = useParams();
 
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(actCourseCategoryGet());
+    dispatch(actGetAllUser());
+  }, []);
+
+  const courseCategory = useSelector(
+    (state) => state.courseCategoryReducer.dataCourseCategory
+  );
+  const listUser = useSelector((state) => state.adminUserReducer.listuser);
+
   const [courseDetail, setCourseDetail] = useState({
-    maKhoaHoc: "",
+    maKhoaHoc: null,
     tenKhoaHoc: null,
+    biDanh: null,
     moTa: null,
     luotXem: 0,
     danhGia: 0,
@@ -50,8 +67,12 @@ export default function AddOrUpdateCourse(props) {
     taiKhoanNguoiTao: null,
   });
 
+  let formData = new FormData();
+  const [file, setFile] = useState(null);
+
   const handleChangeInput = (e) => {
     const { value, name } = e.target;
+    console.log(name, value);
     setCourseDetail({
       ...courseDetail,
       [name]: value,
@@ -59,16 +80,27 @@ export default function AddOrUpdateCourse(props) {
   };
 
   const handleChangeImage = (e) => {
-    let file = e.target.files[0];
-    setCourseDetail({ ...courseDetail, hinhAnh: file.name });
-    console.log(courseDetail);
+    setFile(e.target.files[0]);
+    console.log(file);
+    setCourseDetail({ ...courseDetail, hinhAnh: e.target.files[0].name });
+    const fileReader = new FileReader();
   };
+
+  const handleAddCourse = () => {
+    console.log("add new course");
+    formData.append("file", file, file.name);
+    formData.append("tenKhoaHoc", courseDetail.tenKhoaHoc);
+    console.log(formData.get("file"), formData.get("tenKhoaHoc"));
+    dispatch(actCourseAdd(courseDetail, formData));
+  };
+
+  const handleUpdateCourse = () => {};
 
   return (
     <Fragment>
       <Box
         component="main"
-        sx={{ width: `calc(100% - ${165}px)`, ml: `${165}px` }}
+        sx={{ width: `calc(100% - ${250}px)`, ml: "250px" }}
       >
         <Box sx={styles.root}>
           <Typography variant="h1">
@@ -77,7 +109,6 @@ export default function AddOrUpdateCourse(props) {
           <Box
             component="form"
             sx={{
-              // paddingLeft: "100px",
               display: "flex",
               justifyContent: "space-between",
               flexWrap: "wrap",
@@ -101,6 +132,20 @@ export default function AddOrUpdateCourse(props) {
               name="tenKhoaHoc"
               onChange={handleChangeInput}
             />
+            <TextField
+              label="Bí danh"
+              type="text"
+              value={courseDetail.biDanh ?? ""}
+              name="biDanh"
+              onChange={handleChangeInput}
+            />
+            <TextField
+              label="Ngày Tạo"
+              type="text"
+              value={courseDetail.ngayTao ?? ""}
+              name="ngayTao"
+              onChange={handleChangeInput}
+            />
             <FormControl>
               <InputLabel id="courseCategory">Danh mục khóa học</InputLabel>
               <Select
@@ -110,9 +155,15 @@ export default function AddOrUpdateCourse(props) {
                 name="maDanhMucKhoaHoc"
                 onChange={handleChangeInput}
               >
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
+                {courseCategory &&
+                  courseCategory?.map((category) => (
+                    <MenuItem
+                      key={category.maDanhMuc}
+                      value={category.maDanhMuc}
+                    >
+                      {category.tenDanhMuc}
+                    </MenuItem>
+                  ))}
               </Select>
             </FormControl>
             <FormControl>
@@ -124,18 +175,16 @@ export default function AddOrUpdateCourse(props) {
                 name="taiKhoanNguoiTao"
                 onChange={handleChangeInput}
               >
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
+                {listUser &&
+                  listUser
+                    ?.filter((user) => user.maLoaiNguoiDung === "GV")
+                    .map((user) => (
+                      <MenuItem key={user.taiKhoan} value={user.taiKhoan}>
+                        {user.hoTen}
+                      </MenuItem>
+                    ))}
               </Select>
             </FormControl>
-            <TextField
-              label="Ngày Tạo"
-              type="text"
-              value={courseDetail.ngayTao ?? ""}
-              name="ngayTao"
-              onChange={handleChangeInput}
-            />
             <TextField
               label="Mô Tả"
               type="textarea"
@@ -167,7 +216,30 @@ export default function AddOrUpdateCourse(props) {
               </Box>
             </FormControl>
           </Box>
-          <Button variant="contained" sx={styles.button}>
+          {/* {() => {
+            if (action === "add") {
+              return (
+                <Button
+                  variant="contained"
+                  sx={styles.button}
+                  onClick={handleAddCourse()}
+                >
+                  Thêm
+                </Button>
+              );
+            } else {
+              return (
+                <Button variant="contained" sx={styles.button}>
+                  Lưu
+                </Button>
+              );
+            }
+          }} */}
+          <Button
+            variant="contained"
+            sx={styles.button}
+            onClick={action === "add" ? handleAddCourse : handleUpdateCourse}
+          >
             {action === "add" ? "Thêm" : "Lưu"}
           </Button>
         </Box>

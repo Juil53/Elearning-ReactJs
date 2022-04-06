@@ -17,6 +17,23 @@ export const actGetUser = () => {
   };
 };
 
+export const actGetAllUser = () => {
+  return (dispatch) => {
+    dispatch(actGetUserRequest());
+
+    api
+      .get(
+        "https://elearningnew.cybersoft.edu.vn/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP01"
+      )
+      .then((result) => {
+        dispatch(actGetUserSuccess(result.data));
+      })
+      .catch((error) => {
+        dispatch(actGetUserFailed(error));
+      });
+  };
+};
+
 const actGetUserRequest = () => {
   return {
     type: ActionType.USERLIST_REQUEST,
