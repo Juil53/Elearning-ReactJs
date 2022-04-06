@@ -10,7 +10,6 @@ import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import { Button } from "@mui/material";
 import Box from "@mui/material/Box";
-import Modal from "@mui/material/Modal";
 
 import userProfileStyle from "./UserProfileStyle";
 import { actCancelCourse } from "../modules/actions";
@@ -20,8 +19,6 @@ export default function UserCourses(props) {
   const classes = userProfileStyle();
 
   const dispatch = useDispatch();
-  //Modal Cancel course
-  const [showCancelSuccess, setShowCancelSuccess] = useState(false);
   // get keywork search
   let keyword = useSelector((state) => state.userProfileReducer.keyword);
   const courseList = user?.chiTietKhoaHocGhiDanh.filter(
@@ -66,7 +63,6 @@ export default function UserCourses(props) {
                 size="small"
                 onClick={() => {
                   dispatch(actCancelCourse(courseInfo));
-                  setShowCancelSuccess(true);
                 }}
               >
                 Hủy
@@ -74,17 +70,6 @@ export default function UserCourses(props) {
             </Box>
           </ListItem>
           <Divider variant="inset" component="li" />
-
-          {/* Modal cancel course */}
-          <Modal
-            open={showCancelSuccess}
-            onClose={setShowCancelSuccess(false)}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-            style={{ overflow: "scroll" }}
-          >
-            <Box>HỦY KHÓA HỌC THÀNH CÔNG!</Box>
-          </Modal>
         </div>
       );
     });
