@@ -11,13 +11,9 @@ import signinReducer from "../templateLogin/SignIn/module/reducer";
 import signupReducer from "../templateLogin/SignUp/module/reducer";
 import { registerCourseReducer } from "../templateHome/CourseDetail/modules/reducer";
 import userProfileReducer from "../templateHome/UserProfile/modules/reducer";
-import {
-  adminUserReducer,
-  // adminAddUserReducer,
-  // adminDeleteUserReducer,
-  // modalReducer,
-  // adminUserInfoReducer
-} from "../templateAdmin/AdminUsers/modules/reducer";
+import adminUserReducer from "../templateAdmin/AdminUsers/modules/reducer";
+import registerModalReducer from "../templateAdmin/AdminRegisters/modules/reducers";
+import { adminCourseListReducer } from "../templateAdmin/AdminCourses/modules/reducer";
 
 const rootReducer = combineReducers({
   //child Reducer here
@@ -32,10 +28,8 @@ const rootReducer = combineReducers({
 
   //Admin reducer
   adminUserReducer,
-  // adminAddUserReducer,
-  // adminDeleteUserReducer,
-  // modalReducer,
-  // adminUserInfoReducer
+  registerModalReducer,
+  adminCourseListReducer,
 });
 
 export default rootReducer;

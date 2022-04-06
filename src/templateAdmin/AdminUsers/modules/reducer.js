@@ -79,4 +79,4 @@ const adminUserReducer = (state = initialState, action) => {
   }
 };
 
-export { adminUserReducer };
+export default adminUserReducer;

@@ -31,13 +31,11 @@ function TabPanel(props) {
     </div>
   );
 }
-
 TabPanel.propTypes = {
   children: PropTypes.node,
   index: PropTypes.number.isRequired,
   value: PropTypes.number.isRequired,
 };
-
 function a11yProps(index) {
   return {
     id: `vertical-tab-${index}`,
@@ -61,26 +59,15 @@ function UserProfile(props) {
     },
   ];
   const classes = userProfileStyle();
+  // dispatch account user
   const dispatch = useDispatch();
   useEffect(() => {
     const accountUser = {
       taiKhoan: JSON.parse(localStorage.getItem("UserClient")).taiKhoan,
-    };
-    dispatch(actUserProfile(accountUser));
-  }, []);
-  const user = useSelector((state) => state.userProfileReducer.dataUser);
-  let keyword = useSelector((state) => state.userProfileReducer.keyword);
-  const courseList = user?.chiTietKhoaHocGhiDanh.filter(
-    (course) =>
-      course.tenKhoaHoc.toLowerCase().indexOf(keyword.toLowerCase()) !== -1
-  );
-  console.log(courseList);
-
-  const renderCourses = () => {
-    return courseList?.map((course, index) => {
-      return <UserCourses course={course} key={index} />;
-    });
-  };
+    }
+    dispatch(actUserProfile((accountUser)));
+  },[]);
+  const user = useSelector(state=>state.userProfileReducer.dataUser);
 
   return !localStorage.getItem("UserClient") ? (
     <Redirect to="/" />
@@ -91,50 +78,50 @@ function UserProfile(props) {
         <div className={classes.title}>
           <h2>{user && user.hoTen}</h2>
         </div>
-        <Box
-          sx={{
-            flexGrow: 1,
-            bgcolor: "background.paper",
-            display: "flex",
-            justifyContent: "center",
-            height: "100%",
-            mt: 3,
-          }}
-        >
-          <Grid container direction="row" justifyContent="space-around">
-            <Grid item xs={12} md={3}>
-              <Tabs
-                orientation="vertical"
-                variant="scrollable"
-                value={value}
-                onChange={handleChange}
-                aria-label="Vertical tabs example"
-                sx={{ borderRight: 1, borderColor: "divider" }}
-              >
-                <Tab
-                  sx={{ margin: "auto" }}
-                  label="Thông tin cá nhân"
-                  {...a11yProps(0)}
-                />
-                <Tab
-                  sx={{ margin: "auto" }}
-                  label="Khóa học của tôi"
-                  {...a11yProps(1)}
-                />
-              </Tabs>
-            </Grid>
-            <Grid item xs={12} md={8}>
-              <TabPanel value={value} index={0}>
-                <UserInfo user={user} />
-              </TabPanel>
-              <TabPanel value={value} index={1}>
-                <SearchCourse />
-                {renderCourses()}
-              </TabPanel>
-            </Grid>
+      <Box
+        sx={{
+          flexGrow: 1,
+          bgcolor: "background.paper",
+          display: "flex",
+          justifyContent: "center",
+          height: '100%',
+          mt: 3,
+        }}
+      >
+        <Grid container direction="row" justifyContent="space-around">
+          <Grid item xs={12} md={3}>
+            <Tabs
+              orientation="vertical"
+              variant="scrollable"
+              value={value}
+              onChange={handleChange}
+              aria-label="Vertical tabs example"
+              sx={{ borderRight: 1, borderColor: "divider" }}
+            >
+              <Tab
+                sx={{ margin: "auto" }}
+                label="Thông tin cá nhân"
+                {...a11yProps(0)}
+              />
+              <Tab
+                sx={{ margin: "auto" }}
+                label="Khóa học của tôi"
+                {...a11yProps(1)}
+              />
+            </Tabs>
           </Grid>
-        </Box>
-      </div>
+          <Grid item xs={12} md={8}>
+            <TabPanel value={value} index={0}>
+              <UserInfo user={user} />
+            </TabPanel>
+            <TabPanel value={value} index={1}>
+              <SearchCourse />
+              <UserCourses user={user} />
+            </TabPanel>
+          </Grid>
+        </Grid>
+      </Box>
+    </div>
     </>
   );
 }
