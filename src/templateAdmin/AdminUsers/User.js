@@ -15,7 +15,8 @@ import UserItem from "./UserItem";
 export default function User(props) {
   const dispatch = useDispatch();
   // Get data từ Reducer
-  const data = useSelector((state) => state.adminUserReducer.listuser);
+  let data = useSelector((state) => state.adminUserReducer.listuser);
+  let keyword = useSelector((state) => state.adminUserReducer.keyword);
   // Thêm Id vào data
   const users = data?.items.map((user, index) => {
     return (user = {
@@ -31,7 +32,12 @@ export default function User(props) {
 
   //renderTable
   const renderTable = () => {
-    return users
+    let usersList = users?.filter(
+      (user) =>
+        user.taiKhoan.toLowerCase().indexOf(keyword.toLowerCase()) !== -1
+    );
+
+    return usersList
       ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
       .map((user, index) => <UserItem key={user.id} user={user} />);
   };

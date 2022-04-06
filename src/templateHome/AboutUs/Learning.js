@@ -7,10 +7,10 @@ export default function Learning() {
   return (
     <>
       <Typography variant="h5" component="h5" className={classes.sliderText}>
-        Take the first step to your journey to success with us
+        Bước đầu trên con đường đến thành công!
       </Typography>
       <Typography variant="h3" component="h3" className={classes.sliderTitle}>
-        Enhance your skills with best online courses
+        Nâng cấp kỹ năng với khoá học của chúng tôi.
       </Typography>
       <Box sx={{ width: "100%" }}>
         <Grid container spacing={2}>
@@ -20,8 +20,10 @@ export default function Learning() {
             sm={6}
             sx={{ marginTop: { xs: 0, sm: 2 }, textAlign: "right" }}
           >
-            <Button variant="outlined" sx={{ padding: { xs: "15px 10px" } }}>
-              Get started now
+            <Button
+              variant="outlined"
+            >
+              Bắt đầu ngay
             </Button>
           </Grid>
           <Grid
@@ -30,9 +32,7 @@ export default function Learning() {
             sm={6}
             sx={{ marginTop: { xs: 0, sm: 2 }, textAlign: "left" }}
           >
-            <Button variant="contained" sx={{ padding: { xs: "15px 10px" } }}>
-              Contact Us
-            </Button>
+            <Button variant="contained">Liên hệ</Button>
           </Grid>
         </Grid>
       </Box>

@@ -28,9 +28,9 @@ const routesHome = [
   },
   //Contact
   {
-    page: "Liên hệ",
-    exact: false,
-    path: "/contact",
+    // page: "Liên hệ",
+    // exact: false,
+    // path: "/contact",
     // component: lazy(() => import("../templateHome/Courses/Courses")),
   },
   //Course detail

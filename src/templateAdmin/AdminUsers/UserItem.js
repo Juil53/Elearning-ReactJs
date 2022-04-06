@@ -1,9 +1,12 @@
 import React from "react";
 import * as ActionType from "./modules/constant";
-import TableRow from "@mui/material/TableRow";
-import TableCell from "@mui/material/TableCell";
 import { actDeleteUser, actGetUserInfo } from "./modules/actions";
 import { useDispatch } from "react-redux";
+import TableRow from "@mui/material/TableRow";
+import TableCell from "@mui/material/TableCell";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
+import { Button } from "@mui/material";
 
 export default function UserItem(props) {
   const { user } = props;
@@ -31,8 +34,8 @@ export default function UserItem(props) {
         <TableCell align="center">{user.email}</TableCell>
         <TableCell align="center">{user.tenLoaiNguoiDung}</TableCell>
         <TableCell align="center">
-          <button
-            className="btn btn-delete"
+          <Button
+            color="error"
             onClick={() => {
               // Delete confirm
               if (
@@ -42,17 +45,18 @@ export default function UserItem(props) {
               }
             }}
           >
-            Xoá
-          </button>
-          <button
-            className="btn btn-edit"
+            <DeleteIcon />
+          </Button>
+          <Button
+            color="secondary"
             onClick={() => {
+              //Edit
               handleOpen();
               handleUserInfo(user);
             }}
           >
-            Sửa
-          </button>
+            <EditIcon />
+          </Button>
         </TableCell>
       </TableRow>
     </>

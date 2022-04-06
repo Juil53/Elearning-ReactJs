@@ -10,10 +10,10 @@ export default function Teacher() {
         <Grid item xs={12} lg={5}>
           <Box sx={{ textAlign: "left" }}>
             <Typography variant="p" component="p" color="text.secondary">
-              EXPERIENCED PROFESSIONALS
+              GIÁO VIÊN KINH NGHIỆM
             </Typography>
             <Typography variant="h2" component="h2" gutterBottom>
-              Meet our teachers
+              Đội ngũ giảng viên
             </Typography>
 
             <Typography variant="p" component="p" color="text.disabled">
@@ -32,7 +32,7 @@ export default function Teacher() {
             </Typography>
             <br />
             <Button variant="contained" sx={{ marginTop: 3 }}>
-              Discover More
+              Tìm hiểu thêm
             </Button>
           </Box>
         </Grid>

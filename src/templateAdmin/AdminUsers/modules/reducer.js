@@ -6,6 +6,7 @@ const initialState = {
   error: null,
   userInfo: null,
   open: false,
+  keyword: "",
 };
 const adminUserReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -66,6 +67,11 @@ const adminUserReducer = (state = initialState, action) => {
       return { ...state };
     case ActionType.CLOSEMODAL:
       state.open = false;
+      return { ...state };
+
+    // SEARCH
+    case ActionType.GETKEYWORD:
+      state.keyword = action.payload;
       return { ...state };
 
     default:

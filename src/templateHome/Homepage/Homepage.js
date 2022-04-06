@@ -50,9 +50,9 @@ export default function Homepage() {
       {/* End Testimonial */}
 
       {/* Start Brand */}
-      <section>
+      {/* <section>
         <Brand />
-      </section>
+      </section> */}
     </div>
   );
 }
