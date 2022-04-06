@@ -12,6 +12,7 @@ const routesHome = [
     path: "/",
     component: lazy(() => import("../templateHome/Homepage/Homepage")),
   },
+  
   //Courses
   {
     page: "Khoá học",
@@ -26,13 +27,7 @@ const routesHome = [
     path: "/about",
     component: lazy(() => import("../templateHome/AboutUs/AboutUs.js")),
   },
-  //Contact
-  {
-    // page: "Liên hệ",
-    // exact: false,
-    // path: "/contact",
-    // component: lazy(() => import("../templateHome/Courses/Courses")),
-  },
+
   //Course detail
   {
     exact: false,

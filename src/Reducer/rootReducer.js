@@ -15,7 +15,6 @@ import adminUserReducer from "../templateAdmin/AdminUsers/modules/reducer";
 import registerModalReducer from "../templateAdmin/AdminRegisters/modules/reducers";
 import { adminCourseListReducer } from "../templateAdmin/AdminCourses/modules/reducer";
 
-
 const rootReducer = combineReducers({
   //child Reducer here
   courseAddToCartReducer,
@@ -31,7 +30,6 @@ const rootReducer = combineReducers({
   adminUserReducer,
   registerModalReducer,
   adminCourseListReducer,
-
 });
 
 export default rootReducer;
