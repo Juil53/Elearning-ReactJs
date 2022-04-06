@@ -12,6 +12,10 @@ const userProfileStyle = makeStyles(()=>({
         '& p':{
             fontSize: 22,
         }
+    },
+    button:{
+        fontSize: 1,
+        padding: 10,
     }
 }))
 

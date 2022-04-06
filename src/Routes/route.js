@@ -77,6 +77,13 @@ const routeAdmin = [
       )
     ),
   },
+  {
+    page: "Quản lý ghi danh",
+    exact: false,
+    path: "/adminregisters",
+    component: lazy(()=> import("../templateAdmin/AdminRegisters/AdminRegisters.js")
+    )
+  }
 ];
 
 const routeLogin = [

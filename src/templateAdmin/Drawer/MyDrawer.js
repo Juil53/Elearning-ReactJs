@@ -13,6 +13,7 @@ import { withRouter } from "react-router-dom";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
+import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
 import LogoutIcon from "@mui/icons-material/Logout";
 import SentimentVerySatisfiedIcon from "@mui/icons-material/SentimentVerySatisfied";
 import HomeIcon from "@mui/icons-material/Home";
@@ -59,6 +60,11 @@ function MyDrawer(props) {
       text: "Quản lý khoá học",
       icon: <LibraryBooksIcon />,
       onClick: () => history.push("/admin-course"),
+    },
+    {
+      text: "Registers",
+      icon: <AppRegistrationIcon />,
+      onClick: () => history.push("/adminregisters"),
     },
     {
       text: "Đăng xuất",
