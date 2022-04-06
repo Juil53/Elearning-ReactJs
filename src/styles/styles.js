@@ -46,15 +46,13 @@ const theme = createTheme({
           fontSize: "1.5rem",
         },
         contained: {
-          padding: "15px 40px",
-          borderRadius: "10px",
+          padding: "5px 20px",
+          borderRadius: "5px",
           color: "#fff",
         },
         outlined: {
-          padding: "15px 40px",
-          borderRadius: "10px",
-          border: "1px solid #fff",
-          color: "#fff",
+          padding: "5px 10px",
+          borderRadius: "5px",
         },
       },
     },
@@ -97,6 +95,14 @@ const theme = createTheme({
         root: {
           boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
           margin: "auto",
+        },
+      },
+    },
+    MuiDrawer: {
+      styleOverrides: {
+        paper: {
+          backgroundColor: "#2e2856",
+          color: "#fff",
         },
       },
     },
@@ -363,6 +369,13 @@ const useStyles = makeStyles({
       opacity: 0.7,
     },
   },
+  btnColor :{
+    color:'#fff',
+    border:'1px solid #fff',
+    '&:hover':{
+      backgroundColor:'red',
+    }
+  },
 
   //Teacher
   teacherbg: {
@@ -445,11 +458,14 @@ const useStyles = makeStyles({
   //AdminPage
   adminContent: {
     marginLeft: "250px",
-    padding: "2rem",
+    padding: "15px",
   },
-
-//Admin User
-
+  adminDashboard: {
+    background: "url(./img/dashboard.jpg)",
+    backgroundSize:"cover",
+    width: "100%",
+    height: "80vh",
+  },
 });
 
 export { theme, useStyles };

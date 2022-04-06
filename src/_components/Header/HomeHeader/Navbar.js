@@ -13,13 +13,13 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
+import LoginIcon from "@mui/icons-material/Login";
 import * as React from "react";
 import { routesHome } from "../../../Routes/route";
 import "./../../../App.css";
 import { useStyles } from "./../../../styles/styles";
 
 const Navbar = (props) => {
-  console.log(props)
   const { history } = props;
   const classes = useStyles();
   const style = {
@@ -65,13 +65,21 @@ const Navbar = (props) => {
   const checkSignIn = () => {
     if (localStorage.getItem("UserClient") === null) {
       return (
-        <Button href="/signin" sx={{ display: { xs: "none", lg: "flex" } }}>
+        <Button
+          href="/signin"
+          sx={{
+            display: { xs: "none", lg: "flex" },
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+          startIcon={
+            <LoginIcon
+              sx={[colorChange ? style.btnColorChange : style.btnColorDefault]}
+            />
+          }
+        >
           <Typography
-            variant="p"
-            sx={[
-              { fontSize: "20px" },
-              colorChange ? style.btnColorChange : style.btnColorDefault,
-            ]}
+            sx={[colorChange ? style.btnColorChange : style.btnColorDefault]}
           >
             Đăng nhập
           </Typography>
@@ -214,22 +222,6 @@ const Navbar = (props) => {
             ))}
           </Box>
 
-          {/* Search */}
-          <Box
-            sx={{
-              justifyContent: "center",
-              alignItems: "center",
-              display: { xs: "flex", lg: "flex" },
-            }}
-          >
-            <SearchIcon
-              sx={[
-                { fontSize: "30px", display: { xs: "none", lg: "flex" } },
-                colorChange ? style.btnColorChange : style.btnColorDefault,
-              ]}
-            />
-          </Box>
-
           {/* SignIn */}
           <Box>{checkSignIn()}</Box>
 
@@ -285,7 +277,7 @@ const Navbar = (props) => {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-              {routesHome.slice(0, 4).map((page, index) => (
+              {routesHome.slice(0, 3).map((page, index) => (
                 <MenuItem onClick={handleClose} key={index}>
                   <Button href={page.path} sx={{ color: "#3f3a64" }}>
                     {page.page}
