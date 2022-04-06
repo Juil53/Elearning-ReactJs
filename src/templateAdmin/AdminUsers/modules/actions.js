@@ -130,3 +130,11 @@ const actUpdateUserFailed = (error) => {
     payload: error,
   };
 };
+
+// actGetKeyword
+export const actGetKeyword = (keyword) => {
+  return {
+    type: ActionType.GETKEYWORD,
+    payload: keyword,
+  };
+};
