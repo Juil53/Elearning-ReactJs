@@ -7,8 +7,8 @@ export default function UserSelector(props) {
   const {dataUserSelector}=props;
   
   const userList = 
-    dataUserSelector.map((user,index)=>{
-      return {label: user.taiKhoan};
+    dataUserSelector?.map((user,index)=>{
+      return {label: user.taiKhoan, key:index};
     });
    
   return (

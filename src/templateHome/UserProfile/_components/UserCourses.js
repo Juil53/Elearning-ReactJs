@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import List from "@mui/material/List";
@@ -10,6 +10,7 @@ import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import { Button } from "@mui/material";
 import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
 
 import userProfileStyle from "./UserProfileStyle";
 import { actCancelCourse } from "../modules/actions";
@@ -20,14 +21,15 @@ export default function UserCourses(props) {
 
   const dispatch = useDispatch();
   //Modal Cancel course
-  //const [showCancelSuccess, setShowCancelSuccess] = useState(false);
-
+  const [showCancelSuccess, setShowCancelSuccess] = useState(false);
+  // get keywork search
   let keyword = useSelector((state) => state.userProfileReducer.keyword);
   const courseList = user?.chiTietKhoaHocGhiDanh.filter(
     (course) =>
       course.tenKhoaHoc.toLowerCase().indexOf(keyword.toLowerCase()) !== -1
   );
 
+  // render couser list
   const renderCourses = () => {
     return courseList?.map((course, index) => {
       const courseInfo = {
@@ -64,7 +66,7 @@ export default function UserCourses(props) {
                 size="small"
                 onClick={() => {
                   dispatch(actCancelCourse(courseInfo));
-                  //setShowCancelSuccess(true);
+                  setShowCancelSuccess(true);
                 }}
               >
                 Hủy
@@ -72,27 +74,17 @@ export default function UserCourses(props) {
             </Box>
           </ListItem>
           <Divider variant="inset" component="li" />
+
           {/* Modal cancel course */}
-          {/* <Modal
-            show={showCancelSuccess}
-            onHide={() => setShowCancelSuccess(false)}
-            animation={false}
+          <Modal
+            open={showCancelSuccess}
+            onClose={setShowCancelSuccess(false)}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+            style={{ overflow: "scroll" }}
           >
-            <Modal.Header>
-              <Button
-                variant="secondary"
-                onClick={() => setShowCancelSuccess(false)}
-                style={{ diplay: "inherit", alignSelf: "center" }}
-              >
-                <IoCloseSharp size={20} />
-              </Button>
-            </Modal.Header>
-            <Modal.Body>
-              <div class="alert alert-success mt-2">
-                <strong>HỦY KHÓA HỌC THÀNH CÔNG!</strong>
-              </div>
-            </Modal.Body>
-          </Modal> */}
+            <Box>HỦY KHÓA HỌC THÀNH CÔNG!</Box>
+          </Modal>
         </div>
       );
     });

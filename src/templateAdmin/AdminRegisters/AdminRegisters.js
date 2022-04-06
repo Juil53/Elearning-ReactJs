@@ -2,29 +2,33 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
  import Button from '@mui/material/Button';
  import RegisterModal from './_components/RegisterModal';
-import { actFetchUserSelector } from './modules/actions';
-import { useDispatch } from 'react-redux';
+import { actFetchUserJoined, actFetchUserSelector, actFetchUserWaiting } from './modules/actions';
+import { useDispatch,useSelector } from 'react-redux';
+import { useStyles } from "../../styles/styles";
 
 
 export default function AdminRegisters() {
+  const classes = useStyles()
   const [showRegisterModal, setShowRegisterModal] = React.useState(false);
   const handleShowRegisterModal = () => setShowRegisterModal(true);
   const handleCloseRegisterModal = () => setShowRegisterModal(false);
 
   const dispatch = useDispatch();
- 
-  const userSelector=()=>{
+
+  const handleUserList=()=>{
     const maKH={
       maKhoaHoc:'00002',
     };
-    dispatch(actFetchUserSelector(maKH))
+    dispatch(actFetchUserSelector(maKH));
+    dispatch(actFetchUserWaiting(maKH));
+    dispatch(actFetchUserJoined(maKH));
   };
-
+  
   return (
-    <div>
+    <div className={classes.adminContent}>
       <Box
         component="main"
-        sx={{ width: `calc(100% - ${165}px)`, ml: `${165}px` }}
+        sx={{ width: `calc(100% - ${165}px)`, ml: `${20}px` }}
       >
         <Button 
         variant="contained" 
@@ -32,7 +36,7 @@ export default function AdminRegisters() {
         sx={{m: 2}}
         onClick={()=>{
           handleShowRegisterModal();
-          userSelector();
+          handleUserList();
         }}
         >
           GHI DANH

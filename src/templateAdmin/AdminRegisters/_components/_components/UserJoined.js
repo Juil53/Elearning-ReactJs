@@ -7,12 +7,14 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import Typography from '@mui/material/Typography';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import { ThemeProvider } from '@mui/material/styles';
 import { theme, registerStyle } from './RegisterCourseStyle';
+import { Button } from '@mui/material';
 
+import { actCancelCourse } from '../../../../templateHome/UserProfile/modules/actions';
+import { useDispatch } from 'react-redux';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -34,17 +36,23 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(name, calories, fat, carbs) {
-  return { name, calories, fat, carbs };
+function createData(number, account, name, confirmation) {
+  return { number, account, name, confirmation };
 }
 
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-];
 
+export default function UserJoined(props) {
+  const {dataUserJoined} = props;
+  const dispatch=useDispatch();
+  const courseInfo = {
+    maKhoaHoc: '00002',
+    taiKhoan: JSON.parse(localStorage.getItem("AdminClient")).taiKhoan,
+  };
 
-
-export default function UserJoined() {
+  const rows = 
+  dataUserJoined?.map((user,index)=>{
+      return createData(index, user.taiKhoan, user.hoTen)
+    });
   const classes=registerStyle();
   const [page, setPage] = React.useState(1);
   const handleChange = (event, value) => {
@@ -53,27 +61,33 @@ export default function UserJoined() {
   return (
     <>
     <div className={classes.title}>
-      <h2>Học viên chờ xét duyệt</h2>
+      <h2>Học viên đã ghi danh khóa học</h2>
     </div>
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 700 }} aria-label="customized table">
+      <Table sx={{ minWidth: 600, textAlign:'center' }} aria-label="customized table">
         <TableHead>
           <TableRow>
-            <StyledTableCell>Dessert (100g serving)</StyledTableCell>
-            <StyledTableCell align="right">Calories</StyledTableCell>
-            <StyledTableCell align="right">Fat&nbsp;(g)</StyledTableCell>
-            <StyledTableCell align="right">Carbs&nbsp;(g)</StyledTableCell>
+            <StyledTableCell>Số thứ tự</StyledTableCell>
+            <StyledTableCell align="right">Tài khoản</StyledTableCell>
+            <StyledTableCell align="right">Họ tên</StyledTableCell>
+            <StyledTableCell align="right">Hủy ghi danh</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <StyledTableRow key={row.name}>
+          {rows?.map((row) => (
+            <StyledTableRow key={row.number}>
               <StyledTableCell component="th" scope="row">
-                {row.name}
+                {row.number+1}
               </StyledTableCell>
-              <StyledTableCell align="right">{row.calories}</StyledTableCell>
-              <StyledTableCell align="right">{row.fat}</StyledTableCell>
-              <StyledTableCell align="right">{row.carbs}</StyledTableCell>
+              <StyledTableCell align="right">{row.account}</StyledTableCell>
+              <StyledTableCell align="right">{row.name}</StyledTableCell>
+              <StyledTableCell align="right">
+                <Button onClick={()=>{
+                  dispatch(actCancelCourse(courseInfo));
+                }}>
+                  Hủy ghi danh
+                </Button>
+              </StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
@@ -82,7 +96,7 @@ export default function UserJoined() {
     <ThemeProvider theme={theme}>
     <Stack spacing={2}>
       <p className={classes.pagination} >Trang: {page}</p>
-      <Pagination variant="outlined" count={10} page={page} onChange={handleChange} />
+      <Pagination variant="outlined" count={5} page={page} onChange={handleChange} />
     </Stack>
     </ThemeProvider>
     </>

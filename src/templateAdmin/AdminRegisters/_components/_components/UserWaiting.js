@@ -7,11 +7,11 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import Typography from '@mui/material/Typography';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import { ThemeProvider } from '@mui/material/styles';
 import { theme, registerStyle } from './RegisterCourseStyle';
+import { Button } from '@mui/material';
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -34,17 +34,17 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(name, calories, fat, carbs) {
-  return { name, calories, fat, carbs };
+function createData(number, account, name, confirmation) {
+  return { number, account, name, confirmation };
 }
 
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-];
 
-
-
-export default function UserWaiting() {
+export default function UserWaiting(props) {
+  const {dataUserWaiting} = props;
+  const rows = 
+   dataUserWaiting?.map((user,index)=>{
+      return createData(index, user.taiKhoan, user.hoTen)
+    });
   const classes=registerStyle();
   const [page, setPage] = React.useState(1);
   const handleChange = (event, value) => {
@@ -56,24 +56,24 @@ export default function UserWaiting() {
       <h2>Học viên chờ xét duyệt</h2>
     </div>
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 700 }} aria-label="customized table">
+      <Table sx={{ minWidth: 600, textAlign:'center' }} aria-label="customized table">
         <TableHead>
           <TableRow>
-            <StyledTableCell>Dessert (100g serving)</StyledTableCell>
-            <StyledTableCell align="right">Calories</StyledTableCell>
-            <StyledTableCell align="right">Fat&nbsp;(g)</StyledTableCell>
-            <StyledTableCell align="right">Carbs&nbsp;(g)</StyledTableCell>
+            <StyledTableCell>Số thứ tự</StyledTableCell>
+            <StyledTableCell align="right">Tài khoản</StyledTableCell>
+            <StyledTableCell align="right">Họ tên</StyledTableCell>
+            <StyledTableCell align="right">Xác nhận</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <StyledTableRow key={row.name}>
+          {rows?.map((row) => (
+            <StyledTableRow key={row.number}>
               <StyledTableCell component="th" scope="row">
-                {row.name}
+                {row.number+1}
               </StyledTableCell>
-              <StyledTableCell align="right">{row.calories}</StyledTableCell>
-              <StyledTableCell align="right">{row.fat}</StyledTableCell>
-              <StyledTableCell align="right">{row.carbs}</StyledTableCell>
+              <StyledTableCell align="right">{row.account}</StyledTableCell>
+              <StyledTableCell align="right">{row.name}</StyledTableCell>
+              <StyledTableCell align="right"><Button>Xác nhận</Button></StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>

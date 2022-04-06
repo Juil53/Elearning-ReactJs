@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { useSelector } from 'react-redux';
 import Box from '@mui/material/Box';
 import Divider from "@mui/material/Divider";
 import Modal from '@mui/material/Modal';
@@ -10,7 +11,9 @@ import { registerStyle } from './_components/RegisterCourseStyle';
 export default function RegisterModal(props) {
   const classes=registerStyle();
   const {showRegisterModal, handleCloseRegisterModal}=props;
-  const dataUserSelector=useState(state=>state.registerModalReducer.dataUserSelector);
+  const dataUserSelector=useSelector(state=>state.registerModalReducer.dataUserSelector);
+  const dataUserWaiting=useSelector(state=>state.registerModalReducer.dataUserWaiting);
+  const dataUserJoined=useSelector(state=>state.registerModalReducer.dataUserJoined);
   return (
     <Modal
         open={showRegisterModal}
@@ -23,9 +26,9 @@ export default function RegisterModal(props) {
         
         <Box className={classes.modalRegister}>
           <UserSelector dataUserSelector={dataUserSelector}/>
-          <UserWaiting/>
+          <UserWaiting dataUserWaiting={dataUserWaiting}/>
           <Divider variant="inset" component="li" sx={{margin: 2}}  />
-          <UserJoined/>
+          <UserJoined dataUserJoined={dataUserJoined}/>
         </Box>
       
       </Modal>

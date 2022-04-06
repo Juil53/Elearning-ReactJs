@@ -12,7 +12,6 @@ import userProfileStyle from "./_components/UserProfileStyle";
 import UserInfo from "./_components/UserInfo";
 import UserCourses from "./_components/UserCourses";
 import { actUserProfile } from "./modules/actions";
-import { actCancelCourse } from "./modules/actions";
 import Breadcrumb from "../../_components/Breadcrumb/Breadcrumb";
 import SearchCourse from "./_components/SearchCourse";
 
@@ -60,6 +59,7 @@ function UserProfile(props) {
     },
   ];
   const classes = userProfileStyle();
+  // dispatch account user
   const dispatch = useDispatch();
   useEffect(() => {
     const accountUser = {
