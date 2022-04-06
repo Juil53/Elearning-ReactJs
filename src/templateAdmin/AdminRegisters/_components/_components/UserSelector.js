@@ -3,7 +3,14 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import { Button, Grid } from '@mui/material';
 
-export default function UserSelector() {
+export default function UserSelector(props) {
+  const {dataUserSelector}=props;
+  
+  const userList = 
+    dataUserSelector.map((user,index)=>{
+      return {label: user.taiKhoan};
+    });
+   
   return (
     <>
     <h2>Chọn người dùng</h2>
@@ -35,9 +42,4 @@ export default function UserSelector() {
   );
 }
 
-const userList = [
-  { label: 'The Shawshank Redemption', year: 1994 },
-  { label: 'Double Indemnity', year: 1944 },
-  { label: 'Full Metal Jacket', year: 1987 },
 
-];

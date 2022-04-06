@@ -11,7 +11,7 @@ const theme = createTheme({
     },
   },
 });
-const registerCourseStyle = makeStyles({
+const registerStyle = makeStyles({
   pagination: {
     textAlign: "right",
     marginTop: 15,
@@ -35,4 +35,4 @@ const registerCourseStyle = makeStyles({
   },
 });
 
-export { theme, registerCourseStyle };
+export { theme, registerStyle };

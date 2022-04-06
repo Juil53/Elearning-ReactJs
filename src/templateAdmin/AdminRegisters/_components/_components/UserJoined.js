@@ -11,7 +11,7 @@ import Typography from '@mui/material/Typography';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import { ThemeProvider } from '@mui/material/styles';
-import { theme, registerCourseStyle } from './RegisterCourseStyle';
+import { theme, registerStyle } from './RegisterCourseStyle';
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -45,7 +45,7 @@ const rows = [
 
 
 export default function UserJoined() {
-  const classes=registerCourseStyle();
+  const classes=registerStyle();
   const [page, setPage] = React.useState(1);
   const handleChange = (event, value) => {
     setPage(value);

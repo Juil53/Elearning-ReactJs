@@ -1,27 +1,16 @@
-import * as React from 'react';
+import React, {useState} from 'react';
 import Box from '@mui/material/Box';
 import Divider from "@mui/material/Divider";
 import Modal from '@mui/material/Modal';
 import UserSelector from './_components/UserSelector';
 import UserWaiting from './_components/UserWaiting';
 import UserJoined from './_components/UserJoined';
-import { registerCourseStyle } from './_components/RegisterCourseStyle';
+import { registerStyle } from './_components/RegisterCourseStyle';
 
-export default function RegisterCourseModal(props) {
-  // const style = {
-  //   position: 'absolute',
-  //   top: '80%',
-  //   left: '50%',
-  //   transform: 'translate(-50%, -50%)',
-  //   width: 800,
-  //   bgcolor: 'background.paper',
-  //   border: '2px solid #000',
-  //   boxShadow: 24,
-  //   p: 4,
-    
-  // };
-  const classes=registerCourseStyle();
+export default function RegisterModal(props) {
+  const classes=registerStyle();
   const {showRegisterModal, handleCloseRegisterModal}=props;
+  const dataUserSelector=useState(state=>state.registerModalReducer.dataUserSelector);
   return (
     <Modal
         open={showRegisterModal}
@@ -33,7 +22,7 @@ export default function RegisterCourseModal(props) {
       >
         
         <Box className={classes.modalRegister}>
-          <UserSelector/>
+          <UserSelector dataUserSelector={dataUserSelector}/>
           <UserWaiting/>
           <Divider variant="inset" component="li" sx={{margin: 2}}  />
           <UserJoined/>

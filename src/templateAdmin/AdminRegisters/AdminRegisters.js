@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
  import Button from '@mui/material/Button';
- import RegisterCourseModal from './_components/RegisterCourseModal';
+ import RegisterModal from './_components/RegisterModal';
 import { actFetchUserSelector } from './modules/actions';
 import { useDispatch } from 'react-redux';
 
@@ -38,7 +38,7 @@ export default function AdminRegisters() {
           GHI DANH
         </Button>
       </Box>
-      <RegisterCourseModal showRegisterModal={showRegisterModal} handleCloseRegisterModal={handleCloseRegisterModal}/>
+      <RegisterModal showRegisterModal={showRegisterModal} handleCloseRegisterModal={handleCloseRegisterModal}/>
     </div>
   );
 }
