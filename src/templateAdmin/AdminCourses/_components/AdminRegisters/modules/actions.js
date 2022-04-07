@@ -97,3 +97,46 @@ const actUserJoinedFailed = (error) => {
     payload: error,
   };
 };
+
+// get code course
+export const actGetCodeCourse = (courseCode) => {
+  return {
+    type: ActionType.GET_CODECOURSE,
+    payload: courseCode,
+  };
+};
+
+
+// action register course
+export const actAdminRegisterCourse = (courseInfo) => {
+  return (dispatch) => {
+    dispatch(actAdminRegisterCourseRequest());
+    api
+      .post("QuanLyKhoaHoc/GhiDanhKhoaHoc", courseInfo)
+      .then((result) => {
+        dispatch(actAdminRegisterCourseSuccess(result.data));
+        alert('Xác nhận thành công!')       
+      })
+      .catch((error) => {
+        dispatch(actAdminRegisterCourseFailed(error));
+        console.log(error);
+      });
+  };
+};
+const actAdminRegisterCourseRequest = () => {
+  return {
+    type: ActionType.ADMIN_REGISTER_COURSE_REQUEST,
+  };
+};
+const actAdminRegisterCourseSuccess = (data) => {
+  return {
+    type: ActionType.ADMIN_REGISTER_COURSE_SUCCESS,
+    payload: data,
+  };
+};
+const actAdminRegisterCourseFailed = (error) => {
+  return {
+    type: ActionType.ADMIN_REGISTER_COURSE_FAILED,
+    payload: error,
+  };
+};

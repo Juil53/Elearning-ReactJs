@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useDispatch,useSelector } from 'react-redux';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -14,7 +15,6 @@ import { theme, registerStyle } from './RegisterCourseStyle';
 import { Button } from '@mui/material';
 
 import {actCancelCourse} from "../../../../../templateHome/UserProfile/modules/actions"
-import { useDispatch } from 'react-redux';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -42,18 +42,14 @@ function createData(number, account, name, confirmation) {
 
 
 export default function UserJoined(props) {
-  const {dataUserJoined} = props;
-  const dispatch=useDispatch();
-  const courseInfo = {
-    maKhoaHoc: '',
-    taiKhoan: JSON.parse(localStorage.getItem("AdminClient")).taiKhoan,
-  };
+  const classes=registerStyle();
 
+  const {dataUserJoined, courseCode} = props;
+  const dispatch=useDispatch();
   const rows = 
   dataUserJoined?.map((user,index)=>{
       return createData(index, user.taiKhoan, user.hoTen)
     });
-  const classes=registerStyle();
   const [page, setPage] = React.useState(1);
   const handleChange = (event, value) => {
     setPage(value);
@@ -85,6 +81,10 @@ export default function UserJoined(props) {
                 <Button   
                 variant="contained"
                 className={classes.button} onClick={()=>{
+                  const courseInfo = {
+                    maKhoaHoc: courseCode,
+                    taiKhoan: row.account,
+                  };
                   dispatch(actCancelCourse(courseInfo));
                 }}>
                   Hủy ghi danh

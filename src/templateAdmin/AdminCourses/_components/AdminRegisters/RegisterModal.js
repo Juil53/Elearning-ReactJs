@@ -21,6 +21,8 @@ export default function RegisterModal(props) {
   const dataUserJoined = useSelector(
     (state) => state.registerModalReducer.dataUserJoined
   );
+  let courseCode = useSelector((state) => state.registerModalReducer.courseCode);
+
   return (
     <Modal
       open={showRegisterModal}
@@ -30,10 +32,10 @@ export default function RegisterModal(props) {
       style={{ overflow: "scroll" }}
     >
       <Box className={classes.modalRegister}>
-        <UserSelector dataUserSelector={dataUserSelector} />
-        <UserWaiting dataUserWaiting={dataUserWaiting} />
+        <UserSelector dataUserSelector={dataUserSelector} courseCode={courseCode} />
+        <UserWaiting dataUserWaiting={dataUserWaiting} courseCode={courseCode} />
         <Divider variant="inset" component="li" sx={{ margin: 2 }} />
-        <UserJoined dataUserJoined={dataUserJoined} />
+        <UserJoined dataUserJoined={dataUserJoined} courseCode={courseCode}/>
       </Box>
     </Modal>
   );

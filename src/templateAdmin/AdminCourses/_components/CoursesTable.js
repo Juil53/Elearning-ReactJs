@@ -17,6 +17,7 @@ import {
   actFetchUserSelector,
   actFetchUserWaiting,
   actFetchUserJoined,
+  actGetCodeCourse,
 } from "./AdminRegisters/modules/actions";
 import RegisterModal from "./AdminRegisters/RegisterModal"
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -57,16 +58,18 @@ export default function CoursesTable(props) {
   const handleShowRegisterModal = () => setShowRegisterModal(true);
   const handleCloseRegisterModal = () => setShowRegisterModal(false);
 
+
   const getCourseCode = (courseCode) => {
     const code = {
       maKhoaHoc: courseCode,
     };
-    console.log(code);
     handleShowRegisterModal();
     dispatch(actFetchUserSelector(code));
     dispatch(actFetchUserWaiting(code));
     dispatch(actFetchUserJoined(code));
+    dispatch(actGetCodeCourse(courseCode))
   };
+
 
   return (
     <TableContainer component={Paper}>
@@ -128,7 +131,6 @@ export default function CoursesTable(props) {
       </Table>
       {/* Modal register course */}
       <RegisterModal
-        
         showRegisterModal={showRegisterModal}
         handleCloseRegisterModal={handleCloseRegisterModal}
       />

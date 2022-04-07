@@ -62,7 +62,7 @@ const actRegisterCourseRequest = () => {
 };
 const actRegisterCourseSuccess = (data) => {
   return {
-    type: ActionType.COURSE_DETAIL_SUCCESS,
+    type: ActionType.REGISTER_COURSE_SUCCESS,
     payload: data,
   };
 };
