@@ -13,6 +13,8 @@ import { ThemeProvider } from '@mui/material/styles';
 import { theme, registerStyle } from './RegisterCourseStyle';
 import { Button } from '@mui/material';
 
+import {actCancelCourse} from "../../../../../templateHome/UserProfile/modules/actions"
+import { useDispatch } from 'react-redux';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -39,10 +41,16 @@ function createData(number, account, name, confirmation) {
 }
 
 
-export default function UserWaiting(props) {
-  const {dataUserWaiting} = props;
+export default function UserJoined(props) {
+  const {dataUserJoined} = props;
+  const dispatch=useDispatch();
+  const courseInfo = {
+    maKhoaHoc: '',
+    taiKhoan: JSON.parse(localStorage.getItem("AdminClient")).taiKhoan,
+  };
+
   const rows = 
-   dataUserWaiting?.map((user,index)=>{
+  dataUserJoined?.map((user,index)=>{
       return createData(index, user.taiKhoan, user.hoTen)
     });
   const classes=registerStyle();
@@ -53,7 +61,7 @@ export default function UserWaiting(props) {
   return (
     <>
     <div className={classes.title}>
-      <h2>Học viên chờ xét duyệt</h2>
+      <h2>Học viên đã ghi danh khóa học</h2>
     </div>
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 600, textAlign:'center' }} aria-label="customized table">
@@ -62,7 +70,7 @@ export default function UserWaiting(props) {
             <StyledTableCell>Số thứ tự</StyledTableCell>
             <StyledTableCell align="right">Tài khoản</StyledTableCell>
             <StyledTableCell align="right">Họ tên</StyledTableCell>
-            <StyledTableCell align="right">Xác nhận</StyledTableCell>
+            <StyledTableCell align="right">Hủy ghi danh</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -73,7 +81,15 @@ export default function UserWaiting(props) {
               </StyledTableCell>
               <StyledTableCell align="right">{row.account}</StyledTableCell>
               <StyledTableCell align="right">{row.name}</StyledTableCell>
-              <StyledTableCell align="right"><Button>Xác nhận</Button></StyledTableCell>
+              <StyledTableCell align="right">
+                <Button   
+                variant="contained"
+                className={classes.button} onClick={()=>{
+                  dispatch(actCancelCourse(courseInfo));
+                }}>
+                  Hủy ghi danh
+                </Button>
+              </StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
@@ -82,7 +98,7 @@ export default function UserWaiting(props) {
     <ThemeProvider theme={theme}>
     <Stack spacing={2}>
       <p className={classes.pagination} >Trang: {page}</p>
-      <Pagination variant="outlined" count={10} page={page} onChange={handleChange} />
+      <Pagination variant="outlined" count={5} page={page} onChange={handleChange} />
     </Stack>
     </ThemeProvider>
     </>

@@ -12,7 +12,7 @@ import signupReducer from "../templateLogin/SignUp/module/reducer";
 import { registerCourseReducer } from "../templateHome/CourseDetail/modules/reducer";
 import userProfileReducer from "../templateHome/UserProfile/modules/reducer";
 import adminUserReducer from "../templateAdmin/AdminUsers/modules/reducer";
-import registerModalReducer from "../templateAdmin/AdminRegisters/modules/reducers";
+import registerModalReducer from "../templateAdmin/AdminCourses/_components/AdminRegisters/modules/reducers"
 import { adminCourseListReducer } from "../templateAdmin/AdminCourses/modules/reducer";
 
 const rootReducer = combineReducers({
