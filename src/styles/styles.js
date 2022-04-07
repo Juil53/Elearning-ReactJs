@@ -464,7 +464,7 @@ const useStyles = makeStyles({
     background: "url(./img/dashboard.jpg)",
     backgroundSize:"cover",
     width: "100%",
-    height: "80vh",
+    height: "90vh",
   },
 });
 

@@ -27,7 +27,6 @@ const routesHome = [
     path: "/about",
     component: lazy(() => import("../templateHome/AboutUs/AboutUs.js")),
   },
-
   //Course detail
   {
     exact: false,
