@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useDispatch } from 'react-redux';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -12,6 +13,7 @@ import Stack from '@mui/material/Stack';
 import { ThemeProvider } from '@mui/material/styles';
 import { theme, registerStyle } from './RegisterCourseStyle';
 import { Button } from '@mui/material';
+import { actAdminRegisterCourse } from '../modules/actions';
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -40,12 +42,15 @@ function createData(number, account, name, confirmation) {
 
 
 export default function UserWaiting(props) {
-  const {dataUserWaiting} = props;
+  const classes=registerStyle();
+  const dispatch=useDispatch();
+
+  const {dataUserWaiting, courseCode} = props;
   const rows = 
    dataUserWaiting?.map((user,index)=>{
       return createData(index, user.taiKhoan, user.hoTen)
     });
-  const classes=registerStyle();
+
   const [page, setPage] = React.useState(1);
   const handleChange = (event, value) => {
     setPage(value);
@@ -73,8 +78,21 @@ export default function UserWaiting(props) {
               </StyledTableCell>
               <StyledTableCell align="right">{row.account}</StyledTableCell>
               <StyledTableCell align="right">{row.name}</StyledTableCell>
-              <StyledTableCell align="right"><Button   variant="contained"
-                  className={classes.button}>Xác nhận</Button></StyledTableCell>
+              <StyledTableCell align="right">
+                <Button   
+                  variant="contained"
+                  className={classes.button}
+                  onClick={()=>{
+                    const courseInfo = {
+                      maKhoaHoc: courseCode,
+                      taiKhoan: row.account,
+                    };
+                    dispatch(actAdminRegisterCourse(courseInfo));
+                  }}
+                  >
+                    Xác nhận
+                  </Button>
+                  </StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
@@ -83,7 +101,7 @@ export default function UserWaiting(props) {
     <ThemeProvider theme={theme}>
     <Stack spacing={2}>
       <p className={classes.pagination} >Trang: {page}</p>
-      <Pagination variant="outlined" count={10} page={page} onChange={handleChange} />
+      <Pagination variant="outlined" count={5} page={page} onChange={handleChange} />
     </Stack>
     </ThemeProvider>
     </>
