@@ -1,4 +1,5 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { styled } from "@mui/material/styles";
 import {
   Table,
@@ -12,8 +13,12 @@ import {
 } from "@mui/material";
 import { tableCellClasses } from "@mui/material/TableCell";
 import { actCourseDelete } from "../modules/actions";
-import { useDispatch } from "react-redux";
-
+import {
+  actFetchUserSelector,
+  actFetchUserWaiting,
+  actFetchUserJoined,
+} from "./AdminRegisters/modules/actions";
+import RegisterModal from "./AdminRegisters/RegisterModal"
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: "#FE79A2",
@@ -45,6 +50,22 @@ export default function CoursesTable(props) {
   const dispatch = useDispatch();
   const handleDeleteCourse = (maKhoaHoc) => {
     dispatch(actCourseDelete(maKhoaHoc));
+  };
+
+  // modal Register course
+  const [showRegisterModal, setShowRegisterModal] = React.useState(false);
+  const handleShowRegisterModal = () => setShowRegisterModal(true);
+  const handleCloseRegisterModal = () => setShowRegisterModal(false);
+
+  const getCourseCode = (courseCode) => {
+    const code = {
+      maKhoaHoc: courseCode,
+    };
+    console.log(code);
+    handleShowRegisterModal();
+    dispatch(actFetchUserSelector(code));
+    dispatch(actFetchUserWaiting(code));
+    dispatch(actFetchUserJoined(code));
   };
 
   return (
@@ -91,7 +112,13 @@ export default function CoursesTable(props) {
                 >
                   Xóa
                 </Button>
-                <Button variant="contained" sx={styles.button}>
+                <Button
+                  variant="contained"
+                  sx={styles.button}
+                  onClick={() => {
+                    getCourseCode(course.maKhoaHoc);
+                  }}
+                >
                   Ghi danh
                 </Button>
               </StyledTableCell>
@@ -99,6 +126,12 @@ export default function CoursesTable(props) {
           ))}
         </TableBody>
       </Table>
+      {/* Modal register course */}
+      <RegisterModal
+        
+        showRegisterModal={showRegisterModal}
+        handleCloseRegisterModal={handleCloseRegisterModal}
+      />
     </TableContainer>
   );
 }

@@ -23,7 +23,7 @@ const registerStyle = makeStyles({
   },
   modalRegister: {
     position: "absolute",
-    top: "80%",
+    top: "250%",
     left: "50%",
     transform: "translate(-50%, -50%)",
     width: '65%',
@@ -33,6 +33,12 @@ const registerStyle = makeStyles({
     p: 4,
     padding: 40
   },
+  button: {
+    padding: "10px 24px",
+    fontSize: "16px",
+    margin: "5px",
+  },
+
 });
 
 export { theme, registerStyle };
