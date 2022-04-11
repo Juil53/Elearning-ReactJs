@@ -27,12 +27,12 @@ const routesHome = [
     component: lazy(() => import("../templateHome/AboutUs/AboutUs.js")),
   },
   //Contact
-  {
-    // page: "Liên hệ",
-    // exact: false,
-    // path: "/contact",
-    // component: lazy(() => import("../templateHome/Courses/Courses")),
-  },
+  // {
+  // page: "Liên hệ",
+  // exact: false,
+  // path: "/contact",
+  // component: lazy(() => import("../templateHome/Courses/Courses")),
+  // },
   //Course detail
   {
     exact: false,

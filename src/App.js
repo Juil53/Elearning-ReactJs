@@ -1,5 +1,9 @@
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import { renderRouteAdmin, renderRouteHome, renderRouteLogin } from "./Routes/route";
+import {
+  renderRouteAdmin,
+  renderRouteHome,
+  renderRouteLogin,
+} from "./Routes/route";
 import { Suspense } from "react";
 import { useStyles } from "./styles/styles";
 import PageNotFound from "./PageNotFound";
