@@ -11,7 +11,6 @@ api.interceptors.request.use((config) => {
     Authorization: localStorage.getItem("UserClient")
       ? `Bearer ${JSON.parse(localStorage.getItem("UserClient")).accessToken}`
       : localStorage.getItem("AdminClient")
-   
       ? `Bearer ${JSON.parse(localStorage.getItem("AdminClient")).accessToken}`
       : "",
   };

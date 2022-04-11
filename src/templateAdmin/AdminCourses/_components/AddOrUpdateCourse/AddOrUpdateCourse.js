@@ -67,6 +67,8 @@ export default function AddOrUpdateCourse(props) {
     taiKhoanNguoiTao: null,
   });
 
+  const [imgSrc, setImgSrc] = useState(null);
+
   let formData = new FormData();
   const [file, setFile] = useState(null);
 
@@ -80,17 +82,19 @@ export default function AddOrUpdateCourse(props) {
   };
 
   const handleChangeImage = (e) => {
-    setFile(e.target.files[0]);
-    console.log(file);
-    setCourseDetail({ ...courseDetail, hinhAnh: e.target.files[0].name });
+    let file = e.target.files[0];
+    setFile(file);
+    setCourseDetail({ ...courseDetail, hinhAnh: file.name });
     const fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
+    fileReader.onload = (e) => {
+      setImgSrc(e.target.result);
+    };
   };
 
   const handleAddCourse = () => {
-    console.log("add new course");
     formData.append("file", file, file.name);
     formData.append("tenKhoaHoc", courseDetail.tenKhoaHoc);
-    console.log(formData.get("file"), formData.get("tenKhoaHoc"));
     dispatch(actCourseAdd(courseDetail, formData));
   };
 
@@ -203,7 +207,7 @@ export default function AddOrUpdateCourse(props) {
               <Box sx={{ width: 150, height: 150 }}>
                 {courseDetail.hinhAnh && (
                   <img
-                    src=""
+                    src={imgSrc}
                     alt=""
                     style={{
                       width: "100%",
@@ -216,25 +220,6 @@ export default function AddOrUpdateCourse(props) {
               </Box>
             </FormControl>
           </Box>
-          {/* {() => {
-            if (action === "add") {
-              return (
-                <Button
-                  variant="contained"
-                  sx={styles.button}
-                  onClick={handleAddCourse()}
-                >
-                  Thêm
-                </Button>
-              );
-            } else {
-              return (
-                <Button variant="contained" sx={styles.button}>
-                  Lưu
-                </Button>
-              );
-            }
-          }} */}
           <Button
             variant="contained"
             sx={styles.button}

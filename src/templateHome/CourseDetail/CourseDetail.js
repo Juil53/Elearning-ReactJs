@@ -6,7 +6,6 @@ import CourseModal from "./_components/CourseModal/CourseModal";
 import { actCourseDetailGet } from "./modules/actions";
 
 export default function CourseDetail(props) {
-  console.log(props);
   const breadcrumb = [
     {
       label: "Trang Chủ",
@@ -36,13 +35,16 @@ export default function CourseDetail(props) {
   const [openModal, setOpenModal] = useState(false);
 
   return (
-    <Fragment>
-      <Breadcrumb breadCrumbArr={breadcrumb} />
-      <CourseContent
-        courseDetailData={courseDetailData}
-        setOpenModal={setOpenModal}
-      />
-      <CourseModal openModal={openModal} setOpenModal={setOpenModal} />
-    </Fragment>
+    console.log("detail component"),
+    (
+      <Fragment>
+        <Breadcrumb breadCrumbArr={breadcrumb} />
+        <CourseContent
+          courseDetailData={courseDetailData}
+          setOpenModal={setOpenModal}
+        />
+        <CourseModal openModal={openModal} setOpenModal={setOpenModal} />
+      </Fragment>
+    )
   );
 }

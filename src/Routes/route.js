@@ -12,7 +12,7 @@ const routesHome = [
     path: "/",
     component: lazy(() => import("../templateHome/Homepage/Homepage")),
   },
-  
+
   //Courses
   {
     page: "Khoá học",
@@ -71,7 +71,6 @@ const routeAdmin = [
       )
     ),
   },
-
 ];
 
 const routeLogin = [
