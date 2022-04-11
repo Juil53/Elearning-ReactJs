@@ -1,0 +1,21 @@
+// show list user
+export const USER_SELECTOR_REQUEST = "@userSelector/USER_SELECTOR_REQUEST";
+export const USER_SELECTOR_SUCCESS = "@userSelector/USER_SELECTOR_SUCCESS";
+export const USER_SELECTOR_FAILED ="@userSelector/USER_SELECTOR_FAILED";
+
+export const USER_WAITING_REQUEST = "@userWaiting/USER_WAITING_REQUEST";
+export const USER_WAITING_SUCCESS = "@userWaiting/USER_WAITING_SUCCESS";
+export const USER_WAITING_FAILED = "@userWaiting/USER_WAITING_FAILED";
+
+
+export const USER_JOINED_REQUEST = "@userJoined/USER_JOINED_REQUEST";
+export const USER_JOINED_SUCCESS = "@userJoined/USER_JOINED_SUCCESS";
+export const USER_JOINED_FAILED = "@userJoined/USER_JOINED_FAILED";
+
+
+export const GET_CODECOURSE = "@codeCourse/GET_CODECOURSE";
+
+
+export const ADMIN_REGISTER_COURSE_REQUEST = "@registerCourse/ADMIN_REGISTER_COURSE_REQUEST";
+export const ADMIN_REGISTER_COURSE_SUCCESS = "@registerCourse/ADMIN_REGISTER_COURSE_SUCCESS";
+export const ADMIN_REGISTER_COURSE_FAILED = "@registerCourse/ADMIN_REGISTER_COURSE_FAILED";

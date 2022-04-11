@@ -14,7 +14,6 @@ api.interceptors.request.use((config) => {
       ? `Bearer ${JSON.parse(localStorage.getItem("AdminClient")).accessToken}`
       : "",
   };
-
   return config;
 });
 

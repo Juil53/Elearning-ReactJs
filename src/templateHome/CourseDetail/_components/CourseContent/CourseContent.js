@@ -92,7 +92,6 @@ export default function CourseContent(props) {
       taiKhoan: JSON.parse(localStorage.getItem("UserClient")).taiKhoan,
     };
     dispatch(actRegisterCourse((courseInfo)));
-    console.log(JSON.stringify(courseInfo));
     setOpenModal(true)
   };
   return (
