@@ -41,8 +41,6 @@ export const actUpdateProfile = (user) => {
       .put("QuanLyNguoiDung/CapNhatThongTinNguoiDung", user)
       .then((result) => {
         dispatch(actUpdateProfileSuccess(result.data));
-      alert(result.data);
-        dispatch(actUserProfile(user.taiKhoan));
       })
       .catch((error) => {
         dispatch(actUpdateProfileFailed(error));
